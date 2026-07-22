@@ -161,11 +161,46 @@ body::after {
 
 /* --- deck picker ----------------------------------------------------- */
 
+.deck-group {
+  margin-bottom: calc(var(--line) * 1.25);
+}
+
+.deck-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-family: var(--display);
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.15rem;
+  color: var(--ink);
+}
+
+.deck-group-date {
+  font-family: var(--body);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
 .decks {
   list-style: none;
   margin: 0;
   padding: 0;
   border-top: 1px solid rgba(29, 43, 64, 0.16);
+}
+
+/* The global "everything" row stands a little apart from the lesson groups. */
+.decks-all {
+  margin-top: calc(var(--line) * 0.5);
+  border-top: none;
+}
+
+.decks-all .deck .name {
+  font-style: italic;
 }
 
 .deck {
@@ -632,8 +667,24 @@ body::after {
 .ref-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.4rem 0.55rem;
   flex: 1;
+}
+
+.ref-nav-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ref-nav-tag {
+  font-family: var(--display);
+  font-variation-settings: 'WONK' 1;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--vermilion);
+  text-transform: uppercase;
 }
 
 .ref-nav button {
@@ -676,6 +727,36 @@ body::after {
   overflow-y: auto;
   padding: 0 1.25rem 1.5rem;
   scroll-behavior: smooth;
+}
+
+/* Lesson divider inside the cheat sheet — a scrolling band separating the
+   courses. Not sticky: the section headers below it are the sticky ones, and
+   two sticky elements at top:0 would overlap. The nav chips already say which
+   course you're in. */
+.ref-lesson {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  padding: 0.5rem 0 0.35rem;
+  border-bottom: 2px solid var(--vermilion);
+  font-family: var(--display);
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--vermilion);
+}
+
+.ref-lesson:first-child {
+  margin-top: 0.25rem;
+}
+
+.ref-lesson-date {
+  font-family: var(--body);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
 .ref-section {
@@ -783,6 +864,34 @@ body::after {
   background: var(--vermilion-wash);
   border: 1px solid var(--vermilion);
   border-radius: 2px;
+}
+
+/* Numbers reference: a flowing grid of digit + word rather than a tall table. */
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.15rem 1rem;
+}
+
+.num-cell {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(29, 43, 64, 0.08);
+}
+
+.num-digit {
+  font-family: var(--display);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  min-width: 2.4rem;
+  text-align: right;
+  color: var(--ink-soft);
+}
+
+.num-word {
+  flex: 1;
 }
 
 .ref-table .swatch {

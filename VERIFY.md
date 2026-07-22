@@ -1,10 +1,19 @@
-# Verify: Cours collectif N°1
+# Verify: content vs. the slides
 
-Extracted from `course-slides/Cours collectif Jeudi N°1.pdf` (29 slides).
+One section per course, extracted from the PDFs in `course-slides/`.
 
 **Read this against the PDF before you drill the decks.** An error here becomes
-something you memorise. Check the two ⚠️ items first — they're the ones where I
+something you memorise. Check the ⚠️ items first — they're the ones where I
 departed from what the slides say.
+
+- [Cours N°1](#cours-n1) — 9 juillet
+- [Cours N°2](#cours-n2) — 17 juillet
+
+---
+
+# Cours N°1
+
+Extracted from `course-slides/Cours collectif Jeudi N°1.pdf` (29 slides).
 
 ---
 
@@ -128,3 +137,63 @@ written drill matters — and why the app always speaks the *whole phrase*
   also how you'd add spaced repetition.
 - **No listening mode.** Hear `un cahier`, pick the spelling. The speech layer
   already supports it; nothing renders it.
+
+---
+
+# Cours N°2
+
+Extracted from `course-slides/Cours collectif Jeudi N°2.pdf` (35 slides).
+Added 5 decks (126 cards): days, months, numbers, 2nd-group «IR» verbs, and the
+auxiliaries `être`/`avoir`. Two new «ER» verbs (`travailler`, `aimer`) fold into
+the existing «ER» deck.
+
+## ⚠️ Where I corrected or departed from the slides
+
+**Days and months are lowercase in French.** The slides print `Lundi`, `Janvier`
+as table headers, but French orthography writes `lundi`, `janvier` in running
+text — they only take a capital at the start of a sentence, unlike English. I
+stored them lowercase. If Laurent wants them capitalised, that's a display choice,
+not French spelling.
+
+**Number spelling traps** (encoded as the slide teaches, but worth staring at):
+
+| Number | French | Trap |
+|---|---|---|
+| 21 | vingt **et** un | `et`, no hyphens (traditional spelling) |
+| 71 | soixante **et** onze | same |
+| 80 | quatre-vingt**s** | keeps the final `s` |
+| 81 | quatre-vingt-un | **drops** the `s` before another number |
+| 70 / 90 | soixante-dix / quatre-vingt-dix | "sixty-ten" / "four-twenty-ten" |
+
+> The 1990 spelling reform hyphenates everything (`vingt-et-un`). The slide uses
+> the traditional forms, so I did too. Either is accepted; be consistent.
+
+**`être` and `avoir` are irregular** — no root+ending rule. I wrote the forms out
+(`je suis / tu es / il est / nous sommes / vous êtes / ils sont`; `j'ai / tu as /
+il a / nous avons / vous avez / ils ont`) and the reference labels them so. `j'ai`
+elides, and the app shows it.
+
+## New grammar — the «IR» group
+
+The 2nd group conjugates **root + is / is / it / issons / issez / issent**. All
+ten verbs on the slide are regular, so I generated nothing — the forms are written
+out. Two things to notice, both drilled:
+
+- **`je` and `tu` are identical** (`finis` / `finis`). Real French, not a typo.
+- **`j'obéis`** elides, same rule as `j'habite`.
+
+Verb decks never mix distractors across groups: an «IR» question's wrong answers
+are other forms of the *same* «IR» verb, never an «ER» form.
+
+## What I skipped from Cours N°2 (and why)
+
+| Slides | Content | Why |
+|---|---|---|
+| 261–289 | **Negation** (`ne…pas`, `ne…rien`) | Sentence *transformation*, not recall — same shape as the sentence-construction exercises skipped in N°1. Wants a new "transform this sentence" exercise type, not a multiple-choice card. The single most valuable thing left on the table. |
+| 343–406 | **Nasal vowels** ([õ][ã][ɛ̃][œ̃]) and **the "R" sound** | Pure pronunciation. Not text-MC material. Could become an audio-only "listen and pick" mode using the speech layer. |
+| 481–517 | **Painting / position vocab** (`la muse`, `un buste`, `premier-plan`…) | You chose to skip it — half is art-specific and tied to one painting. `à droite`/`à gauche`/`en haut`/`en bas` are the reusable bits if you want them later. |
+| 112–135 | Pronoun & sentence-analysis exercises | Review of N°1 material, or transformation exercises. |
+| 237–260, 328–342, 445–517 | Louis XIV / Lully anecdote, the France quiz, painter bios | Trivia. |
+
+The negation exercise and a listening mode are the two natural next builds — both
+reuse machinery that already exists.

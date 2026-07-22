@@ -5,6 +5,8 @@
 
 import { pronouns } from '../content/pronouns.js'
 import { classroom, colors, salutations } from '../content/vocab.js'
+import { days, months } from '../content/calendar.js'
+import { numbers } from '../content/numbers.js'
 import { verbs, slotLabels, conjugated } from '../content/verbs.js'
 
 const CHOICES_PER_QUESTION = 4
@@ -128,19 +130,38 @@ function assemble({ id, prompt, subtitle, answer, pool, note, swatch, speech, ru
 // Generators — one per content shape
 // ---------------------------------------------------------------------------
 
-/** French -> English. `une chaise` means ___ */
-function vocabQuestions(items, deckId, runSeed, { display = (it) => it.fr } = {}) {
-  const pool = items.map((it) => ({ id: it.id, text: it.en, confusableWith: it.confusableWith }))
+/**
+ * Recall questions over a flat vocabulary list.
+ *
+ * The default is French -> English ("une chaise" means ___). But the four
+ * accessors let a deck flip the direction without a new generator: numbers, for
+ * instance, show the digit and ask for the French word (17 -> "dix-sept"). What
+ * matters is that `answerText` and `speech` stay consistent — the pool of wrong
+ * answers is built from `answerText`, and we only ever speak French, never the
+ * prompt (which might be English, or a bare digit).
+ */
+function vocabQuestions(
+  items,
+  deckId,
+  runSeed,
+  {
+    display = (it) => it.fr,
+    answerText = (it) => it.en,
+    subtitle = 'means',
+    speech = (it) => it.speech ?? it.fr,
+  } = {},
+) {
+  const pool = items.map((it) => ({ id: it.id, text: answerText(it), confusableWith: it.confusableWith }))
 
   return items
     .map((it) =>
       assemble({
         id: `${deckId}:${it.id}`,
         prompt: display(it),
-        subtitle: 'means',
+        subtitle,
         note: it.note,
         swatch: it.hex, // revealed only after answering; see Quiz.jsx
-        speech: it.speech ?? display(it),
+        speech: speech(it),
         answer: pool.find((p) => p.id === it.id),
         pool,
         runSeed,
@@ -151,10 +172,12 @@ function vocabQuestions(items, deckId, runSeed, { display = (it) => it.fr } = {}
 
 /**
  * Conjugation. One verb -> six questions, each drawing its distractors from
- * the same verb's other forms.
+ * the same verb's other forms. `verbList` selects which verbs (by group), so
+ * «ER», «IR» and the auxiliaries are separate decks that never leak distractors
+ * across groups.
  */
-function verbQuestions(runSeed) {
-  return verbs.flatMap((verb) => {
+function verbQuestions(runSeed, verbList) {
+  return verbList.flatMap((verb) => {
     const pool = Object.entries(verb.forms).map(([slot, form]) => ({
       id: `${verb.id}:${slot}`,
       text: form,
@@ -192,31 +215,76 @@ function verbQuestions(runSeed) {
 // Decks
 // ---------------------------------------------------------------------------
 
+// The courses, in order. Drives the lesson grouping in the deck picker and the
+// cheat sheet.
+export const lessons = [
+  { id: 1, label: 'Cours N°1', date: '9 juillet' },
+  { id: 2, label: 'Cours N°2', date: '17 juillet' },
+]
+
+const erVerbs = verbs.filter((v) => v.group === 1)
+const irVerbs = verbs.filter((v) => v.group === 2)
+const auxVerbs = verbs.filter((v) => v.group === 'aux')
+
 export const decks = [
+  // --- Cours N°1 -----------------------------------------------------------
   {
     id: 'pronouns',
+    lesson: 1,
     label: 'Les pronoms sujets',
     build: (seed) => vocabQuestions(pronouns, 'pronouns', seed),
   },
-  { id: 'verbs', label: 'Les verbes en «ER»', build: verbQuestions },
+  { id: 'verbs', lesson: 1, label: 'Les verbes «ER»', build: (seed) => verbQuestions(seed, erVerbs) },
   {
     id: 'classroom',
+    lesson: 1,
     label: 'Les objets de la classe',
     // Show the article — you should be absorbing gender alongside the noun.
     build: (seed) =>
       vocabQuestions(classroom, 'classroom', seed, { display: (it) => `${it.article} ${it.fr}` }),
   },
-  { id: 'colors', label: 'Les couleurs', build: (seed) => vocabQuestions(colors, 'colors', seed) },
+  { id: 'colors', lesson: 1, label: 'Les couleurs', build: (seed) => vocabQuestions(colors, 'colors', seed) },
   {
     id: 'salutations',
+    lesson: 1,
     label: 'Saluer',
     build: (seed) => vocabQuestions(salutations, 'salutations', seed),
   },
+
+  // --- Cours N°2 -----------------------------------------------------------
+  { id: 'days', lesson: 2, label: 'Les jours de la semaine', build: (seed) => vocabQuestions(days, 'days', seed) },
+  { id: 'months', lesson: 2, label: 'Les mois', build: (seed) => vocabQuestions(months, 'months', seed) },
+  {
+    id: 'numbers',
+    lesson: 2,
+    label: 'Les nombres',
+    // Digit -> French word: "17" -> dix-sept. See vocabQuestions.
+    build: (seed) =>
+      vocabQuestions(numbers, 'numbers', seed, {
+        display: (it) => it.digit,
+        answerText: (it) => it.fr,
+        subtitle: 'en français',
+        speech: (it) => it.fr,
+      }),
+  },
+  { id: 'verbs-ir', lesson: 2, label: 'Les verbes «IR»', build: (seed) => verbQuestions(seed, irVerbs) },
+  { id: 'aux', lesson: 2, label: 'Être & avoir', build: (seed) => verbQuestions(seed, auxVerbs) },
 ]
 
-/** Build a shuffled run of questions for a deck (or every deck). */
-export function buildQuiz(deckId, runSeed) {
-  const chosen = deckId === 'all' ? decks : decks.filter((d) => d.id === deckId)
+/**
+ * Build a shuffled run of questions. `scope` is one of:
+ *   'all'          — every deck, every lesson
+ *   'lesson:<n>'   — every deck in lesson n ("tout mélangé" for that course)
+ *   '<deckId>'     — a single deck
+ */
+export function buildQuiz(scope, runSeed) {
+  let chosen
+  if (scope === 'all') chosen = decks
+  else if (scope.startsWith('lesson:')) {
+    const n = Number(scope.slice('lesson:'.length))
+    chosen = decks.filter((d) => d.lesson === n)
+  } else chosen = decks.filter((d) => d.id === scope)
+
   const questions = chosen.flatMap((d) => d.build(runSeed))
   return shuffle(questions, makeRandom(runSeed))
 }

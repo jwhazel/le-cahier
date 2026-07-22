@@ -1,6 +1,6 @@
 # Le cahier
 
-Flashcards for a ten-course French series. Lesson 1 of 10.
+Flashcards for a ten-course French series. Courses 1–2 of 10 (~237 cards).
 
 ```bash
 npm install
@@ -9,9 +9,10 @@ npm run dev
 
 Answer with <kbd>A</kbd>–<kbd>D</kbd>, continue with <kbd>↵</kbd>, hear it with <kbd>P</kbd>.
 
-**Read [VERIFY.md](./VERIFY.md) before trusting the cards.** It lists every card
-against its source slide, and flags two places where the course slides state a
-rule that produces incorrect French.
+**Read [VERIFY.md](./VERIFY.md) before trusting the cards.** It lists each course's
+cards against its source slides, and flags every place the slides state a rule that
+produces incorrect French (or, in N°2, capitalise words that French writes
+lowercase).
 
 ## How it's put together
 
@@ -19,16 +20,30 @@ rule that produces incorrect French.
 src/
   content/          the facts — no questions, no wrong answers
     pronouns.js
-    vocab.js        nouns, colors, salutations
-    verbs.js        conjugation tables + elision helper
+    vocab.js        nouns, colors, salutations           (N°1)
+    verbs.js        conjugation tables + elision helper   (ER / IR / être·avoir)
+    calendar.js     days + months                         (N°2)
+    numbers.js      0–1000                                (N°2)
   quiz/
-    engine.js       facts -> questions. Plain functions, no React.
+    engine.js       facts -> questions; decks; lessons. Plain functions, no React.
   speech.js         pronunciation via the browser's built-in synthesizer
   Speaker.jsx       the shared 🔊 button
-  App.jsx           deck picker / quiz / results
+  App.jsx           deck picker (grouped by lesson) / quiz / results
   Quiz.jsx          one card at a time
   Reference.jsx     the "Antisèche" cheat sheet (a <dialog>)
 ```
+
+**Lessons.** Each deck carries a `lesson` number; `engine.js` exports a `lessons`
+list that drives the grouping in both the deck picker and the cheat sheet. You can
+drill one deck, one course (`Tout mélangé — Cours N°2`), or everything. Adding
+course N°3 is: new content file(s) + new deck entries tagged `lesson: 3` + a row in
+`lessons`. Nothing else changes.
+
+**Verbs are one model, three groups.** `verbs.js` holds every verb with a `group`
+tag (`1` = «ER», `2` = «IR», `'aux'` = être/avoir); the engine filters it into
+three decks. Because forms are written out, not generated from a rule, irregular
+groups cost nothing — `j'ai` and `nous mangeons` are just data. Distractors are
+always drawn from the *same verb*, so groups never cross-contaminate.
 
 **The cheat sheet** (Antisèche button, top-right of every screen) is a native
 `<dialog>` that reads the same content modules the quiz does — so it can never

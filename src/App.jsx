@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Quiz from './Quiz.jsx'
 import Reference from './Reference.jsx'
-import { decks } from './quiz/engine.js'
+import { decks, lessons } from './quiz/engine.js'
 
-const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI']
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII']
 
 export default function App() {
   // Three screens, ONE state variable — a tagged union.
@@ -31,7 +31,7 @@ export default function App() {
     <main className="sheet">
       <header className="masthead">
         <div className="masthead-top">
-          <p className="kicker">Cours collectif N°1 · 9 juillet</p>
+          <p className="kicker">Cours collectifs du jeudi</p>
           <button className="antiseche-open" onClick={() => setReferenceOpen(true)}>
             Antisèche
           </button>
@@ -68,34 +68,69 @@ export default function App() {
 }
 
 function DeckPicker({ onPick }) {
-  const all = decks.map((d) => ({ ...d, size: d.build().length }))
-  const total = all.reduce((sum, d) => sum + d.size, 0)
+  // Roman numerals run continuously across every lesson (I…X), so each deck has
+  // one stable index no matter how it's grouped. Sizes are computed once here.
+  const sized = decks.map((d, i) => ({ ...d, numeral: ROMAN[i], size: d.build().length }))
+  const grandTotal = sized.reduce((sum, d) => sum + d.size, 0)
 
   return (
-    <ul className="decks">
-      {all.map((deck, i) => (
-        <li key={deck.id}>
-          <button className="deck" onClick={() => onPick(deck.id)}>
-            <span className="numeral">{ROMAN[i]}</span>
-            <span className="name">{deck.label}</span>
-            <span className="count">{deck.size} cartes</span>
+    <div className="deck-groups">
+      {lessons.map((lesson) => {
+        const group = sized.filter((d) => d.lesson === lesson.id)
+        const lessonTotal = group.reduce((sum, d) => sum + d.size, 0)
+        return (
+          <section key={lesson.id} className="deck-group">
+            <h2 className="deck-group-head">
+              {lesson.label}
+              <span className="deck-group-date">{lesson.date}</span>
+            </h2>
+            <ul className="decks">
+              {group.map((deck) => (
+                <DeckRow key={deck.id} deck={deck} onPick={onPick} />
+              ))}
+              <li>
+                <button className="deck" onClick={() => onPick(`lesson:${lesson.id}`)}>
+                  <span className="numeral">✳</span>
+                  <span className="name">Tout mélangé — {lesson.label}</span>
+                  <span className="count">{lessonTotal} cartes</span>
+                  <span className="arrow" aria-hidden="true">
+                    →
+                  </span>
+                </button>
+              </li>
+            </ul>
+          </section>
+        )
+      })}
+
+      <ul className="decks decks-all">
+        <li>
+          <button className="deck" onClick={() => onPick('all')}>
+            <span className="numeral">✳</span>
+            <span className="name">Tout mélangé — tous les cours</span>
+            <span className="count">{grandTotal} cartes</span>
             <span className="arrow" aria-hidden="true">
               →
             </span>
           </button>
         </li>
-      ))}
-      <li>
-        <button className="deck" onClick={() => onPick('all')}>
-          <span className="numeral">✳</span>
-          <span className="name">Tout mélangé</span>
-          <span className="count">{total} cartes</span>
-          <span className="arrow" aria-hidden="true">
-            →
-          </span>
-        </button>
-      </li>
-    </ul>
+      </ul>
+    </div>
+  )
+}
+
+function DeckRow({ deck, onPick }) {
+  return (
+    <li>
+      <button className="deck" onClick={() => onPick(deck.id)}>
+        <span className="numeral">{deck.numeral}</span>
+        <span className="name">{deck.label}</span>
+        <span className="count">{deck.size} cartes</span>
+        <span className="arrow" aria-hidden="true">
+          →
+        </span>
+      </button>
+    </li>
   )
 }
 
