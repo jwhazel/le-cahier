@@ -926,6 +926,35 @@ body::after {
   height: 14px;
 }
 
+/* Cours N°3 cheat-sheet cells */
+.accent-symbol,
+.article-cell {
+  display: inline-block;
+  min-width: 1.6rem;
+  color: var(--vermilion);
+  font-weight: 700;
+}
+
+.time-digital {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+
+/* Negation and time sentences are long — let those rows wrap rather than
+   forcing the whole table wide (the default row-header is nowrap). */
+.neg-aff,
+#ref-negation .ref-table th[scope='row'],
+#ref-negation .ref-table td,
+#ref-time .ref-table td {
+  white-space: normal;
+}
+
+#ref-negation .ref-table th[scope='row'] {
+  font-family: var(--body);
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
 @media (max-width: 34rem) {
   .ref-head {
     flex-wrap: wrap;

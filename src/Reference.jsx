@@ -3,7 +3,13 @@ import { pronouns } from './content/pronouns.js'
 import { classroom, colors, salutations } from './content/vocab.js'
 import { days, months } from './content/calendar.js'
 import { numbers } from './content/numbers.js'
+import { nationalities } from './content/nationalities.js'
+import { reflexivePronouns } from './content/reflexives.js'
+import { accents } from './content/accents.js'
+import { articleNouns, withArticle } from './content/articles.js'
+import { negations } from './content/negation.js'
 import { verbs, slotLabels, conjugated } from './content/verbs.js'
+import { TIME_CARDS } from './quiz/time.js'
 import { lessons } from './quiz/engine.js'
 import { useFrenchVoice } from './speech.js'
 import Speaker from './Speaker.jsx'
@@ -13,6 +19,13 @@ const SLOTS = ['je', 'tu', 'il', 'nous', 'vous', 'ils']
 const erVerbs = verbs.filter((v) => v.group === 1)
 const irVerbs = verbs.filter((v) => v.group === 2)
 const auxVerbs = verbs.filter((v) => v.group === 'aux')
+const reflexiveVerbs = verbs.filter((v) => v.group === 'reflexive')
+
+// A few worked time examples for the cheat sheet — one per rule. Guard the
+// lookup so a mistyped id degrades gracefully instead of crashing the dialog.
+const TIME_EXAMPLES = ['t15h00', 't3h15', 't6h30', 't10h50', 't15h45', 't12h00', 't0h00']
+  .map((id) => TIME_CARDS.find((c) => c.id === id))
+  .filter(Boolean)
 
 // Jump-nav targets, tagged by lesson so the nav mirrors the deck picker.
 const SECTIONS = [
@@ -26,6 +39,12 @@ const SECTIONS = [
   { id: 'ref-numbers', label: 'Nombres', lesson: 2 },
   { id: 'ref-verbs-ir', label: 'Verbes «IR»', lesson: 2 },
   { id: 'ref-aux', label: 'Être & avoir', lesson: 2 },
+  { id: 'ref-nationalities', label: 'Nationalités', lesson: 3 },
+  { id: 'ref-articles', label: 'Articles', lesson: 3 },
+  { id: 'ref-reflexives', label: 'Se présenter', lesson: 3 },
+  { id: 'ref-accents', label: 'Accents', lesson: 3 },
+  { id: 'ref-time', label: "L'heure", lesson: 3 },
+  { id: 'ref-negation', label: 'Négation', lesson: 3 },
 ]
 
 /**
@@ -213,8 +232,163 @@ export default function Reference({ open, onClose }) {
           <VerbGrid verbs={auxVerbs} voice={voice} />
           <p className="ref-foot">Irregular — no rule. Memorise them; every compound tense is built on these.</p>
         </Section>
+
+        {/* ------------------------------------------------ Cours N°3 --- */}
+        <LessonDivider lesson={lessons[2]} />
+
+        <Section id="ref-nationalities" title="Les nationalités">
+          <table className="ref-table">
+            <thead>
+              <tr>
+                <th>Masculin</th>
+                <th>Féminin</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {nationalities.map((n) => (
+                <tr key={n.id}>
+                  <th scope="row">
+                    {n.fr} <Speaker text={n.fr} voice={voice} label={`Prononcer « ${n.fr} »`} />
+                  </th>
+                  <td>
+                    {n.fem} <Speaker text={n.fem} voice={voice} label={`Prononcer « ${n.fem} »`} />
+                  </td>
+                  <td className="muted">{n.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            Feminine usually adds <em>-e</em>; <em>italien → italienne</em> doubles the n. Pattern:{' '}
+            <em>je suis + nationalité</em>.
+          </p>
+        </Section>
+
+        <Section id="ref-articles" title="Les articles définis">
+          <table className="ref-table">
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>Emploi</th>
+                <th>Exemple</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ArticleRow art="le" use="masculin singulier" ex="livre" voice={voice} />
+              <ArticleRow art="la" use="féminin singulier" ex="maison" voice={voice} />
+              <ArticleRow art="l'" use="voyelle ou h muet" ex="ecole" voice={voice} />
+              <ArticleRow art="les" use="pluriel (m. ou f.)" ex="livres" voice={voice} />
+            </tbody>
+          </table>
+        </Section>
+
+        <Section id="ref-reflexives" title="Se présenter : pronoms & verbes réfléchis">
+          <table className="ref-table">
+            <thead>
+              <tr>
+                <th>Sujet</th>
+                <th>Pronom réfléchi</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {reflexivePronouns.map((r) => (
+                <tr key={r.id}>
+                  <th scope="row">{r.subject}</th>
+                  <td>
+                    {r.fr} <Speaker text={r.fr} voice={voice} label={`Prononcer « ${r.fr} »`} />
+                  </td>
+                  <td className="muted">{r.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <VerbGrid verbs={reflexiveVerbs} voice={voice} />
+          <p className="ref-foot">
+            Pattern for introducing yourself: <em>je m'appelle</em> … , <em>je suis</em> [nationalité],{' '}
+            <em>j'ai</em> [nombre] <em>ans</em> — age uses <em>avoir</em>, not <em>être</em>.
+          </p>
+        </Section>
+
+        <Section id="ref-accents" title="Les accents">
+          <table className="ref-table">
+            <tbody>
+              {accents.map((a) => (
+                <tr key={a.id}>
+                  <th scope="row">
+                    <span className="accent-symbol">{a.symbol}</span> {a.name}
+                  </th>
+                  <td>
+                    {a.example} <Speaker text={a.example} voice={voice} label={`Prononcer « ${a.example} »`} />
+                  </td>
+                  <td className="muted">{a.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Section>
+
+        <Section id="ref-time" title="L'heure (24 h)">
+          <table className="ref-table">
+            <tbody>
+              {TIME_EXAMPLES.map((c) => (
+                <tr key={c.id}>
+                  <th scope="row" className="time-digital">
+                    {c.digital}
+                  </th>
+                  <td>
+                    {c.phrase} <Speaker text={c.phrase} voice={voice} label={`Prononcer « ${c.phrase} »`} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            <em>:15</em> et quart · <em>:30</em> et demie · <em>:45</em> moins le quart · after the half,
+            count backward from the next hour (<em>10h50 → onze heures moins dix</em>).
+          </p>
+        </Section>
+
+        <Section id="ref-negation" title="La négation (ne… pas)">
+          <table className="ref-table">
+            <tbody>
+              {negations.map((n) => (
+                <tr key={n.id}>
+                  <th scope="row" className="neg-aff">
+                    {n.affirmative}
+                  </th>
+                  <td>
+                    {n.negative} <Speaker text={n.negative} voice={voice} label={`Prononcer « ${n.negative} »`} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            Sujet + <em>ne / n'</em> + verbe + <em>pas</em> + complément. <em>n'</em> before a vowel or
+            silent h (<em>il n'aime pas</em>).
+          </p>
+        </Section>
       </div>
     </dialog>
+  )
+}
+
+// One row of the definite-article table, with the correct article computed the
+// same way the quiz does (so the cheat sheet can't disagree with the deck).
+function ArticleRow({ art, use, ex, voice }) {
+  const noun = articleNouns.find((n) => n.id === ex)
+  return (
+    <tr>
+      <th scope="row" className="article-cell">
+        {art}
+      </th>
+      <td className="muted">{use}</td>
+      <td>
+        {withArticle(noun)} <Speaker text={withArticle(noun)} voice={voice} label={`Prononcer « ${withArticle(noun)} »`} />
+      </td>
+    </tr>
   )
 }
 

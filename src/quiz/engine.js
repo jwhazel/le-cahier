@@ -7,7 +7,13 @@ import { pronouns } from '../content/pronouns.js'
 import { classroom, colors, salutations } from '../content/vocab.js'
 import { days, months } from '../content/calendar.js'
 import { numbers } from '../content/numbers.js'
+import { nationalities } from '../content/nationalities.js'
+import { reflexivePronouns } from '../content/reflexives.js'
+import { accents } from '../content/accents.js'
+import { articleNouns, ARTICLES, articleOf, withArticle } from '../content/articles.js'
+import { negations } from '../content/negation.js'
 import { verbs, slotLabels, conjugated } from '../content/verbs.js'
+import { TIME_CARDS } from './time.js'
 
 const CHOICES_PER_QUESTION = 4
 
@@ -211,6 +217,83 @@ function verbQuestions(runSeed, verbList) {
   })
 }
 
+/**
+ * Definite articles. Every question offers the same four options (le / la / l' /
+ * les) — the answer is computed from the noun, so there's no distractor pool to
+ * build; the four articles *are* the choices.
+ */
+function articleQuestions(runSeed) {
+  const pool = ARTICLES.map((a) => ({ id: a, text: a }))
+  return articleNouns
+    .map((noun) => {
+      const answer = articleOf(noun)
+      return assemble({
+        id: `articles:${noun.id}`,
+        prompt: `___ ${noun.fr}`,
+        subtitle: 'article défini',
+        speech: withArticle(noun), // hear the noun with its article
+        answer: pool.find((p) => p.id === answer),
+        pool,
+        runSeed,
+      })
+    })
+    .filter(Boolean)
+    .map((q) => ({ ...q, reveal: withArticle(articleNouns.find((n) => `articles:${n.id}` === q.id)) }))
+}
+
+/**
+ * "Pick the correct X" over a prompt/answer/distractors triple. Shared by
+ * negation (affirmative -> negation) and any future transformation deck: the
+ * distractors are authored, not drawn from siblings, because the whole point is
+ * the specific mistakes the rule prevents.
+ */
+function transformQuestions(items, deckId, runSeed, { prompt, answer, subtitle, note }) {
+  return items
+    .map((it) => {
+      const target = answer(it)
+      const pool = [
+        { id: `${it.id}:ok`, text: target },
+        ...it.distractors.map((d, i) => ({ id: `${it.id}:d${i}`, text: d })),
+      ]
+      const q = assemble({
+        id: `${deckId}:${it.id}`,
+        prompt: prompt(it),
+        subtitle,
+        note: note?.(it),
+        speech: target, // speak the correct target
+        answer: pool[0],
+        pool,
+        runSeed,
+      })
+      return q && { ...q, reveal: target }
+    })
+    .filter(Boolean)
+}
+
+/**
+ * Telling time. A generator: the prompt is a digital clock, the answer is the
+ * French phrase computed in time.js, and the distractors are the phrasings a
+ * learner is most likely to confuse it with.
+ */
+function timeQuestions(runSeed) {
+  return TIME_CARDS.map((card) => {
+    const pool = [
+      { id: `${card.id}:ok`, text: card.phrase },
+      ...card.distractors.map((d, i) => ({ id: `${card.id}:d${i}`, text: d })),
+    ]
+    const q = assemble({
+      id: `time:${card.id}`,
+      prompt: card.digital,
+      subtitle: 'quelle heure est-il ?',
+      speech: card.phrase,
+      answer: pool[0],
+      pool,
+      runSeed,
+    })
+    return q && { ...q, reveal: `${card.digital} — ${card.phrase}` }
+  }).filter(Boolean)
+}
+
 // ---------------------------------------------------------------------------
 // Decks
 // ---------------------------------------------------------------------------
@@ -220,11 +303,13 @@ function verbQuestions(runSeed, verbList) {
 export const lessons = [
   { id: 1, label: 'Cours N°1', date: '9 juillet' },
   { id: 2, label: 'Cours N°2', date: '17 juillet' },
+  { id: 3, label: 'Cours N°3', date: '24 juillet' },
 ]
 
 const erVerbs = verbs.filter((v) => v.group === 1)
 const irVerbs = verbs.filter((v) => v.group === 2)
 const auxVerbs = verbs.filter((v) => v.group === 'aux')
+const reflexiveVerbs = verbs.filter((v) => v.group === 'reflexive')
 
 export const decks = [
   // --- Cours N°1 -----------------------------------------------------------
@@ -269,6 +354,60 @@ export const decks = [
   },
   { id: 'verbs-ir', lesson: 2, label: 'Les verbes «IR»', build: (seed) => verbQuestions(seed, irVerbs) },
   { id: 'aux', lesson: 2, label: 'Être & avoir', build: (seed) => verbQuestions(seed, auxVerbs) },
+
+  // --- Cours N°3 -----------------------------------------------------------
+  // (cacher / réagir / ralentir fold into the «ER» and «IR» decks above.)
+  {
+    id: 'nationalities',
+    lesson: 3,
+    label: 'Les nationalités',
+    build: (seed) => vocabQuestions(nationalities, 'nationalities', seed),
+  },
+  { id: 'articles', lesson: 3, label: 'Les articles définis', build: articleQuestions },
+  {
+    id: 'reflexive-pronouns',
+    lesson: 3,
+    label: 'Les pronoms réfléchis',
+    build: (seed) =>
+      vocabQuestions(reflexivePronouns, 'reflexive-pronouns', seed, {
+        display: (it) => it.subject,
+        answerText: (it) => it.fr,
+        subtitle: 'pronom réfléchi',
+        speech: (it) => it.fr,
+      }),
+  },
+  {
+    id: 'reflexive-verbs',
+    lesson: 3,
+    label: 'Se présenter (verbes pronominaux)',
+    build: (seed) => verbQuestions(seed, reflexiveVerbs),
+  },
+  {
+    id: 'accents',
+    lesson: 3,
+    label: 'Les accents',
+    // Prompt is the accent's name; the four options are drawn from the five
+    // symbols. Speak the example word so you hear where the accent lands.
+    build: (seed) =>
+      vocabQuestions(accents, 'accents', seed, {
+        display: (it) => it.name,
+        answerText: (it) => it.symbol,
+        subtitle: 'quelle lettre ?',
+        speech: (it) => it.example,
+      }),
+  },
+  {
+    id: 'negation',
+    lesson: 3,
+    label: 'La négation (ne… pas)',
+    build: (seed) =>
+      transformQuestions(negations, 'negation', seed, {
+        prompt: (it) => it.affirmative,
+        answer: (it) => it.negative,
+        subtitle: 'à la forme négative',
+      }),
+  },
+  { id: 'time', lesson: 3, label: "L'heure", build: timeQuestions },
 ]
 
 /**

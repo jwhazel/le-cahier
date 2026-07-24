@@ -128,6 +128,15 @@ export const verbs = [
     // je + aime elides to j'aime; handled by conjugated().
     forms: { je: 'aime', tu: 'aimes', il: 'aime', nous: 'aimons', vous: 'aimez', ils: 'aiment' },
   },
+  // new «ER» verb — Cours N°3
+  {
+    id: 'cacher',
+    fr: 'cacher',
+    en: 'to hide',
+    group: 1,
+    latin: 'coacticare (to compress / to squeeze)',
+    forms: { je: 'cache', tu: 'caches', il: 'cache', nous: 'cachons', vous: 'cachez', ils: 'cachent' },
+  },
 
   // --- 2ème groupe «IR» — Cours N°2 ----------------------------------------
   // All regular: root + is/is/it/issons/issez/issent. Note je and tu are
@@ -253,6 +262,30 @@ export const verbs = [
     group: 2,
     forms: { je: 'bâtis', tu: 'bâtis', il: 'bâtit', nous: 'bâtissons', vous: 'bâtissez', ils: 'bâtissent' },
   },
+  // new «IR» verbs — Cours N°3
+  {
+    id: 'reagir',
+    fr: 'réagir',
+    en: 'to react',
+    group: 2,
+    latin: 'reagere (to push again)',
+    forms: { je: 'réagis', tu: 'réagis', il: 'réagit', nous: 'réagissons', vous: 'réagissez', ils: 'réagissent' },
+  },
+  {
+    id: 'ralentir',
+    fr: 'ralentir',
+    en: 'to slow down',
+    group: 2,
+    latin: 'Old French "alentir" (to be slow)',
+    forms: {
+      je: 'ralentis',
+      tu: 'ralentis',
+      il: 'ralentit',
+      nous: 'ralentissons',
+      vous: 'ralentissez',
+      ils: 'ralentissent',
+    },
+  },
 
   // --- auxiliaries être / avoir — Cours N°2 --------------------------------
   // Irregular: no root+ending rule. These have to be memorised, and they carry
@@ -273,6 +306,44 @@ export const verbs = [
     note: 'Irregular auxiliary — no rule, memorise it. j’ai elides.',
     // j'ai — elision before the vowel; handled by conjugated().
     forms: { je: 'ai', tu: 'as', il: 'a', nous: 'avons', vous: 'avez', ils: 'ont' },
+  },
+
+  // --- reflexive (pronominal) verbs — Cours N°3 ----------------------------
+  // The reflexive pronoun is baked into each form (m', t', s', nous, vous, s'),
+  // so conjugated() joins subject + form correctly: "je" + "m'appelle" =>
+  // "je m'appelle". These carry the whole "se présenter" lesson. See also the
+  // reflexive-pronoun mapping in reflexives.js.
+  {
+    id: 'sappeler',
+    fr: "s'appeler",
+    en: 'to be called / one’s name is',
+    group: 'reflexive',
+    // Double L keeps the strong [ɛ] sound where the ending is weak: je
+    // m'appelle (ll) but nous appelons / vous appelez (single l), where -ons and
+    // -ez already carry the stress.
+    note: "Double L in m'appelle / t'appelles / s'appelle(nt); single l in nous appelons / vous appelez.",
+    forms: {
+      je: "m'appelle",
+      tu: "t'appelles",
+      il: "s'appelle",
+      nous: 'nous appelons',
+      vous: 'vous appelez',
+      ils: "s'appellent",
+    },
+  },
+  {
+    id: 'sepresenter',
+    fr: 'se présenter',
+    en: 'to introduce oneself',
+    group: 'reflexive',
+    forms: {
+      je: 'me présente',
+      tu: 'te présentes',
+      il: 'se présente',
+      nous: 'nous présentons',
+      vous: 'vous présentez',
+      ils: 'se présentent',
+    },
   },
 ]
 

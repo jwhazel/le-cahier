@@ -3,7 +3,10 @@ import Quiz from './Quiz.jsx'
 import Reference from './Reference.jsx'
 import { decks, lessons } from './quiz/engine.js'
 
-const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII']
+const ROMAN = [
+  'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
+  'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX',
+]
 
 export default function App() {
   // Three screens, ONE state variable — a tagged union.

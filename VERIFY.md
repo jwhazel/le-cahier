@@ -197,3 +197,74 @@ are other forms of the *same* «IR» verb, never an «ER» form.
 
 The negation exercise and a listening mode are the two natural next builds — both
 reuse machinery that already exists.
+
+---
+
+# Cours N°3
+
+Extracted from `course-slides/Cours collectif Jeudi N°3.pdf` (24 slides). Most of
+the deck is deliberate review (months, days, «IR» list, pronouns, numbers, nasal
+vowels, être/avoir) and was skipped. Added 7 decks (70 cards) plus 3 verbs folded
+into the existing «ER»/«IR» decks. The three "hard to convert" topics were built
+as multiple-choice rather than a new typing mode — you chose *Everything*, with a
+*generator* for time.
+
+## ⚠️ Where I corrected or departed from the slides
+
+**Nationalities are lowercase as adjectives.** `je suis français` (adjective,
+lowercase). The noun "a French person" would be capitalised — `un Français` — but
+the course uses the adjective form, so cards are lowercase. Feminine adds `-e`,
+except `italien → italienne` and `canadien → canadienne`, which double the n.
+
+**`s'appeler` doubles its L by sound, not everywhere.** `je m'appelle`,
+`tu t'appelles`, `il s'appelle`, `ils s'appellent` (double l), but `nous appelons`
+/ `vous appelez` (single l), because `-ons`/`-ez` already carry the stress. The
+slide's `TU T'APELLES` is a typo — the app uses `t'appelles`.
+
+**Age uses `avoir`, not `être`.** `j'ai 20 ans` = "I am 20", literally "I have 20
+years". A classic false-friend trap; noted in the *se présenter* reference.
+
+## Telling time — the generator
+
+`src/quiz/time.js` computes the French phrase for any 24-hour time and generates
+the wrong phrasings a learner confuses it with (off-by-one hour, `et quart` vs
+`et demie`, forward-count instead of `moins`). The deck instantiates a fixed
+spread of ~20 times so cards are stable. Agreement traps handled and unit-tested:
+
+| Time | Phrase | Why it's tricky |
+|---|---|---|
+| 1h00 | `une heure` | singular |
+| 21h00 | `vingt et une heures` | feminine agreement (heure is f.) |
+| 12h30 | `midi et demi` | **masculine** demi after midi/minuit |
+| 3h30 | `trois heures et demie` | feminine demie after heures |
+| 10h50 | `onze heures moins dix` | count backward from the next hour |
+| 15h45 | `seize heures moins le quart` | next hour − quarter |
+| 23h45 | `minuit moins le quart` | rolls over to minuit |
+
+## Definite articles — computed, not stored
+
+`le`/`la`/`l'`/`les` is fully determined by gender + number + first sound, so the
+deck computes the answer (`articleOf`) and offers all four articles as options
+every time. The cheat sheet uses the *same* function, so it can't disagree with
+the quiz.
+
+## What I skipped from Cours N°3 (and why)
+
+| Content | Why |
+|---|---|
+| **The France Quiz** and **all the pirates** (l'Olonnais, Wynne, Surcouf) | You asked to skip these. Great reading, not language drills. |
+| **Croissant / baguette** pronunciation | A joke slide — pronunciation only. |
+| **Nasal vowels** and **the "R" sound** (again) | Pure pronunciation; a future audio-only "listen and pick" mode. |
+| **"Words that change gender"** (amour/délice/orgue) | A three-word Latin curiosity; low value, easy to mis-learn. Left in the source only. |
+| Review of months/days/«IR»/pronouns/numbers/être-avoir | Already in the app since N°1–N°2. |
+
+## New this course, by deck
+
+- **Verbs**: `cacher` (ER), `réagir` + `ralentir` (IR) — folded into the existing decks.
+- **Les nationalités** — 7, masculine → English (feminine shown in the cheat sheet).
+- **Les articles définis** — computed le/la/l'/les.
+- **Les pronoms réfléchis** — subject → me/te/se/nous/vous/se.
+- **Se présenter (verbes pronominaux)** — `s'appeler`, `se présenter` conjugations.
+- **Les accents** — name → é/è/ê/ë/ç, with a spoken example.
+- **La négation** — pick the correct negation (elision, placement, dropped `ne`).
+- **L'heure** — the time generator.

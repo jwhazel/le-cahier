@@ -1,6 +1,6 @@
 # Le cahier
 
-Flashcards for a ten-course French series. Courses 1–2 of 10 (~237 cards).
+Flashcards for a ten-course French series. Courses 1–3 of 10 (~325 cards).
 
 ```bash
 npm install
@@ -21,11 +21,14 @@ src/
   content/          the facts — no questions, no wrong answers
     pronouns.js
     vocab.js        nouns, colors, salutations           (N°1)
-    verbs.js        conjugation tables + elision helper   (ER / IR / être·avoir)
+    verbs.js        conjugation tables + elision helper   (ER / IR / être·avoir / reflexive)
     calendar.js     days + months                         (N°2)
     numbers.js      0–1000                                (N°2)
+    nationalities.js, articles.js, reflexives.js,
+    accents.js, negation.js                               (N°3)
   quiz/
     engine.js       facts -> questions; decks; lessons. Plain functions, no React.
+    time.js         the telling-time generator (phrase + distractors)  (N°3)
   speech.js         pronunciation via the browser's built-in synthesizer
   Speaker.jsx       the shared 🔊 button
   App.jsx           deck picker (grouped by lesson) / quiz / results
@@ -35,15 +38,26 @@ src/
 
 **Lessons.** Each deck carries a `lesson` number; `engine.js` exports a `lessons`
 list that drives the grouping in both the deck picker and the cheat sheet. You can
-drill one deck, one course (`Tout mélangé — Cours N°2`), or everything. Adding
-course N°3 is: new content file(s) + new deck entries tagged `lesson: 3` + a row in
-`lessons`. Nothing else changes.
+drill one deck, one course (`Tout mélangé — Cours N°3`), or everything. Adding a
+course is: new content file(s) + new deck entries tagged with the lesson number + a
+row in `lessons`. Nothing else changes.
 
-**Verbs are one model, three groups.** `verbs.js` holds every verb with a `group`
-tag (`1` = «ER», `2` = «IR», `'aux'` = être/avoir); the engine filters it into
-three decks. Because forms are written out, not generated from a rule, irregular
-groups cost nothing — `j'ai` and `nous mangeons` are just data. Distractors are
-always drawn from the *same verb*, so groups never cross-contaminate.
+**Verbs are one model, four groups.** `verbs.js` holds every verb with a `group`
+tag (`1` = «ER», `2` = «IR», `'aux'` = être/avoir, `'reflexive'` = s'appeler /
+se présenter); the engine filters it into separate decks. Because forms are written
+out, not generated from a rule, irregular and reflexive verbs cost nothing — `j'ai`,
+`nous mangeons`, and `je m'appelle` are just data. Distractors are always drawn
+from the *same verb*, so groups never cross-contaminate.
+
+**Four question shapes, one interaction.** Everything is still "tap the right
+option", but the answer comes from four kinds of generator:
+1. *Recall* — a fact's gloss, distractors from sibling facts (vocab, verbs).
+2. *Computed* — the answer is derived and the options are a fixed set
+   (definite articles: always le/la/l'/les).
+3. *Authored distractors* — "pick the correct X", where the wrong options are the
+   specific mistakes the rule prevents (negation).
+4. *Generated* — the answer and its distractors are both computed
+   (`time.js`: any clock time → French, plus off-by-one-hour / wrong-expression lures).
 
 **The cheat sheet** (Antisèche button, top-right of every screen) is a native
 `<dialog>` that reads the same content modules the quiz does — so it can never
