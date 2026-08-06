@@ -137,6 +137,16 @@ export const verbs = [
     latin: 'coacticare (to compress / to squeeze)',
     forms: { je: 'cache', tu: 'caches', il: 'cache', nous: 'cachons', vous: 'cachez', ils: 'cachent' },
   },
+  // new «ER» verb — Cours N°4 (from the écraser/donner conjugation slide)
+  {
+    id: 'ecraser',
+    fr: 'écraser',
+    en: 'to crush',
+    group: 1,
+    latin: 'Old French "escrachier / écrazer" (to crush)',
+    // j'écrase — elision before the vowel; handled by conjugated().
+    forms: { je: 'écrase', tu: 'écrases', il: 'écrase', nous: 'écrasons', vous: 'écrasez', ils: 'écrasent' },
+  },
 
   // --- 2ème groupe «IR» — Cours N°2 ----------------------------------------
   // All regular: root + is/is/it/issons/issez/issent. Note je and tu are
@@ -287,6 +297,75 @@ export const verbs = [
     },
   },
 
+  // new «IR» verbs — Cours N°4 (the "conjugate at present" exercise)
+  {
+    id: 'punir',
+    fr: 'punir',
+    en: 'to punish',
+    group: 2,
+    forms: { je: 'punis', tu: 'punis', il: 'punit', nous: 'punissons', vous: 'punissez', ils: 'punissent' },
+  },
+  {
+    id: 'saisir',
+    fr: 'saisir',
+    en: 'to seize / to grab',
+    group: 2,
+    forms: { je: 'saisis', tu: 'saisis', il: 'saisit', nous: 'saisissons', vous: 'saisissez', ils: 'saisissent' },
+  },
+  {
+    id: 'atterrir',
+    fr: 'atterrir',
+    en: 'to land',
+    group: 2,
+    latin: 'à + terre (to the ground)',
+    // j'atterris — elision before the vowel; handled by conjugated().
+    forms: {
+      je: 'atterris',
+      tu: 'atterris',
+      il: 'atterrit',
+      nous: 'atterrissons',
+      vous: 'atterrissez',
+      ils: 'atterrissent',
+    },
+  },
+  {
+    id: 'investir',
+    fr: 'investir',
+    en: 'to invest',
+    group: 2,
+    // j'investis — elision before the vowel; handled by conjugated().
+    forms: {
+      je: 'investis',
+      tu: 'investis',
+      il: 'investit',
+      nous: 'investissons',
+      vous: 'investissez',
+      ils: 'investissent',
+    },
+  },
+  {
+    id: 'benir',
+    fr: 'bénir',
+    en: 'to bless',
+    group: 2,
+    forms: { je: 'bénis', tu: 'bénis', il: 'bénit', nous: 'bénissons', vous: 'bénissez', ils: 'bénissent' },
+  },
+  {
+    id: 'avertir',
+    fr: 'avertir',
+    en: 'to warn',
+    group: 2,
+    // j'avertis — elision before the vowel; handled by conjugated().
+    forms: {
+      je: 'avertis',
+      tu: 'avertis',
+      il: 'avertit',
+      nous: 'avertissons',
+      vous: 'avertissez',
+      ils: 'avertissent',
+    },
+  },
+
   // --- auxiliaries être / avoir — Cours N°2 --------------------------------
   // Irregular: no root+ending rule. These have to be memorised, and they carry
   // most of the language (every compound tense is built on them).
@@ -343,6 +422,23 @@ export const verbs = [
       nous: 'nous présentons',
       vous: 'vous présentez',
       ils: 'se présentent',
+    },
+  },
+  // new reflexive verb — Cours N°4 (se cacher = to hide oneself, the reflexive
+  // twin of the plain `cacher` above). Same stem, but the reflexive pronoun
+  // (me / te / se / nous / vous / se) sits in front.
+  {
+    id: 'secacher',
+    fr: 'se cacher',
+    en: 'to hide (oneself)',
+    group: 'reflexive',
+    forms: {
+      je: 'me cache',
+      tu: 'te caches',
+      il: 'se cache',
+      nous: 'nous cachons',
+      vous: 'vous cachez',
+      ils: 'se cachent',
     },
   },
 ]

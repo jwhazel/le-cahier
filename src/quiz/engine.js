@@ -4,7 +4,7 @@
 // means you can reason about it — and test it — without rendering anything.
 
 import { pronouns } from '../content/pronouns.js'
-import { classroom, colors, salutations } from '../content/vocab.js'
+import { classroom, colors, salutations, nature } from '../content/vocab.js'
 import { days, months } from '../content/calendar.js'
 import { numbers } from '../content/numbers.js'
 import { nationalities } from '../content/nationalities.js'
@@ -12,6 +12,9 @@ import { reflexivePronouns } from '../content/reflexives.js'
 import { accents } from '../content/accents.js'
 import { articleNouns, ARTICLES, articleOf, withArticle } from '../content/articles.js'
 import { negations } from '../content/negation.js'
+import { possessives } from '../content/possessives.js'
+import { inversions, questionWords } from '../content/interrogatives.js'
+import { grosMots } from '../content/grosmots.js'
 import { verbs, slotLabels, conjugated } from '../content/verbs.js'
 import { TIME_CARDS } from './time.js'
 
@@ -155,6 +158,7 @@ function vocabQuestions(
     answerText = (it) => it.en,
     subtitle = 'means',
     speech = (it) => it.speech ?? it.fr,
+    note = (it) => it.note,
   } = {},
 ) {
   const pool = items.map((it) => ({ id: it.id, text: answerText(it), confusableWith: it.confusableWith }))
@@ -165,7 +169,7 @@ function vocabQuestions(
         id: `${deckId}:${it.id}`,
         prompt: display(it),
         subtitle,
-        note: it.note,
+        note: note(it),
         swatch: it.hex, // revealed only after answering; see Quiz.jsx
         speech: speech(it),
         answer: pool.find((p) => p.id === it.id),
@@ -271,6 +275,36 @@ function transformQuestions(items, deckId, runSeed, { prompt, answer, subtitle, 
 }
 
 /**
+ * Possessive adjectives. A fill-in-the-blank: the prompt is a sentence with a
+ * ___ gap, the four options are single possessives (mon / ma / mes …), and the
+ * distractors are authored — the same person's other forms (the agreement trap)
+ * plus one wrong-person form. It's close to transformQuestions, but the options
+ * are bare words while the reveal and speech want the WHOLE sentence with the
+ * blank filled, so it gets its own small generator rather than bending that one.
+ */
+function possessiveQuestions(runSeed) {
+  return possessives
+    .map((it) => {
+      const filled = it.template.replace('___', it.answer)
+      const pool = [
+        { id: `${it.id}:ok`, text: it.answer },
+        ...it.distractors.map((d, i) => ({ id: `${it.id}:d${i}`, text: d })),
+      ]
+      const q = assemble({
+        id: `possessives:${it.id}`,
+        prompt: it.template,
+        subtitle: it.hint, // the noun's gender/number — this is about agreement
+        speech: filled, // hear the whole correct sentence, not the bare word
+        answer: pool[0],
+        pool,
+        runSeed,
+      })
+      return q && { ...q, reveal: filled }
+    })
+    .filter(Boolean)
+}
+
+/**
  * Telling time. A generator: the prompt is a digital clock, the answer is the
  * French phrase computed in time.js, and the distractors are the phrasings a
  * learner is most likely to confuse it with.
@@ -304,6 +338,7 @@ export const lessons = [
   { id: 1, label: 'Cours N°1', date: '9 juillet' },
   { id: 2, label: 'Cours N°2', date: '17 juillet' },
   { id: 3, label: 'Cours N°3', date: '24 juillet' },
+  { id: 4, label: 'Cours N°4', date: '30 juillet' },
 ]
 
 const erVerbs = verbs.filter((v) => v.group === 1)
@@ -408,7 +443,65 @@ export const decks = [
       }),
   },
   { id: 'time', lesson: 3, label: "L'heure", build: timeQuestions },
+
+  // --- Cours N°4 -----------------------------------------------------------
+  // (écraser folds into «ER»; punir/saisir/atterrir/investir/bénir/avertir into
+  // «IR»; se cacher into the reflexive deck.)
+  {
+    id: 'nature',
+    lesson: 4,
+    label: 'La nature (Tahiti)',
+    // Show the article — gender is learned with the noun, as in `classroom`.
+    build: (seed) =>
+      vocabQuestions(nature, 'nature', seed, { display: (it) => `${it.article} ${it.fr}` }),
+  },
+  {
+    id: 'possessives',
+    lesson: 4,
+    label: 'Les adjectifs possessifs',
+    build: possessiveQuestions,
+  },
+  {
+    id: 'interrogatives',
+    lesson: 4,
+    label: 'Poser une question (inversion)',
+    build: (seed) =>
+      transformQuestions(inversions, 'interrogatives', seed, {
+        prompt: (it) => it.affirmative,
+        answer: (it) => it.question,
+        subtitle: 'à la forme interrogative',
+      }),
+  },
+  {
+    id: 'question-words',
+    lesson: 4,
+    label: 'Les mots interrogatifs',
+    build: (seed) => vocabQuestions(questionWords, 'question-words', seed),
+  },
+  {
+    id: 'gros-mots',
+    lesson: 4,
+    label: 'Gros mots (argot) 🌶️',
+    // Not from the slides — see grosmots.js. The register rides along as a note
+    // revealed after answering.
+    build: (seed) =>
+      vocabQuestions(grosMots, 'gros-mots', seed, {
+        note: (it) => registerNote(it),
+      }),
+  },
 ]
+
+// vocabQuestions passes `it.note` straight through; the gros-mots deck has no
+// authored note, so build one from the register for the reveal line.
+const REGISTER_LABEL = {
+  familier: 'familier — mild, everyday frustration',
+  vulgaire: 'vulgaire — crude; not for work or strangers',
+  injure: 'injure — a personal insult; aimed at someone',
+}
+function registerNote(it) {
+  const label = REGISTER_LABEL[it.register]
+  return it.note ? `${label}. ${it.note}` : label
+}
 
 /**
  * Build a shuffled run of questions. `scope` is one of:

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { pronouns } from './content/pronouns.js'
-import { classroom, colors, salutations } from './content/vocab.js'
+import { classroom, colors, salutations, nature } from './content/vocab.js'
 import { days, months } from './content/calendar.js'
 import { numbers } from './content/numbers.js'
 import { nationalities } from './content/nationalities.js'
@@ -8,6 +8,9 @@ import { reflexivePronouns } from './content/reflexives.js'
 import { accents } from './content/accents.js'
 import { articleNouns, withArticle } from './content/articles.js'
 import { negations } from './content/negation.js'
+import { possessives } from './content/possessives.js'
+import { inversions, questionWords } from './content/interrogatives.js'
+import { grosMots } from './content/grosmots.js'
 import { verbs, slotLabels, conjugated } from './content/verbs.js'
 import { TIME_CARDS } from './quiz/time.js'
 import { lessons } from './quiz/engine.js'
@@ -27,26 +30,6 @@ const TIME_EXAMPLES = ['t15h00', 't3h15', 't6h30', 't10h50', 't15h45', 't12h00',
   .map((id) => TIME_CARDS.find((c) => c.id === id))
   .filter(Boolean)
 
-// Jump-nav targets, tagged by lesson so the nav mirrors the deck picker.
-const SECTIONS = [
-  { id: 'ref-pronouns', label: 'Pronoms', lesson: 1 },
-  { id: 'ref-verbs', label: 'Verbes «ER»', lesson: 1 },
-  { id: 'ref-classroom', label: 'La classe', lesson: 1 },
-  { id: 'ref-colors', label: 'Couleurs', lesson: 1 },
-  { id: 'ref-salutations', label: 'Saluer', lesson: 1 },
-  { id: 'ref-days', label: 'Jours', lesson: 2 },
-  { id: 'ref-months', label: 'Mois', lesson: 2 },
-  { id: 'ref-numbers', label: 'Nombres', lesson: 2 },
-  { id: 'ref-verbs-ir', label: 'Verbes «IR»', lesson: 2 },
-  { id: 'ref-aux', label: 'Être & avoir', lesson: 2 },
-  { id: 'ref-nationalities', label: 'Nationalités', lesson: 3 },
-  { id: 'ref-articles', label: 'Articles', lesson: 3 },
-  { id: 'ref-reflexives', label: 'Se présenter', lesson: 3 },
-  { id: 'ref-accents', label: 'Accents', lesson: 3 },
-  { id: 'ref-time', label: "L'heure", lesson: 3 },
-  { id: 'ref-negation', label: 'Négation', lesson: 3 },
-]
-
 /**
  * The cheat sheet, in a native <dialog>. Using the platform element rather than
  * a hand-rolled overlay buys the backdrop, Escape-to-close, focus trapping, and
@@ -55,7 +38,6 @@ const SECTIONS = [
  */
 export default function Reference({ open, onClose }) {
   const dialogRef = useRef(null)
-  const bodyRef = useRef(null)
   const { voice } = useFrenchVoice()
 
   // `open` is React state; a <dialog> is opened imperatively. This effect is the
@@ -89,32 +71,16 @@ export default function Reference({ open, onClose }) {
     if (!inside) onClose()
   }
 
-  function jumpTo(id) {
-    bodyRef.current?.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
   return (
     <dialog ref={dialogRef} className="reference" onClick={onBackdropClick} aria-label="Antisèche">
       <div className="ref-head">
         <h2>Antisèche</h2>
-        <nav className="ref-nav">
-          {lessons.map((lesson) => (
-            <span key={lesson.id} className="ref-nav-group">
-              <span className="ref-nav-tag">N°{lesson.id}</span>
-              {SECTIONS.filter((s) => s.lesson === lesson.id).map((s) => (
-                <button key={s.id} onClick={() => jumpTo(s.id)}>
-                  {s.label}
-                </button>
-              ))}
-            </span>
-          ))}
-        </nav>
         <button className="ref-close" onClick={onClose} aria-label="Fermer">
           ✕
         </button>
       </div>
 
-      <div className="ref-body" ref={bodyRef}>
+      <div className="ref-body">
         {/* ------------------------------------------------ Cours N°1 --- */}
         <LessonDivider lesson={lessons[0]} />
 
@@ -370,10 +336,141 @@ export default function Reference({ open, onClose }) {
             silent h (<em>il n'aime pas</em>).
           </p>
         </Section>
+
+        {/* ------------------------------------------------ Cours N°4 --- */}
+        <LessonDivider lesson={lessons[3]} />
+
+        <Section id="ref-nature" title="La nature (Tahiti)">
+          <table className="ref-table">
+            <tbody>
+              {nature.map((o) => (
+                <tr key={o.id}>
+                  <th scope="row">
+                    <span className={`gender ${o.gender}`}>{o.article}</span> {o.fr}{' '}
+                    <Speaker text={`${o.article} ${o.fr}`} voice={voice} label={`Prononcer « ${o.article} ${o.fr} »`} />
+                  </th>
+                  <td>{o.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            <em>l'herbe</em> hides its gender behind the elision — it's feminine (<em>la</em> herbe).
+          </p>
+        </Section>
+
+        <Section id="ref-possessives" title="Les adjectifs possessifs">
+          <div className="ref-scroll">
+            <table className="ref-table conj">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>masc. sing.</th>
+                  <th>fém. sing.</th>
+                  <th>pluriel</th>
+                </tr>
+              </thead>
+              <tbody>
+                {POSSESSIVE_GRID.map((row) => (
+                  <tr key={row.subject}>
+                    <th scope="row" className="inf">
+                      <span>
+                        {row.subject} <span className="muted">{row.en}</span>
+                      </span>
+                    </th>
+                    <td>{row.ms}</td>
+                    <td>{row.fs}</td>
+                    <td>{row.pl}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="ref-foot">
+            Agrees with the <em>thing owned</em>, not the owner — <em>Marie aime son frère</em> (frère is
+            masculine, even though Marie is a woman). English does the opposite.
+          </p>
+        </Section>
+
+        <Section id="ref-interrogatives" title="Poser une question">
+          <table className="ref-table">
+            <thead>
+              <tr>
+                <th>Affirmation</th>
+                <th>Inversion</th>
+              </tr>
+            </thead>
+            <tbody>
+              {inversions.map((q) => (
+                <tr key={q.id}>
+                  <th scope="row" className="neg-aff">
+                    {q.affirmative}
+                  </th>
+                  <td>
+                    {q.question} <Speaker text={q.question} voice={voice} label={`Prononcer « ${q.question} »`} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            Verbe + <em>-</em> + sujet. At <em>il / elle / on</em>, a verb ending in <em>-e</em> or{' '}
+            <em>-a</em> inserts a euphonic <em>t</em>: <em>parle-t-il</em>, <em>a-t-elle</em>.
+          </p>
+          <table className="ref-table">
+            <tbody>
+              {questionWords.map((w) => (
+                <tr key={w.id}>
+                  <th scope="row">
+                    {w.fr} <Speaker text={w.fr} voice={voice} label={`Prononcer « ${w.fr} »`} />
+                  </th>
+                  <td>
+                    {w.en}
+                    {w.note && <span className="muted"> — {w.note}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Section>
+
+        <Section id="ref-grosmots" title="Gros mots (argot) 🌶️">
+          <p className="ref-foot ref-foot-top">
+            Not from the slides. Labelled by weight: <span className="reg reg-familier">familier</span> mild ·{' '}
+            <span className="reg reg-vulgaire">vulgaire</span> crude ·{' '}
+            <span className="reg reg-injure">injure</span> aimed at someone. Know what you're saying.
+          </p>
+          <table className="ref-table">
+            <tbody>
+              {grosMots.map((g) => (
+                <tr key={g.id}>
+                  <th scope="row">
+                    {g.fr} <Speaker text={g.fr} voice={voice} label={`Prononcer « ${g.fr} »`} />
+                  </th>
+                  <td>
+                    <span className={`reg reg-${g.register}`}>{g.register}</span> {g.en}
+                    {g.note && <span className="muted"> — {g.note}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Section>
       </div>
     </dialog>
   )
 }
+
+// The possessive-adjective grid, canonical form for the cheat sheet. The quiz
+// drills these in sentences (possessives.js); this is the table to glance at.
+const POSSESSIVE_GRID = [
+  { subject: 'je', en: 'my', ms: 'mon', fs: 'ma', pl: 'mes' },
+  { subject: 'tu', en: 'your', ms: 'ton', fs: 'ta', pl: 'tes' },
+  { subject: 'il / elle', en: 'his / her', ms: 'son', fs: 'sa', pl: 'ses' },
+  { subject: 'nous', en: 'our', ms: 'notre', fs: 'notre', pl: 'nos' },
+  { subject: 'vous', en: 'your', ms: 'votre', fs: 'votre', pl: 'vos' },
+  { subject: 'ils / elles', en: 'their', ms: 'leur', fs: 'leur', pl: 'leurs' },
+]
 
 // One row of the definite-article table, with the correct article computed the
 // same way the quiz does (so the cheat sheet can't disagree with the deck).

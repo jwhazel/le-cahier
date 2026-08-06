@@ -940,19 +940,52 @@ body::after {
   color: var(--ink-soft);
 }
 
-/* Negation and time sentences are long — let those rows wrap rather than
-   forcing the whole table wide (the default row-header is nowrap). */
+/* Negation, time and interrogative sentences are long — let those rows wrap
+   rather than forcing the whole table wide (the default row-header is nowrap). */
 .neg-aff,
 #ref-negation .ref-table th[scope='row'],
 #ref-negation .ref-table td,
-#ref-time .ref-table td {
+#ref-time .ref-table td,
+#ref-interrogatives .ref-table th[scope='row'],
+#ref-interrogatives .ref-table td {
   white-space: normal;
 }
 
-#ref-negation .ref-table th[scope='row'] {
+#ref-negation .ref-table th[scope='row'],
+#ref-interrogatives .ref-table th[scope='row'] {
   font-family: var(--body);
   font-weight: 400;
   color: var(--ink-soft);
+}
+
+/* Cours N°4 — register tags on the gros-mots deck. Green = mild, red = crude,
+   gold = a personal insult. */
+.reg {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.05rem 0.35rem;
+  border-radius: 0.2rem;
+  vertical-align: 1px;
+  margin-right: 0.15rem;
+}
+.reg-familier {
+  color: var(--sage);
+  background: var(--sage-wash);
+}
+.reg-vulgaire {
+  color: var(--vermilion);
+  background: var(--vermilion-wash);
+}
+.reg-injure {
+  color: var(--gold);
+  background: rgba(168, 132, 44, 0.15);
+}
+.ref-foot-top {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
 }
 
 @media (max-width: 34rem) {

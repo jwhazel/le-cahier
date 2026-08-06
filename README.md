@@ -1,6 +1,6 @@
 # Le cahier
 
-Flashcards for a ten-course French series. Courses 1–3 of 10 (~325 cards).
+Flashcards for a ten-course French series. Courses 1–4 of 10 (~433 cards).
 
 ```bash
 npm install
@@ -20,12 +20,13 @@ lowercase).
 src/
   content/          the facts — no questions, no wrong answers
     pronouns.js
-    vocab.js        nouns, colors, salutations           (N°1)
+    vocab.js        nouns, colors, salutations, nature    (N°1, +Tahiti nouns N°4)
     verbs.js        conjugation tables + elision helper   (ER / IR / être·avoir / reflexive)
     calendar.js     days + months                         (N°2)
     numbers.js      0–1000                                (N°2)
     nationalities.js, articles.js, reflexives.js,
     accents.js, negation.js                               (N°3)
+    possessives.js, interrogatives.js, grosmots.js        (N°4)
   quiz/
     engine.js       facts -> questions; decks; lessons. Plain functions, no React.
     time.js         the telling-time generator (phrase + distractors)  (N°3)

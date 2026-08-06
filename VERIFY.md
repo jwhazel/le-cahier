@@ -268,3 +268,59 @@ the quiz.
 - **Les accents** — name → é/è/ê/ë/ç, with a spoken example.
 - **La négation** — pick the correct negation (elision, placement, dropped `ne`).
 - **L'heure** — the time generator.
+
+# Cours N°4
+
+Cours N°4 (30 juillet) was mostly **review** — its first ~25 slides re-teach
+N°2/N°3 material almost verbatim (months, days, subject pronouns, the whole «IR»
+list, être/avoir, numbers, telling age, telling time, reflexives, definite
+articles, nationalities, colors). The genuinely new material is *Leçon 5,
+"échanger des informations personnelles"*: **possessive adjectives**, the
+**interrogative form**, and **question words**. Those, plus a handful of new
+verbs and the Tahiti vocabulary, are what became cards.
+
+## ⚠️ Where I corrected or departed from the slides
+
+- **Possessives — I avoided the feminine-vowel exception the slide omits.**
+  Before a feminine noun starting with a vowel or silent h, French uses the
+  *masculine* possessive for euphony: `mon amie`, `ton école`, `son histoire` —
+  **not** `ma amie`. The slide never mentions this, and its own rule ("ma =
+  feminine") would produce the wrong form there. So the possessives deck uses no
+  such nouns; every feminine noun in it starts with a consonant, where `ma/ta/sa`
+  is correct. (Same tactic as the negation deck avoiding the `de` rule.)
+- **`s'appeler` typo carried over.** The slide still prints `T'APELLES`; correct
+  is `t'appelles` (double l). Already fixed in N°3, unchanged here.
+- **Euphonic `t` is the whole point of the inversion deck.** At the 3rd person
+  singular, a verb ending in `-e` or `-a` inserts a `t` between hyphens:
+  `parle-t-il`, `a-t-elle`. The distractors are exactly the failures of this rule
+  (missing `t`, apostrophe instead of hyphens, spurious `t` where none is needed).
+- **Toned down one example sentence.** The slide's inversion exercise includes
+  *"Vous êtes moches"* (you are ugly); I used *"Vous êtes prêts"* (you are ready)
+  since the app is shared with the class. The grammar point is identical.
+
+## New this course, by deck
+
+- **Verbs** (folded into existing decks): `écraser` (ER); `punir`, `saisir`,
+  `atterrir`, `investir`, `bénir`, `avertir` (IR); `se cacher` (reflexive).
+- **La nature (Tahiti)** — 12 nouns from the Gauguin slides (la mer, le sable, la
+  montagne, la fleur, l'herbe, la lune, le cheval, le chemin, la maison, la robe,
+  la femme, le paréo), article-first so gender rides along.
+- **Les adjectifs possessifs** — fill-in-the-blank; the answer agrees with the
+  *object*, distractors are the same person's other forms (the agreement trap)
+  plus one wrong-person form. Reveal + speech give the whole sentence.
+- **Poser une question (inversion)** — pick the correct inversion question;
+  authored distractors target the euphonic `t` and hyphenation.
+- **Les mots interrogatifs** — où / quand / comment / pourquoi / qui / que·quoi /
+  quel·quelle / combien (recall).
+- **Gros mots (argot) 🌶️** — **not from the slides.** Inspired by the road-rage
+  tangent; a real, register-labelled deck (familier / vulgaire / injure) so the
+  weight of each word is learned alongside its meaning. Its own deck, easy to skip.
+
+## What I skipped from Cours N°4 (and why)
+
+| Content | Why |
+|---|---|
+| **The France Quiz** (presidents, cheeses, Tour de France…) | You asked to skip these. Trivia, not language. |
+| **Le Pétomane** (Joseph Pujol) story | A class break — history, not French to drill. |
+| **Gauguin / Tahiti** art-history text | The art-history itself is a break; only the noun list under it became a deck. |
+| Review of months/days/pronouns/«IR»/être-avoir/numbers/age/time/reflexives/articles/nationalities/colors | Already in the app since N°1–N°3. `turquoise` and `doré` were already in the colors deck. |

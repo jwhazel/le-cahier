@@ -40,6 +40,27 @@ export const colors = [
   { id: 'dore', fr: 'doré', en: 'golden', hex: '#c9a227' },
 ]
 
+// Cours N°4 — the vocabulary from the Gauguin / Tahiti slides. The art-history
+// itself is a class break (skipped), but the noun list under the paintings is
+// real, practical beginner vocabulary, so it earns a small deck. Same shape as
+// `classroom`: the definite article carries the gender, so you learn "la mer"
+// as one unit, not "mer".
+export const nature = [
+  { id: 'mer', fr: 'mer', article: 'la', gender: 'f', en: 'the sea' },
+  { id: 'sable', fr: 'sable', article: 'le', gender: 'm', en: 'the sand' },
+  { id: 'montagne', fr: 'montagne', article: 'la', gender: 'f', en: 'the mountain' },
+  { id: 'fleur', fr: 'fleur', article: 'la', gender: 'f', en: 'the flower' },
+  // l' hides the gender — herbe is feminine. Flagged in the cheat sheet.
+  { id: 'herbe', fr: 'herbe', article: "l'", gender: 'f', en: 'the grass' },
+  { id: 'lune', fr: 'lune', article: 'la', gender: 'f', en: 'the moon' },
+  { id: 'cheval', fr: 'cheval', article: 'le', gender: 'm', en: 'the horse' },
+  { id: 'chemin', fr: 'chemin', article: 'le', gender: 'm', en: 'the path / trail' },
+  { id: 'maison', fr: 'maison', article: 'la', gender: 'f', en: 'the house' },
+  { id: 'robe', fr: 'robe', article: 'la', gender: 'f', en: 'the dress' },
+  { id: 'femme', fr: 'femme', article: 'la', gender: 'f', en: 'the woman' },
+  { id: 'pareo', fr: 'paréo', article: 'le', gender: 'm', en: 'a sarong / beach wrap' },
+]
+
 // Slides 248-291. The slide's summary table has blanks; these come from the
 // bullet list above it, which is complete.
 //
