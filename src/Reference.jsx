@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { pronouns } from './content/pronouns.js'
-import { classroom, colors, salutations, nature } from './content/vocab.js'
-import { days, months } from './content/calendar.js'
+import { classroom, colors, salutations, nature, weather, seaside, paysage } from './content/vocab.js'
+import { days, months, seasons } from './content/calendar.js'
 import { numbers } from './content/numbers.js'
 import { nationalities } from './content/nationalities.js'
 import { reflexivePronouns } from './content/reflexives.js'
@@ -11,6 +11,7 @@ import { negations } from './content/negation.js'
 import { possessives } from './content/possessives.js'
 import { inversions, questionWords } from './content/interrogatives.js'
 import { grosMots } from './content/grosmots.js'
+import { imperfectVerbs } from './content/imperfect.js'
 import { verbs, slotLabels, conjugated } from './content/verbs.js'
 import { TIME_CARDS } from './quiz/time.js'
 import { lessons } from './quiz/engine.js'
@@ -21,6 +22,7 @@ const SLOTS = ['je', 'tu', 'il', 'nous', 'vous', 'ils']
 
 const erVerbs = verbs.filter((v) => v.group === 1)
 const irVerbs = verbs.filter((v) => v.group === 2)
+const thirdVerbs = verbs.filter((v) => v.group === 3)
 const auxVerbs = verbs.filter((v) => v.group === 'aux')
 const reflexiveVerbs = verbs.filter((v) => v.group === 'reflexive')
 
@@ -104,7 +106,8 @@ export default function Reference({ open, onClose }) {
           <VerbGrid verbs={erVerbs} voice={voice} flagFn={erIrregularCell} />
           <p className="ref-foot">
             <span className="flag-key" /> = spelling shift that breaks the plain root+ending rule
-            (manger → nous mange<em>ons</em>, peser → je p<em>è</em>se). See VERIFY.md.
+            (manger → nous mange<em>ons</em>, placer → nous pla<em>ç</em>ons, peser → je p<em>è</em>se).
+            See VERIFY.md.
           </p>
         </Section>
 
@@ -456,6 +459,121 @@ export default function Reference({ open, onClose }) {
             </tbody>
           </table>
         </Section>
+
+        {/* ------------------------------------------------ Cours N°5 --- */}
+        <LessonDivider lesson={lessons[4]} />
+
+        <Section id="ref-weather" title="Quel temps fait-il ?">
+          <table className="ref-table">
+            <tbody>
+              {weather.map((w) => (
+                <tr key={w.id}>
+                  <th scope="row">
+                    {w.article && <span className={`gender ${w.gender}`}>{w.article}</span>} {w.fr}{' '}
+                    <Speaker
+                      text={w.article ? `${w.article} ${w.fr}` : w.fr}
+                      voice={voice}
+                      label={`Prononcer « ${w.fr} »`}
+                    />
+                  </th>
+                  <td>{w.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            The noun names the thing (<em>la pluie</em>, rain); the adjective describes the day
+            (<em>pluvieux</em>, rainy). <em>l'éclair</em> hides its gender — it's masculine.
+          </p>
+        </Section>
+
+        <Section id="ref-seaside" title="Au bord de la mer">
+          <table className="ref-table">
+            <tbody>
+              {seaside.map((o) => (
+                <tr key={o.id}>
+                  <th scope="row">
+                    <span className={`gender ${o.gender}`}>{o.article}</span> {o.fr}{' '}
+                    <Speaker text={`${o.article} ${o.fr}`} voice={voice} label={`Prononcer « ${o.article} ${o.fr} »`} />
+                  </th>
+                  <td>{o.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            Vocabulary from the Matisse « danseuse créole » slide — the sea, then the dancer and a few
+            body parts. The art-history itself was a class break (skipped).
+          </p>
+        </Section>
+
+        <Section id="ref-verbs-3" title="Les verbes du 3ème groupe">
+          <VerbGrid verbs={thirdVerbs} voice={voice} />
+          <p className="ref-foot">
+            Irregular — no root+ending rule, so each is memorised (like <em>être</em> / <em>avoir</em>).
+            Watch the stem shift between singular and plural: <em>je vois → nous voyons</em>,{' '}
+            <em>je mouds → nous moulons</em>, <em>je dépeins → nous dépeignons</em>.
+          </p>
+        </Section>
+
+        {/* ------------------------------------------------ Cours N°6 --- */}
+        <LessonDivider lesson={lessons[5]} />
+
+        <Section id="ref-imperfect" title="L'imparfait (passé)">
+          <VerbGrid verbs={imperfectVerbs} voice={voice} />
+          <p className="ref-foot">
+            One tense, one set of endings for every verb: <em>-ais · -ais · -ait · -ions · -iez ·
+            -aient</em>. The stem is the present <em>nous</em> form minus <em>-ons</em>
+            (nous parl<em>ons</em> → <em>parl-</em>; nous finiss<em>ons</em> → <em>finiss-</em>).
+            Only <em>être</em> is irregular (<em>ét-</em>); even <em>aller</em> is regular here
+            (<em>j'allais</em>). Impersonal <em>pleuvoir</em> exists only at <em>il</em>:{' '}
+            <em>il pleuvait</em>.
+          </p>
+        </Section>
+
+        <Section id="ref-seasons" title="Les saisons et les moments">
+          <table className="ref-table">
+            <tbody>
+              {seasons.map((s) => (
+                <tr key={s.id}>
+                  <th scope="row">
+                    {s.article && <span className={`gender ${s.gender}`}>{s.article}</span>} {s.fr}{' '}
+                    <Speaker
+                      text={s.article ? `${s.article} ${s.fr}` : s.fr}
+                      voice={voice}
+                      label={`Prononcer « ${s.fr} »`}
+                    />
+                  </th>
+                  <td>{s.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            <em>l'été</em>, <em>l'automne</em>, <em>l'hiver</em> hide their gender behind the elision —
+            all three are masculine.
+          </p>
+        </Section>
+
+        <Section id="ref-paysage" title="Le paysage (Monet)">
+          <table className="ref-table">
+            <tbody>
+              {paysage.map((o) => (
+                <tr key={o.id}>
+                  <th scope="row">
+                    <span className={`gender ${o.gender}`}>{o.article}</span> {o.fr}{' '}
+                    <Speaker text={`${o.article} ${o.fr}`} voice={voice} label={`Prononcer « ${o.article} ${o.fr} »`} />
+                  </th>
+                  <td>{o.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            Landscape vocabulary from the Monet slide — words already taught in <em>nature</em> /{' '}
+            <em>bord de mer</em> (la mer, la fleur, la maison…) aren't repeated here.
+          </p>
+        </Section>
       </div>
     </dialog>
   )
@@ -566,6 +684,7 @@ function VerbGrid({ verbs: verbList, voice, flagFn }) {
 // that depart from the plain rule so the cheat sheet points at the right form.
 function erIrregularCell(verb, slot) {
   if (verb.id === 'manger') return slot === 'nous' // mangeons keeps the e
+  if (verb.id === 'placer') return slot === 'nous' // plaçons — ç keeps the c soft
   if (verb.id === 'peser') return slot !== 'nous' && slot !== 'vous' // è where the ending is silent
   return false
 }

@@ -4,8 +4,8 @@
 // means you can reason about it — and test it — without rendering anything.
 
 import { pronouns } from '../content/pronouns.js'
-import { classroom, colors, salutations, nature } from '../content/vocab.js'
-import { days, months } from '../content/calendar.js'
+import { classroom, colors, salutations, nature, weather, seaside, paysage } from '../content/vocab.js'
+import { days, months, seasons } from '../content/calendar.js'
 import { numbers } from '../content/numbers.js'
 import { nationalities } from '../content/nationalities.js'
 import { reflexivePronouns } from '../content/reflexives.js'
@@ -15,6 +15,7 @@ import { negations } from '../content/negation.js'
 import { possessives } from '../content/possessives.js'
 import { inversions, questionWords } from '../content/interrogatives.js'
 import { grosMots } from '../content/grosmots.js'
+import { imperfectVerbs } from '../content/imperfect.js'
 import { verbs, slotLabels, conjugated } from '../content/verbs.js'
 import { TIME_CARDS } from './time.js'
 
@@ -185,8 +186,22 @@ function vocabQuestions(
  * the same verb's other forms. `verbList` selects which verbs (by group), so
  * «ER», «IR» and the auxiliaries are separate decks that never leak distractors
  * across groups.
+ *
+ * The options let a second TENSE reuse this exact machinery: the imperfect deck
+ * passes the same-shaped `imperfectVerbs` with a different `idPrefix` (so its
+ * question ids don't collide with the present decks), a `subtitleFor` that says
+ * "à l'imparfait", and `noteOf` reading each verb's `note`. Keeping the elision
+ * and reveal logic in one place means both tenses stay correct together.
  */
-function verbQuestions(runSeed, verbList) {
+function verbQuestions(
+  runSeed,
+  verbList,
+  {
+    idPrefix = 'verbs',
+    subtitleFor = (slot) => `${slotLabels[slot]} …`,
+    noteOf = (verb) => verb.spellingChange,
+  } = {},
+) {
   return verbList.flatMap((verb) => {
     const pool = Object.entries(verb.forms).map(([slot, form]) => ({
       id: `${verb.id}:${slot}`,
@@ -196,10 +211,10 @@ function verbQuestions(runSeed, verbList) {
     return Object.keys(verb.forms)
       .map((slot) => {
         const question = assemble({
-          id: `verbs:${verb.id}:${slot}`,
+          id: `${idPrefix}:${verb.id}:${slot}`,
           prompt: `${verb.fr} (${verb.en})`,
-          subtitle: `${slotLabels[slot]} …`,
-          note: verb.spellingChange,
+          subtitle: subtitleFor(slot),
+          note: noteOf(verb),
           speech: verb.fr, // the prompt holds English; speak only the infinitive
           answer: pool.find((p) => p.id === `${verb.id}:${slot}`),
           pool,
@@ -339,10 +354,13 @@ export const lessons = [
   { id: 2, label: 'Cours N°2', date: '17 juillet' },
   { id: 3, label: 'Cours N°3', date: '24 juillet' },
   { id: 4, label: 'Cours N°4', date: '30 juillet' },
+  { id: 5, label: 'Cours N°5', date: '6 août' },
+  { id: 6, label: 'Cours N°6', date: '13 août' },
 ]
 
 const erVerbs = verbs.filter((v) => v.group === 1)
 const irVerbs = verbs.filter((v) => v.group === 2)
+const thirdVerbs = verbs.filter((v) => v.group === 3)
 const auxVerbs = verbs.filter((v) => v.group === 'aux')
 const reflexiveVerbs = verbs.filter((v) => v.group === 'reflexive')
 
@@ -488,6 +506,67 @@ export const decks = [
       vocabQuestions(grosMots, 'gros-mots', seed, {
         note: (it) => registerNote(it),
       }),
+  },
+
+  // --- Cours N°5 -----------------------------------------------------------
+  // (placer / mijoter fold into «ER»; vieillir / rougir / applaudir / nourrir /
+  // agir into «IR»; se tromper into the reflexive deck.)
+  {
+    id: 'weather',
+    lesson: 5,
+    label: 'Quel temps fait-il ?',
+    // Nouns show their article (gender rides along); adjectives/expressions don't.
+    build: (seed) =>
+      vocabQuestions(weather, 'weather', seed, {
+        display: (it) => (it.article ? `${it.article} ${it.fr}` : it.fr),
+      }),
+  },
+  {
+    id: 'seaside',
+    lesson: 5,
+    label: 'Au bord de la mer',
+    build: (seed) =>
+      vocabQuestions(seaside, 'seaside', seed, { display: (it) => `${it.article} ${it.fr}` }),
+  },
+  {
+    id: 'verbs-3',
+    lesson: 5,
+    label: 'Les verbes du 3ème groupe',
+    build: (seed) => verbQuestions(seed, thirdVerbs),
+  },
+
+  // --- Cours N°6 -----------------------------------------------------------
+  // (placer/mijoter already in «ER»; fleurir/établir/aplatir/réunir/approfondir/
+  // embellir fold into «IR»; admettre into the 3rd-group deck.)
+  {
+    id: 'imperfect',
+    lesson: 6,
+    label: "L'imparfait (passé)",
+    // Same generator as the present decks, a different tense. See verbQuestions.
+    build: (seed) =>
+      verbQuestions(seed, imperfectVerbs, {
+        idPrefix: 'imperfect',
+        subtitleFor: (slot) => `à l'imparfait — ${slotLabels[slot]} …`,
+        noteOf: (v) => v.note,
+      }),
+  },
+  {
+    id: 'seasons',
+    lesson: 6,
+    label: 'Les saisons et les moments',
+    // Nouns show their article (gender rides along); the adverbs (hier, demain…)
+    // have none.
+    build: (seed) =>
+      vocabQuestions(seasons, 'seasons', seed, {
+        display: (it) => (it.article ? `${it.article} ${it.fr}` : it.fr),
+      }),
+  },
+  {
+    id: 'paysage',
+    lesson: 6,
+    label: 'Le paysage (Monet)',
+    build: (seed) =>
+      vocabQuestions(paysage, 'paysage', seed, { display: (it) => `${it.article} ${it.fr}` }),
   },
 ]
 

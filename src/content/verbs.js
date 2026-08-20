@@ -11,6 +11,8 @@
 // `group` splits the verbs into their own decks and reference grids:
 //   1     — 1er groupe, «ER»  (root + e/es/e/ons/ez/ent)
 //   2     — 2ème groupe, «IR» (root + is/is/it/issons/issez/issent)
+//   3     — 3ème groupe, the irregular verbs (-oir/-dre/-ir/-tre…); no rule,
+//           each is memorised. Cours N°5. Forms written out, like the auxiliaries.
 //   'aux' — être & avoir, irregular; no rule, memorise the forms
 
 // The endings as taught, kept for the reference grid's footnotes.
@@ -146,6 +148,29 @@ export const verbs = [
     latin: 'Old French "escrachier / écrazer" (to crush)',
     // j'écrase — elision before the vowel; handled by conjugated().
     forms: { je: 'écrase', tu: 'écrases', il: 'écrase', nous: 'écrasons', vous: 'écrasez', ils: 'écrasent' },
+  },
+  // new «ER» verbs — Cours N°5 (the placer / mijoter conjugation slide). This
+  // course also teaches the "C dur / C doux" rule, and `placer` is exactly where
+  // it bites: the c is soft [s] before e/i, hard [k] before a/o/u. So the nous
+  // form needs a cedilla to keep the sound — the same kind of stem-spelling shift
+  // as manger → mangeons, one the plain root+ending rule doesn't capture.
+  {
+    id: 'placer',
+    fr: 'placer',
+    en: 'to place / to put',
+    group: 1,
+    latin: 'Greek "plateia" (a big street / open space)',
+    spellingChange:
+      'nous plaçons — the ç keeps the c soft [s] before o. The plain rule would give "placons", pronounced with a hard [k].',
+    forms: { je: 'place', tu: 'places', il: 'place', nous: 'plaçons', vous: 'placez', ils: 'placent' },
+  },
+  {
+    id: 'mijoter',
+    fr: 'mijoter',
+    en: 'to simmer / to stew',
+    group: 1,
+    latin: 'Old French "migeoter" (from the west of France, "faire mûrir" = to ripen)',
+    forms: { je: 'mijote', tu: 'mijotes', il: 'mijote', nous: 'mijotons', vous: 'mijotez', ils: 'mijotent' },
   },
 
   // --- 2ème groupe «IR» — Cours N°2 ----------------------------------------
@@ -366,6 +391,121 @@ export const verbs = [
     },
   },
 
+  // new «IR» verbs — Cours N°5 (vieillir + the "conjuguez au présent" exercise:
+  // rougir, applaudir, nourrir, agir). All regular 2nd-group; j'applaudis and
+  // j'agis elide, handled by conjugated().
+  {
+    id: 'vieillir',
+    fr: 'vieillir',
+    en: 'to age / to grow old',
+    group: 2,
+    latin: 'vetus (old)',
+    forms: {
+      je: 'vieillis',
+      tu: 'vieillis',
+      il: 'vieillit',
+      nous: 'vieillissons',
+      vous: 'vieillissez',
+      ils: 'vieillissent',
+    },
+  },
+  {
+    id: 'rougir',
+    fr: 'rougir',
+    en: 'to blush / to redden',
+    group: 2,
+    forms: { je: 'rougis', tu: 'rougis', il: 'rougit', nous: 'rougissons', vous: 'rougissez', ils: 'rougissent' },
+  },
+  {
+    id: 'applaudir',
+    fr: 'applaudir',
+    en: 'to applaud / to clap',
+    group: 2,
+    // j'applaudis — elision before the vowel; handled by conjugated().
+    forms: {
+      je: 'applaudis',
+      tu: 'applaudis',
+      il: 'applaudit',
+      nous: 'applaudissons',
+      vous: 'applaudissez',
+      ils: 'applaudissent',
+    },
+  },
+  {
+    id: 'nourrir',
+    fr: 'nourrir',
+    en: 'to feed / to nourish',
+    group: 2,
+    forms: { je: 'nourris', tu: 'nourris', il: 'nourrit', nous: 'nourrissons', vous: 'nourrissez', ils: 'nourrissent' },
+  },
+  {
+    id: 'agir',
+    fr: 'agir',
+    en: 'to act',
+    group: 2,
+    // j'agis — elision before the vowel; handled by conjugated().
+    forms: { je: 'agis', tu: 'agis', il: 'agit', nous: 'agissons', vous: 'agissez', ils: 'agissent' },
+  },
+
+  // new «IR» verbs — Cours N°6 (the "new verbs 2nd group" list + the conjugation
+  // exercise). All regular 2nd-group; j'établis / j'aplatis / j'approfondis /
+  // j'embellis elide, handled by conjugated().
+  {
+    id: 'fleurir',
+    fr: 'fleurir',
+    en: 'to bloom / to flower',
+    group: 2,
+    forms: { je: 'fleuris', tu: 'fleuris', il: 'fleurit', nous: 'fleurissons', vous: 'fleurissez', ils: 'fleurissent' },
+  },
+  {
+    id: 'etablir',
+    fr: 'établir',
+    en: 'to establish',
+    group: 2,
+    // j'établis — elision before the vowel; handled by conjugated().
+    forms: { je: 'établis', tu: 'établis', il: 'établit', nous: 'établissons', vous: 'établissez', ils: 'établissent' },
+  },
+  {
+    id: 'aplatir',
+    fr: 'aplatir',
+    en: 'to flatten',
+    group: 2,
+    latin: 'Greek "platus" (large and flat)',
+    // j'aplatis — elision before the vowel; handled by conjugated().
+    forms: { je: 'aplatis', tu: 'aplatis', il: 'aplatit', nous: 'aplatissons', vous: 'aplatissez', ils: 'aplatissent' },
+  },
+  {
+    id: 'reunir',
+    fr: 'réunir',
+    en: 'to gather / to reunite',
+    group: 2,
+    latin: 'Old French "raunir" (to reunite)',
+    forms: { je: 'réunis', tu: 'réunis', il: 'réunit', nous: 'réunissons', vous: 'réunissez', ils: 'réunissent' },
+  },
+  {
+    id: 'approfondir',
+    fr: 'approfondir',
+    en: 'to deepen',
+    group: 2,
+    // j'approfondis — elision before the vowel; handled by conjugated().
+    forms: {
+      je: 'approfondis',
+      tu: 'approfondis',
+      il: 'approfondit',
+      nous: 'approfondissons',
+      vous: 'approfondissez',
+      ils: 'approfondissent',
+    },
+  },
+  {
+    id: 'embellir',
+    fr: 'embellir',
+    en: 'to beautify',
+    group: 2,
+    // j'embellis — elision before the vowel; handled by conjugated().
+    forms: { je: 'embellis', tu: 'embellis', il: 'embellit', nous: 'embellissons', vous: 'embellissez', ils: 'embellissent' },
+  },
+
   // --- auxiliaries être / avoir — Cours N°2 --------------------------------
   // Irregular: no root+ending rule. These have to be memorised, and they carry
   // most of the language (every compound tense is built on them).
@@ -440,6 +580,117 @@ export const verbs = [
       vous: 'vous cachez',
       ils: 'se cachent',
     },
+  },
+  // new reflexive verb — Cours N°5 (se tromper = to be wrong / to make a mistake).
+  {
+    id: 'setromper',
+    fr: 'se tromper',
+    en: 'to be wrong / to make a mistake',
+    group: 'reflexive',
+    forms: {
+      je: 'me trompe',
+      tu: 'te trompes',
+      il: 'se trompe',
+      nous: 'nous trompons',
+      vous: 'vous trompez',
+      ils: 'se trompent',
+    },
+  },
+
+  // --- 3ème groupe (irregular) — Cours N°5 ---------------------------------
+  // The "third group" isn't a group so much as everything that doesn't follow
+  // the -ER or -IR rules. The infinitive endings alone (-oir, -dre, -ir, -tre,
+  // -oindre, -eindre, -oudre) don't predict the conjugation, so every form is
+  // written out and simply memorised — same treatment as être/avoir. Distractors
+  // still come from the SAME verb's other forms, so each card drills the shape of
+  // one verb (je vois / nous voyons / ils voient) rather than mixing verbs.
+  {
+    id: 'voir',
+    fr: 'voir',
+    en: 'to see',
+    group: 3,
+    latin: 'videre (to see)',
+    forms: { je: 'vois', tu: 'vois', il: 'voit', nous: 'voyons', vous: 'voyez', ils: 'voient' },
+  },
+  {
+    id: 'prendre',
+    fr: 'prendre',
+    en: 'to take',
+    group: 3,
+    latin: 'prehendere (to grasp)',
+    forms: { je: 'prends', tu: 'prends', il: 'prend', nous: 'prenons', vous: 'prenez', ils: 'prennent' },
+  },
+  {
+    id: 'attendre',
+    fr: 'attendre',
+    en: 'to wait (for)',
+    group: 3,
+    latin: 'attendere (to direct your mind towards)',
+    // j'attends — elision before the vowel; handled by conjugated().
+    forms: { je: 'attends', tu: 'attends', il: 'attend', nous: 'attendons', vous: 'attendez', ils: 'attendent' },
+  },
+  {
+    id: 'mettre',
+    fr: 'mettre',
+    en: 'to put',
+    group: 3,
+    latin: 'mittere (to send)',
+    forms: { je: 'mets', tu: 'mets', il: 'met', nous: 'mettons', vous: 'mettez', ils: 'mettent' },
+  },
+  {
+    id: 'dormir',
+    fr: 'dormir',
+    en: 'to sleep',
+    group: 3,
+    latin: 'dormire (to sleep)',
+    // -IR infinitive, but 3rd group: je dors, not "je dormis". The singular drops
+    // the -m of the stem.
+    forms: { je: 'dors', tu: 'dors', il: 'dort', nous: 'dormons', vous: 'dormez', ils: 'dorment' },
+  },
+  {
+    id: 'mentir',
+    fr: 'mentir',
+    en: 'to lie',
+    group: 3,
+    latin: 'mentiri (to lie)',
+    forms: { je: 'mens', tu: 'mens', il: 'ment', nous: 'mentons', vous: 'mentez', ils: 'mentent' },
+  },
+  {
+    id: 'depeindre',
+    fr: 'dépeindre',
+    en: 'to depict',
+    group: 3,
+    // -eindre verbs: the singular loses the -d (je dépeins), and the plural stem
+    // picks up "-gn-" (nous dépeignons). Same pattern as peindre / éteindre.
+    forms: {
+      je: 'dépeins',
+      tu: 'dépeins',
+      il: 'dépeint',
+      nous: 'dépeignons',
+      vous: 'dépeignez',
+      ils: 'dépeignent',
+    },
+  },
+  {
+    id: 'moudre',
+    fr: 'moudre',
+    en: 'to grind / to mill',
+    group: 3,
+    latin: 'molere (to grind)',
+    // -oudre verb: singular keeps the -d (je mouds), but the plural stem becomes
+    // "moul-" (nous moulons). Genuinely irregular — worth staring at.
+    forms: { je: 'mouds', tu: 'mouds', il: 'moud', nous: 'moulons', vous: 'moulez', ils: 'moulent' },
+  },
+  // Cours N°6 completes the 3rd-group table with admettre (conjugates like mettre:
+  // one t in the singular, two in the plural). j'admets elides.
+  {
+    id: 'admettre',
+    fr: 'admettre',
+    en: 'to admit',
+    group: 3,
+    latin: 'admittere (to let happen)',
+    // j'admets — elision before the vowel; handled by conjugated().
+    forms: { je: 'admets', tu: 'admets', il: 'admet', nous: 'admettons', vous: 'admettez', ils: 'admettent' },
   },
 ]
 

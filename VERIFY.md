@@ -324,3 +324,137 @@ verbs and the Tahiti vocabulary, are what became cards.
 | **Le Pétomane** (Joseph Pujol) story | A class break — history, not French to drill. |
 | **Gauguin / Tahiti** art-history text | The art-history itself is a break; only the noun list under it became a deck. |
 | Review of months/days/pronouns/«IR»/être-avoir/numbers/age/time/reflexives/articles/nationalities/colors | Already in the app since N°1–N°3. `turquoise` and `doré` were already in the colors deck. |
+
+# Cours N°5
+
+Extracted from `course-slides/Cours collectif Jeudi N°5.pdf` (52 slides). Like N°4,
+the bulk is **review** — the whole first half re-runs the oral-comprehension
+questions, months, days, subject pronouns, the «IR» exercise, negation,
+être/avoir, numbers, colors, possessive adjectives, and the interrogative form,
+all already in the app. The genuinely new material: the **3rd-group (irregular)
+verbs**, a couple of new «ER»/«IR» verbs (one of which, `placer`, carries the
+course's new *C dur / C doux* rule), a **weather** deck, and a **seaside** deck
+from the Matisse slide. Added 3 decks (79 cards) + 8 verbs folded into existing
+decks. Total ≈ 560 cards across 25 decks.
+
+## ⚠️ Where I corrected or departed from the slides
+
+- **`placer` needs a cedilla the plain rule hides.** This course teaches "C dur /
+  C doux": `c` is soft [s] before `e/i/y`, hard [k] before `a/o/u`. So `placer`
+  → **nous plaçons** (ç to keep the [s]), not "placons" — the same class of stem
+  shift as `manger → mangeons`. Encoded with a `spellingChange` note and flagged
+  in the «ER» grid. The endings are regular; only the stem's spelling moves.
+- **3rd-group verbs are written out, never generated.** The infinitive ending
+  (-oir / -dre / -ir / -tre / -oindre / -eindre / -oudre) does **not** predict the
+  forms, so each is memorised like an auxiliary. The traps I hand-checked:
+  | Verb | Singular | Plural stem shift |
+  |---|---|---|
+  | voir | je vois | nous **voy**ons, ils **voi**ent |
+  | prendre | je prends | nous **pren**ons, ils **prenn**ent |
+  | dormir | je **dors** (drops -m) | nous dormons |
+  | mentir | je **mens** | nous mentons |
+  | mettre | je mets | nous mettons |
+  | dépeindre | je dépein**s** (no -d) | nous dépei**gn**ons |
+  | moudre | je moud**s** (keeps -d) | nous **moul**ons |
+  `dépeindre` and `moudre` are the exotic ones the slide assigns as exercises;
+  `prendre`, `mettre`, `voir`, `dormir` are the everyday ones worth owning.
+- **No new slide *errors* this course** — the possessive table (adds
+  notre/votre/nos/vos/leur/leurs, already in the N°4 deck) and the euphonic-`t`
+  rule are both stated correctly. The slide again lumps `combien` under "how" — it's
+  "how much / how many"; the question-words deck already glosses it that way.
+
+## Deliberately not built (fits no fair multiple-choice card)
+
+| Content | Why |
+|---|---|
+| **C dur / C doux** rule (soft vs hard `c`) | It's a *binary* judgement (hard or soft), which can't fill four distinct options fairly. It's captured indirectly through `placer → plaçons`; the full rule belongs in the planned listening/typing mode. |
+| **The « GN » sounds** (mouillé `agneau` vs separated `stagner`) | Pure pronunciation, also binary. Same future mode. |
+| **France Quiz**, **Le massacre de la Saint-Barthélemy**, **Le porte-coton** | You asked to skip these — history/trivia, not language. |
+| **Matisse / fauvism** art-history text | A class break, like Gauguin's; only the noun list under it became the seaside deck. |
+| Review of oral-comp / months / days / pronouns / «IR» / negation / être-avoir / numbers / colors / possessives / interrogatives | Already in the app since N°1–N°4. |
+
+## New this course, by deck
+
+- **Verbs** (folded into existing decks): `placer` (ER, with the ç rule) + `mijoter`
+  (ER); `vieillir`, `rougir`, `applaudir`, `nourrir`, `agir` (IR); `se tromper`
+  (reflexive).
+- **Les verbes du 3ème groupe** — `voir`, `prendre`, `attendre`, `mettre`,
+  `dormir`, `mentir`, `dépeindre`, `moudre` (8 verbs × 6 persons). New `group: 3`,
+  its own deck and cheat-sheet grid.
+- **Quel temps fait-il ?** — weather: the nouns (le soleil, le nuage, la pluie, le
+  vent, la neige, la grêle, la glace, l'éclair, le tonnerre, la tempête, la
+  tornade), the describing adjectives (ensoleillé, nuageux, pluvieux, venteux,
+  enneigé), and `il fait chaud` / `il fait froid`. Nouns shown with their article.
+- **Au bord de la mer** — the Matisse-scene vocabulary: sea creatures (océan,
+  méduse, algue, mouette, corail, poisson, hippocampe, étoile de mer), the dancer
+  (danseuse, tutu), and three body parts (tête, bras, jambe), article-first.
+
+# Cours N°6
+
+Extracted from `course-slides/Cours collectif Jeudi N°6.pdf` (48 slides). Again
+mostly **review** (weather, placer/mijoter, reflexives, être/avoir, numbers,
+colors, the interrogative form, the 3rd-group table — all already in the app). The
+headline new material is a whole new **tense — l'imparfait (the imperfect past)** —
+the first tense beyond the present. Plus new verbs, a **seasons + time-of-day**
+deck, and the **Monet landscape** vocabulary. Added 3 decks (89 cards) + 7 verbs
+folded into existing decks. Total ≈ 691 cards across 28 decks.
+
+## The imperfect — the app's first past tense
+
+The slide's rule: take the present **nous** form, drop `-ons` for the stem, add one
+fixed set of endings for every verb — `-ais · -ais · -ait · -ions · -iez · -aient`.
+2nd-group verbs keep their `-iss-` (nous finissons → finiss- → *finissais*). It's
+the most regular tense in French: **only `être` is irregular** (stem `ét-`,
+*j'étais*), `avoir` is regular (`av-`), and even `aller` — irregular in the present
+— is regular here (`all-`, *j'allais*), which the deck deliberately shows.
+
+Even though it's regular, I **wrote every form out** in a new `imperfect.js` rather
+than generating them — same policy as the present tense, so each card is checkable
+against the slide and the edge cases (`ét-`, the `-iss-`, elisions like *j'étais* /
+*j'avais* / *j'habitais*) can't be silently mis-generated. The deck reuses the
+existing verb generator (a verb is one model; the imperfect is just a second
+`forms` table), so the elision/reveal logic lives in one place for both tenses.
+
+The 11 verbs drilled (the slide's own examples): être, avoir, parler, aimer,
+habiter, regarder, écouter, finir, bâtir, prendre, aller. Note **je and tu are
+always identical** in the imperfect (`parlais` / `parlais`), like the 2nd-group
+present. Impersonal **`pleuvoir`** (*il pleuvait*) exists only at `il`, so it can't
+form a fair 6-way drill — it's noted in the cheat sheet, not carded.
+
+## ⚠️ Where I corrected or departed from the slides
+
+- **`une ombrelle`, not "un ombrelle".** The Monet vocab slide misprints it as
+  masculine; *ombrelle* is feminine. Corrected in the `paysage` deck.
+- **`aplatir` — one p.** The slide shows `APLATIR` (correct); worth stating since
+  the English "flatten" and the double-t tempt an extra letter. One p, two t implied
+  by nothing — it's a-p-l-a-t-i-r, a regular 2nd-group verb.
+- **No outright grammar errors this course.** The imperfect table, the 3rd-group
+  table (which N°6 fills in — matches what I hand-wrote for N°5), and the
+  interrogative examples are all correct. The slide again lumps `combien` under
+  "how" — it's "how much / how many", as the question-words deck already glosses it.
+
+## New this course, by deck
+
+- **Verbs** (folded into existing decks): `fleurir`, `établir`, `aplatir`,
+  `réunir`, `approfondir`, `embellir` (IR); `admettre` (3rd group — completes the
+  N°5 table).
+- **L'imparfait (passé)** — 11 verbs × 6 persons, the new tense (see above).
+- **Les saisons et les moments** — the seasons (une saison, le printemps, l'été,
+  l'automne, l'hiver) with the "when" adverbs (aujourd'hui, demain, après-demain,
+  hier, avant-hier) and parts of the day (le matin, l'après-midi, le soir, la nuit).
+  Nouns article-first; l'été / l'automne / l'hiver are all masculine behind the l'.
+- **Le paysage (Monet)** — landscape nouns from the Impressionism slide: un champ,
+  un arbre, le ciel, un enfant, un chapeau, une ombrelle, une route, le paysage,
+  l'ombre. Words already taught in `nature` / `seaside` (la mer, la fleur, la
+  maison, la montagne, la robe, l'herbe) are **not** repeated.
+
+## What I skipped from Cours N°6 (and why)
+
+| Content | Why |
+|---|---|
+| **The France Quiz** (Marie-Antoinette, EU vote, nuclear tests, car brands, NATO) | You asked to skip these — trivia, not language. |
+| **Robespierre** & **the executioner Sanson** history | Class-break history; genuinely grim reading, no French to drill. |
+| **Claude Monet / Impressionism** art-history text | A break, like Gauguin's and Matisse's; only the noun list under it became a deck. |
+| **« Synonyme pour pieds »** (peton, panard, arpion, fromage) | A joke slide — regional slang for "foot" (and "cheese" as the punchline). Low value, easy to mis-learn; left in the source. |
+| **"Present your boyfriend/girlfriend, make his business card"** | A speaking/writing role-play (leçons 6–7), not a multiple-choice fact. |
+| Review of weather / placer / reflexives / être-avoir / numbers / colors / interrogatives / the 3rd-group table | Already in the app since N°1–N°5. |

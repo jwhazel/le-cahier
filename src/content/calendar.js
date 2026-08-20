@@ -30,3 +30,26 @@ export const months = [
   { id: 'novembre', fr: 'novembre', en: 'November' },
   { id: 'decembre', fr: 'décembre', en: 'December' },
 ]
+
+// Cours N°6 — the seasons, plus the "when" words (today / tomorrow / yesterday)
+// and the parts of the day. Grouped here because it's the same temporal family as
+// days and months. Nouns carry their article so gender rides along (as in
+// `classroom`); the adverbs — aujourd'hui, demain, hier … — take no article.
+// Several of the season nouns hide their gender behind an elided l' (l'été,
+// l'hiver): all three of those are masculine. Flagged in the cheat sheet.
+export const seasons = [
+  { id: 'saison', fr: 'saison', article: 'une', gender: 'f', en: 'a season' },
+  { id: 'printemps', fr: 'printemps', article: 'le', gender: 'm', en: 'spring' },
+  { id: 'ete', fr: 'été', article: "l'", gender: 'm', en: 'summer' },
+  { id: 'automne', fr: 'automne', article: "l'", gender: 'm', en: 'autumn / fall' },
+  { id: 'hiver', fr: 'hiver', article: "l'", gender: 'm', en: 'winter' },
+  { id: 'aujourdhui', fr: "aujourd'hui", en: 'today' },
+  { id: 'demain', fr: 'demain', en: 'tomorrow' },
+  { id: 'apres-demain', fr: 'après-demain', en: 'the day after tomorrow' },
+  { id: 'hier', fr: 'hier', en: 'yesterday' },
+  { id: 'avant-hier', fr: 'avant-hier', en: 'the day before yesterday' },
+  { id: 'matin', fr: 'matin', article: 'le', gender: 'm', en: 'morning' },
+  { id: 'apres-midi', fr: 'après-midi', article: "l'", gender: 'm', en: 'afternoon' },
+  { id: 'soir', fr: 'soir', article: 'le', gender: 'm', en: 'evening' },
+  { id: 'nuit', fr: 'nuit', article: 'la', gender: 'f', en: 'night' },
+]

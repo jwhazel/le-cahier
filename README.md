@@ -1,6 +1,6 @@
 # Le cahier
 
-Flashcards for a ten-course French series. Courses 1–4 of 10 (~433 cards).
+Flashcards for a ten-course French series. Courses 1–6 of 10 (~691 cards).
 
 ```bash
 npm install
@@ -20,9 +20,11 @@ lowercase).
 src/
   content/          the facts — no questions, no wrong answers
     pronouns.js
-    vocab.js        nouns, colors, salutations, nature    (N°1, +Tahiti nouns N°4)
-    verbs.js        conjugation tables + elision helper   (ER / IR / être·avoir / reflexive)
-    calendar.js     days + months                         (N°2)
+    vocab.js        nouns, colors, salutations, nature,   (N°1; Tahiti N°4;
+                    weather, seaside, paysage              weather+seaside N°5; Monet N°6)
+    verbs.js        present conjugations + elision helper (ER / IR / 3ème / être·avoir / reflexive)
+    imperfect.js    l'imparfait — the imperfect tense     (N°6, reuses the verb generator)
+    calendar.js     days + months, seasons + moments      (N°2; seasons N°6)
     numbers.js      0–1000                                (N°2)
     nationalities.js, articles.js, reflexives.js,
     accents.js, negation.js                               (N°3)
@@ -43,12 +45,13 @@ drill one deck, one course (`Tout mélangé — Cours N°3`), or everything. Add
 course is: new content file(s) + new deck entries tagged with the lesson number + a
 row in `lessons`. Nothing else changes.
 
-**Verbs are one model, four groups.** `verbs.js` holds every verb with a `group`
-tag (`1` = «ER», `2` = «IR», `'aux'` = être/avoir, `'reflexive'` = s'appeler /
-se présenter); the engine filters it into separate decks. Because forms are written
-out, not generated from a rule, irregular and reflexive verbs cost nothing — `j'ai`,
-`nous mangeons`, and `je m'appelle` are just data. Distractors are always drawn
-from the *same verb*, so groups never cross-contaminate.
+**Verbs are one model, five groups.** `verbs.js` holds every verb with a `group`
+tag (`1` = «ER», `2` = «IR», `3` = 3ème groupe irregulars, `'aux'` = être/avoir,
+`'reflexive'` = s'appeler / se présenter); the engine filters it into separate
+decks. Because forms are written out, not generated from a rule, irregular and
+reflexive verbs cost nothing — `j'ai`, `nous mangeons`, `nous moulons`, and
+`je m'appelle` are just data. Distractors are always drawn from the *same verb*,
+so groups never cross-contaminate.
 
 **Four question shapes, one interaction.** Everything is still "tap the right
 option", but the answer comes from four kinds of generator:

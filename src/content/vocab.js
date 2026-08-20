@@ -61,6 +61,79 @@ export const nature = [
   { id: 'pareo', fr: 'paréo', article: 'le', gender: 'm', en: 'a sarong / beach wrap' },
 ]
 
+// Cours N°5 — «Quel temps fait-il ?» (the weather). The slide pairs each noun
+// with the adjective you use to describe the day: la pluie (rain) → il fait
+// pluvieux / c'est pluvieux (rainy). Nouns carry their article so gender rides
+// along, as in `classroom`; the adjectives and the two `il fait …` expressions
+// have no article. All glosses are distinct English, so no `confusableWith` is
+// needed — "sun" and "sunny" are legitimately different cards.
+export const weather = [
+  { id: 'soleil', fr: 'soleil', article: 'le', gender: 'm', en: 'sun' },
+  { id: 'nuage', fr: 'nuage', article: 'le', gender: 'm', en: 'cloud' },
+  { id: 'pluie', fr: 'pluie', article: 'la', gender: 'f', en: 'rain' },
+  { id: 'vent', fr: 'vent', article: 'le', gender: 'm', en: 'wind' },
+  { id: 'neige', fr: 'neige', article: 'la', gender: 'f', en: 'snow' },
+  { id: 'grele', fr: 'grêle', article: 'la', gender: 'f', en: 'hail' },
+  { id: 'glace', fr: 'glace', article: 'la', gender: 'f', en: 'ice' },
+  // l' hides the gender — éclair is masculine (un éclair).
+  { id: 'eclair', fr: 'éclair', article: "l'", gender: 'm', en: 'lightning' },
+  { id: 'tonnerre', fr: 'tonnerre', article: 'le', gender: 'm', en: 'thunder' },
+  { id: 'tempete', fr: 'tempête', article: 'la', gender: 'f', en: 'storm' },
+  { id: 'tornade', fr: 'tornade', article: 'la', gender: 'f', en: 'tornado' },
+  // The describing words (adjectives) and the two set expressions — no article.
+  { id: 'ensoleille', fr: 'ensoleillé', en: 'sunny' },
+  { id: 'nuageux', fr: 'nuageux', en: 'cloudy' },
+  { id: 'pluvieux', fr: 'pluvieux', en: 'rainy' },
+  { id: 'venteux', fr: 'venteux', en: 'windy' },
+  { id: 'enneige', fr: 'enneigé', en: 'snowy' },
+  { id: 'il-fait-chaud', fr: 'il fait chaud', en: "it's hot" },
+  { id: 'il-fait-froid', fr: 'il fait froid', en: "it's cold" },
+]
+
+// Cours N°5 — the seaside / «danseuse créole» vocabulary. The slide's Matisse
+// art-history is a class break (skipped, like Gauguin's), but the noun list under
+// it — the sea and its creatures, plus the dancer and a few body parts — is
+// practical beginner vocabulary, so it earns a deck. Same grab-bag shape as
+// `nature`: article-first, so gender is learned with the word. Indefinite where
+// the slide used it (un océan), definite for the body parts (la tête).
+export const seaside = [
+  { id: 'ocean', fr: 'océan', article: 'un', gender: 'm', en: 'an ocean' },
+  { id: 'meduse', fr: 'méduse', article: 'une', gender: 'f', en: 'a jellyfish' },
+  { id: 'algue', fr: 'algue', article: 'une', gender: 'f', en: 'seaweed' },
+  { id: 'mouette', fr: 'mouette', article: 'une', gender: 'f', en: 'a seagull' },
+  { id: 'corail', fr: 'corail', article: 'un', gender: 'm', en: 'coral' },
+  { id: 'poisson', fr: 'poisson', article: 'un', gender: 'm', en: 'a fish' },
+  { id: 'hippocampe', fr: 'hippocampe', article: 'un', gender: 'm', en: 'a seahorse' },
+  { id: 'etoile-de-mer', fr: 'étoile de mer', article: 'une', gender: 'f', en: 'a starfish' },
+  { id: 'danseuse', fr: 'danseuse', article: 'une', gender: 'f', en: 'a dancer (f)' },
+  { id: 'tutu', fr: 'tutu', article: 'un', gender: 'm', en: 'a tutu' },
+  { id: 'tete', fr: 'tête', article: 'la', gender: 'f', en: 'the head' },
+  { id: 'bras', fr: 'bras', article: 'le', gender: 'm', en: 'the arm' },
+  { id: 'jambe', fr: 'jambe', article: 'la', gender: 'f', en: 'the leg' },
+]
+
+// Cours N°6 — the landscape vocabulary from the Monet / Impressionism slide. Same
+// story as `nature` (Gauguin) and `seaside` (Matisse): the art-history is a class
+// break (skipped), but the noun list under the paintings is good beginner
+// vocabulary. Only the words NOT already taught elsewhere are here — la mer, la
+// fleur, l'herbe, la maison, la montagne, la robe are already in `nature` /
+// `seaside`, so they're not repeated. Article-first, so gender is learned with the
+// word. The slide misprints "un ombrelle"; ombrelle is feminine (une ombrelle) —
+// corrected here and flagged in VERIFY.md.
+export const paysage = [
+  { id: 'champ', fr: 'champ', article: 'un', gender: 'm', en: 'a field' },
+  { id: 'arbre', fr: 'arbre', article: 'un', gender: 'm', en: 'a tree' },
+  // l' hides the gender — ciel is masculine (le ciel).
+  { id: 'ciel', fr: 'ciel', article: 'le', gender: 'm', en: 'the sky' },
+  { id: 'enfant', fr: 'enfant', article: 'un', gender: 'm', en: 'a child' },
+  { id: 'chapeau', fr: 'chapeau', article: 'un', gender: 'm', en: 'a hat' },
+  { id: 'ombrelle', fr: 'ombrelle', article: 'une', gender: 'f', en: 'a parasol / sun umbrella' },
+  { id: 'route', fr: 'route', article: 'une', gender: 'f', en: 'a road' },
+  { id: 'paysage', fr: 'paysage', article: 'le', gender: 'm', en: 'the landscape / scenery' },
+  // l' hides the gender — ombre is feminine (une ombre).
+  { id: 'ombre', fr: 'ombre', article: "l'", gender: 'f', en: 'the shade / shadow' },
+]
+
 // Slides 248-291. The slide's summary table has blanks; these come from the
 // bullet list above it, which is complete.
 //
