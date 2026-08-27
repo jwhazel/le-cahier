@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { pronouns } from './content/pronouns.js'
-import { classroom, colors, salutations, nature, weather, seaside, paysage } from './content/vocab.js'
+import { classroom, colors, salutations, nature, weather, seaside, paysage, chalons } from './content/vocab.js'
 import { days, months, seasons } from './content/calendar.js'
 import { numbers } from './content/numbers.js'
 import { nationalities } from './content/nationalities.js'
@@ -13,6 +13,9 @@ import { inversions, questionWords } from './content/interrogatives.js'
 import { grosMots } from './content/grosmots.js'
 import { imperfectVerbs } from './content/imperfect.js'
 import { verbs, slotLabels, conjugated } from './content/verbs.js'
+import { family } from './content/family.js'
+import { plurals } from './content/plurals.js'
+import { introductions } from './content/introducing.js'
 import { TIME_CARDS } from './quiz/time.js'
 import { lessons } from './quiz/engine.js'
 import { useFrenchVoice } from './speech.js'
@@ -572,6 +575,106 @@ export default function Reference({ open, onClose }) {
           <p className="ref-foot">
             Landscape vocabulary from the Monet slide — words already taught in <em>nature</em> /{' '}
             <em>bord de mer</em> (la mer, la fleur, la maison…) aren't repeated here.
+          </p>
+        </Section>
+
+        {/* ------------------------------------------------ Cours N°7 --- */}
+        <LessonDivider lesson={lessons[6]} />
+
+        <Section id="ref-family" title="La famille">
+          <table className="ref-table">
+            <tbody>
+              {family.map((o) => (
+                <tr key={o.id}>
+                  <th scope="row">
+                    <span className={`gender ${o.gender}`}>{o.article}</span> {o.fr}{' '}
+                    <Speaker text={`${o.article} ${o.fr}`} voice={voice} label={`Prononcer « ${o.article} ${o.fr} »`} />
+                  </th>
+                  <td>
+                    {o.en}
+                    {o.note && <span className="muted"> — {o.note}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Section>
+
+        <Section id="ref-introducing" title="Présenter : « c'est » vs « il/elle est »">
+          <table className="ref-table">
+            <thead>
+              <tr>
+                <th>Anglais</th>
+                <th>Français</th>
+              </tr>
+            </thead>
+            <tbody>
+              {introductions.map((it) => (
+                <tr key={it.id}>
+                  <th scope="row" className="neg-aff">
+                    {it.prompt}
+                  </th>
+                  <td>
+                    {it.answer} <Speaker text={it.answer} voice={voice} label={`Prononcer « ${it.answer} »`} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            <em>C'est / ce sont</em> + determiner (name, possessive, article): identifies WHO.{' '}
+            <em>il/elle est / ils/elles sont</em> + no determiner: describes WHAT — an unmodified
+            profession (<em>il est professeur</em>, not <em>il est un professeur</em>) or an adjective.
+          </p>
+        </Section>
+
+        <Section id="ref-plurals" title="Le pluriel des noms">
+          <table className="ref-table">
+            <tbody>
+              {plurals.map((p) => (
+                <tr key={p.id}>
+                  <th scope="row">{p.singular}</th>
+                  <td>
+                    {p.plural} <Speaker text={p.plural} voice={voice} label={`Prononcer « ${p.plural} »`} />
+                    {p.note && <span className="muted"> — {p.note}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            General rule: +s (silent). <em>-s / -x / -z</em> stay unchanged (des bus, des prix, des
+            nez). <em>-eau / -au / -eu</em> → <em>-x</em> (des bateaux) — except <em>pneu → pneus</em>.{' '}
+            <em>-al</em> → <em>-aux</em> (des animaux) — except <em>bal / festival → bals / festivals</em>.{' '}
+            <em>-ail</em> → +s (des détails) — except <em>travail / vitrail → travaux / vitraux</em>.
+          </p>
+        </Section>
+
+        <Section id="ref-chalons" title="Simon de Châlons (peinture)">
+          <table className="ref-table">
+            <tbody>
+              {chalons.map((o) => (
+                <tr key={o.id}>
+                  <th scope="row">
+                    {o.article && <span className={`gender ${o.gender}`}>{o.article}</span>} {o.fr}{' '}
+                    <Speaker
+                      text={o.article ? `${o.article} ${o.fr}` : o.fr}
+                      voice={voice}
+                      label={`Prononcer « ${o.fr} »`}
+                    />
+                  </th>
+                  <td>
+                    {o.en}
+                    {o.note && <span className="muted"> — {o.note}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            Vocabulary from the Simon de Châlons Nativity-scene slide — the painter's biography was a
+            class break (skipped). The slide glosses <em>un âne</em> as "a mountain"; corrected to its
+            real meaning, donkey. See VERIFY.md.
           </p>
         </Section>
       </div>

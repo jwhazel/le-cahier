@@ -134,6 +134,34 @@ export const paysage = [
   { id: 'ombre', fr: 'ombre', article: "l'", gender: 'f', en: 'the shade / shadow' },
 ]
 
+// Cours N°7 — vocabulary from the Simon de Châlons Nativity-scene painting
+// slide. Same pattern as `paysage`: the painter's biography is a class break
+// (skipped), but the noun list under the painting is good vocabulary. Already
+// excludes «montagne», which is in `nature`. The slide glosses "un âne" as
+// "a mountain" — that's a translation error; âne means donkey, corrected here
+// and flagged in VERIFY.md.
+export const chalons = [
+  { id: 'perroquet', fr: 'perroquet', article: 'un', gender: 'm', en: 'a parrot' },
+  { id: 'ange', fr: 'ange', article: 'un', gender: 'm', en: 'an angel' },
+  { id: 'vierge-marie', fr: 'la Vierge Marie', en: 'the Virgin Mary' },
+  { id: 'enfant-jesus', fr: "l'Enfant Jésus", en: 'Baby Jesus' },
+  { id: 'bergers', fr: 'bergers', article: 'les', gender: 'm', en: 'shepherds' },
+  { id: 'colonne', fr: 'colonne', article: 'une', gender: 'f', en: 'a column' },
+  { id: 'batiment', fr: 'bâtiment', article: 'un', gender: 'm', en: 'a building' },
+  { id: 'humble', fr: 'humble', en: 'humble' },
+  { id: 'mouton', fr: 'mouton', article: 'un', gender: 'm', en: 'a sheep' },
+  {
+    id: 'ane',
+    fr: 'âne',
+    article: 'un',
+    gender: 'm',
+    en: 'a donkey',
+    note: 'The slide mistranslates this as "a mountain" — âne means donkey.',
+  },
+  { id: 'drap', fr: 'drap', article: 'un', gender: 'm', en: 'a sheet' },
+  { id: 'cornemuse', fr: 'cornemuse', article: 'une', gender: 'f', en: 'a bagpipe' },
+]
+
 // Slides 248-291. The slide's summary table has blanks; these come from the
 // bullet list above it, which is complete.
 //

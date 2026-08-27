@@ -458,3 +458,92 @@ form a fair 6-way drill — it's noted in the cheat sheet, not carded.
 | **« Synonyme pour pieds »** (peton, panard, arpion, fromage) | A joke slide — regional slang for "foot" (and "cheese" as the punchline). Low value, easy to mis-learn; left in the source. |
 | **"Present your boyfriend/girlfriend, make his business card"** | A speaking/writing role-play (leçons 6–7), not a multiple-choice fact. |
 | Review of weather / placer / reflexives / être-avoir / numbers / colors / interrogatives / the 3rd-group table | Already in the app since N°1–N°5. |
+
+# Cours N°7
+
+Extracted from `course-slides/Cours collectif jeudi N°7.pdf` (about 40 slides).
+Denser than N°5/N°6: on top of the usual review (months, days, colors, être/avoir,
+seasons, aplatir/réunir, possessives — all already in the app), this course adds
+**8 new «ER» verbs, 6 new «IR» verbs, 2 more 3rd-group verbs (apprendre, venir),
+3 more imperfect verbs, a family-vocabulary deck, a new grammar point (c'est vs.
+il/elle est), a full plural-noun-formation deck, and a religious-painting
+vocabulary set**. Added 4 decks (52 cards) + 19 verbs folded into existing decks.
+Total ≈ 857 cards across 32 decks in seven lessons.
+
+## ⚠️ Where I corrected or departed from the slides
+
+- **The course date.** The slide's own header reads "Jeudi 20 juillet 2026", but
+  that date falls *before* N°3 (24 juillet) in the sequence — a clerical
+  copy-paste error on the slide template, not a language point. Corrected to
+  **20 août** (the next Thursday after N°6's 13 août) in `lessons`.
+- **`un âne` does not mean "a mountain".** The Simon de Châlons painting-vocab
+  slide glosses it that way — a straight translation error. *Âne* means donkey;
+  *montagne* (already correctly used elsewhere on the same slide) is the word for
+  mountain. Corrected in the `chalons` vocab, with the mistranslation flagged as a
+  note revealed after answering.
+- **No grammar errors.** The imperfect endings, the venir/apprendre conjugation
+  table, the plural-formation rules, and the c'est/il-elle-est examples are all
+  correct as taught.
+
+## `acheter` — a second `peser`-shaped spelling trap
+
+Like `peser` (N°1) and `placer` (N°5), `acheter` isn't actually irregular — the
+ENDINGS are the regular «ER» set — but the stem takes a grave accent when the
+ending is silent: **j'achète, tu achètes, il achète, ils achètent**, but **nous
+achetons, vous achetez** (the -ons/-ez already carry the stress, so no accent is
+needed). Hand-written, flagged with a `spellingChange` note like its siblings.
+
+## `venir` — a genuine "boot verb"
+
+Unlike the regular verbs, `venir` really is irregular: je/tu/il/ils switch the stem
+to **vien-**, and the ils/elles form doubles the n (**viennent**), while nous/vous
+keep the plain infinitive stem (**venons / venez**). Same shape as `tenir` /
+`devenir`. Present tense forms hand-written, like every 3rd-group verb.
+In the **imperfect**, though, `venir` is perfectly regular — the stem comes from
+`nous venons` → *ven-* → *je venais* — the same "irregular present, regular
+imperfect" pattern the deck already highlights for `aller`.
+
+## New this course, by deck
+
+- **Verbs** (folded into existing decks):
+  - «ER»: `humer`, `acheter` (spelling shift, see above), `écouter`, `étudier`,
+    `arriver`, `quitter`, `demander`, `chercher`. (`travailler` already existed
+    from N°2 — not repeated.)
+  - «IR»: `guérir`, `fournir`, `accomplir`, `surgir`, `unir`, `rétrécir`.
+    (`saisir` already existed from N°4 — not repeated.)
+  - 3rd group: `apprendre`, `venir` (see above).
+  - Imperfect: `venir`, `tourner`, `marcher` (join the existing 11 from N°6).
+- **La famille** — 22 cards: la famille, les parents, le père/la mère, les
+  enfants, le fils/la fille, le frère/la sœur, les grands-parents, l'oncle/la
+  tante, le cousin/la cousine, le mari/la femme, les époux, un bébé, le chien/le
+  chat. Article-first, like `classroom` / `nature`.
+- **Présenter : « c'est » vs « il/elle est »** — a new grammar deck, same
+  transform pattern as negation/interrogatives. `c'est` / `ce sont` + a
+  determiner (name, possessive, indefinite article) identifies *who* someone is;
+  `il/elle est` / `ils/elles sont` + no determiner describes *what* they're like
+  (an unmodified profession, or an adjective). 6 hand-authored sentence pairs,
+  distractors are the exact swaps the rule forbids (wrong pronoun form, a missing
+  or spurious article).
+- **Le pluriel des noms** — 12 cards covering the plural-formation rules: the
+  general **+s** (silent); **-s/-x/-z stay unchanged** (bus, prix, nez);
+  **-eau/-au/-eu → -x** (bateau → bateaux) except **pneu → pneus**;
+  **-al → -aux** (animal → animaux) except **bal/festival → bals/festivals**;
+  **-ail → +s** (détail → détails) except **travail/vitrail → travaux/vitraux**.
+  Distractors are the specific wrong-rule swaps (applying +s where -aux is needed,
+  applying -aux where the noun is actually regular, forgetting to change the noun).
+- **Simon de Châlons (peinture)** — 12 cards of vocabulary from the Renaissance
+  Nativity-scene painting: un perroquet, un ange, la Vierge Marie, l'Enfant Jésus,
+  les bergers, une colonne, un bâtiment, humble, un mouton, un âne (corrected, see
+  above), un drap, une cornemuse. `montagne` already existed from `nature`, so
+  it's not repeated.
+
+## What I skipped from Cours N°7 (and why)
+
+| Content | Why |
+|---|---|
+| **The France Quiz** (President/Government/Parliament, Macron nicknames, D-Day code name, Napoléon's lycée reform, the Rafale, French bands, Jean-Pierre Jeunet films) | Trivia, not language — same call as N°6. |
+| **Le vin au Moyen-Âge** (medieval winemaking, Hypocras, religious/medical/culinary uses of wine) | Class-break history, no French to drill. |
+| **Wine-related slang** (un sac à vin, un poivrot, un pilier de bar, picoler, être bourré, avoir la gueule de bois) | Tied directly to the skipped wine-history section; unlike `grosmots` (which was your own idea from a class tangent), this vocabulary comes straight off a trivia slide, so it's skipped along with it. |
+| **The recorded interview** (présenter, un ami, venir, tout le monde, espérer, métier, la chasse/le chasseur, la proie, actuellement, ancien, un mont, bonne chance) | A specific person's biography/listening exercise, same category as the painter bios — anecdotal, not generalizable vocabulary. |
+| **"Present your boyfriend/girlfriend" photo exercise** (beau, belle, moche, très vilain, les dents, les cheveux, les yeux, un sourire, élégant, sentir, puer…) | The same role-play already skipped in N°6 (same photos, same instructions) — repetitive, and a speaking exercise rather than a multiple-choice fact. |
+| Review of months/days/colors/être-avoir/seasons/aplatir/réunir/possessives | Already in the app since N°2–N°6. |

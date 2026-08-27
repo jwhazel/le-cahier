@@ -4,7 +4,7 @@
 // means you can reason about it — and test it — without rendering anything.
 
 import { pronouns } from '../content/pronouns.js'
-import { classroom, colors, salutations, nature, weather, seaside, paysage } from '../content/vocab.js'
+import { classroom, colors, salutations, nature, weather, seaside, paysage, chalons } from '../content/vocab.js'
 import { days, months, seasons } from '../content/calendar.js'
 import { numbers } from '../content/numbers.js'
 import { nationalities } from '../content/nationalities.js'
@@ -17,6 +17,9 @@ import { inversions, questionWords } from '../content/interrogatives.js'
 import { grosMots } from '../content/grosmots.js'
 import { imperfectVerbs } from '../content/imperfect.js'
 import { verbs, slotLabels, conjugated } from '../content/verbs.js'
+import { family } from '../content/family.js'
+import { plurals } from '../content/plurals.js'
+import { introductions } from '../content/introducing.js'
 import { TIME_CARDS } from './time.js'
 
 const CHOICES_PER_QUESTION = 4
@@ -356,6 +359,10 @@ export const lessons = [
   { id: 4, label: 'Cours N°4', date: '30 juillet' },
   { id: 5, label: 'Cours N°5', date: '6 août' },
   { id: 6, label: 'Cours N°6', date: '13 août' },
+  // The slide's own header says "Jeudi 20 juillet 2026", but that date falls
+  // BEFORE N°3-N°6 in the sequence — a clerical error on the slide template.
+  // Corrected to the next Thursday after N°6 (13 août). See VERIFY.md.
+  { id: 7, label: 'Cours N°7', date: '20 août' },
 ]
 
 const erVerbs = verbs.filter((v) => v.group === 1)
@@ -567,6 +574,51 @@ export const decks = [
     label: 'Le paysage (Monet)',
     build: (seed) =>
       vocabQuestions(paysage, 'paysage', seed, { display: (it) => `${it.article} ${it.fr}` }),
+  },
+
+  // --- Cours N°7 -------------------------------------------------------------
+  // (humer/acheter/écouter/étudier/arriver/quitter/demander/chercher fold into
+  // «ER»; guérir/fournir/accomplir/surgir/unir/rétrécir into «IR»;
+  // apprendre/venir into the 3rd-group deck; venir/tourner/marcher into the
+  // imperfect deck.)
+  {
+    id: 'family',
+    lesson: 7,
+    label: 'La famille',
+    build: (seed) =>
+      vocabQuestions(family, 'family', seed, { display: (it) => `${it.article} ${it.fr}` }),
+  },
+  {
+    id: 'introducing',
+    lesson: 7,
+    label: 'Présenter : « c\'est » vs « il/elle est »',
+    build: (seed) =>
+      transformQuestions(introductions, 'introducing', seed, {
+        prompt: (it) => it.prompt,
+        answer: (it) => it.answer,
+        subtitle: 'en français',
+      }),
+  },
+  {
+    id: 'plurals',
+    lesson: 7,
+    label: 'Le pluriel des noms',
+    build: (seed) =>
+      transformQuestions(plurals, 'plurals', seed, {
+        prompt: (it) => it.singular,
+        answer: (it) => it.plural,
+        subtitle: 'au pluriel',
+        note: (it) => it.note,
+      }),
+  },
+  {
+    id: 'chalons',
+    lesson: 7,
+    label: 'Simon de Châlons (peinture)',
+    build: (seed) =>
+      vocabQuestions(chalons, 'chalons', seed, {
+        display: (it) => (it.article ? `${it.article} ${it.fr}` : it.fr),
+      }),
   },
 ]
 

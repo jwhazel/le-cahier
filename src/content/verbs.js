@@ -173,6 +173,76 @@ export const verbs = [
     forms: { je: 'mijote', tu: 'mijotes', il: 'mijote', nous: 'mijotons', vous: 'mijotez', ils: 'mijotent' },
   },
 
+  // new «ER» verbs — Cours N°7 (humer/acheter conjugation slide + the "new verbs
+  // 1st group" list + the translation exercise). Regular except acheter, which
+  // repeats peser's stem shift.
+  {
+    id: 'humer',
+    fr: 'humer',
+    en: 'to smell / to sniff',
+    group: 1,
+    latin: 'from the onomatopoeia "hum"',
+    // j'hume — elision before the silent h, like habiter.
+    forms: { je: 'hume', tu: 'humes', il: 'hume', nous: 'humons', vous: 'humez', ils: 'hument' },
+  },
+  {
+    id: 'acheter',
+    fr: 'acheter',
+    en: 'to buy',
+    group: 1,
+    latin: 'accaptare (to take)',
+    // j'achète elides. Same shift as peser: the stem takes è when the ending is
+    // silent. The rule as stated would give "achete".
+    spellingChange:
+      'j’achète, but nous achetons — the stem takes è when the ending is silent, same shift as peser.',
+    forms: { je: 'achète', tu: 'achètes', il: 'achète', nous: 'achetons', vous: 'achetez', ils: 'achètent' },
+  },
+  {
+    id: 'ecouter',
+    fr: 'écouter',
+    en: 'to listen (to)',
+    group: 1,
+    // j'écoute — elision before the vowel; handled by conjugated().
+    forms: { je: 'écoute', tu: 'écoutes', il: 'écoute', nous: 'écoutons', vous: 'écoutez', ils: 'écoutent' },
+  },
+  {
+    id: 'etudier',
+    fr: 'étudier',
+    en: 'to study',
+    group: 1,
+    // j'étudie — elision before the vowel; handled by conjugated().
+    forms: { je: 'étudie', tu: 'étudies', il: 'étudie', nous: 'étudions', vous: 'étudiez', ils: 'étudient' },
+  },
+  {
+    id: 'arriver',
+    fr: 'arriver',
+    en: 'to arrive',
+    group: 1,
+    // j'arrive — elision before the vowel; handled by conjugated().
+    forms: { je: 'arrive', tu: 'arrives', il: 'arrive', nous: 'arrivons', vous: 'arrivez', ils: 'arrivent' },
+  },
+  {
+    id: 'quitter',
+    fr: 'quitter',
+    en: 'to leave',
+    group: 1,
+    forms: { je: 'quitte', tu: 'quittes', il: 'quitte', nous: 'quittons', vous: 'quittez', ils: 'quittent' },
+  },
+  {
+    id: 'demander',
+    fr: 'demander',
+    en: 'to ask (for)',
+    group: 1,
+    forms: { je: 'demande', tu: 'demandes', il: 'demande', nous: 'demandons', vous: 'demandez', ils: 'demandent' },
+  },
+  {
+    id: 'chercher',
+    fr: 'chercher',
+    en: 'to look for',
+    group: 1,
+    forms: { je: 'cherche', tu: 'cherches', il: 'cherche', nous: 'cherchons', vous: 'cherchez', ils: 'cherchent' },
+  },
+
   // --- 2ème groupe «IR» — Cours N°2 ----------------------------------------
   // All regular: root + is/is/it/issons/issez/issent. Note je and tu are
   // identical ("finis"), as in every 2nd-group verb.
@@ -506,6 +576,61 @@ export const verbs = [
     forms: { je: 'embellis', tu: 'embellis', il: 'embellit', nous: 'embellissons', vous: 'embellissez', ils: 'embellissent' },
   },
 
+  // new «IR» verbs — Cours N°7 (the "new verbs 2nd group" list + the
+  // "conjugate at present" exercise: unir/guérir/accomplir/saisir). All regular
+  // 2nd-group; saisir already lives in the deck (Cours N°4), so it isn't repeated.
+  {
+    id: 'guerir',
+    fr: 'guérir',
+    en: 'to heal',
+    group: 2,
+    forms: { je: 'guéris', tu: 'guéris', il: 'guérit', nous: 'guérissons', vous: 'guérissez', ils: 'guérissent' },
+  },
+  {
+    id: 'fournir',
+    fr: 'fournir',
+    en: 'to provide',
+    group: 2,
+    forms: { je: 'fournis', tu: 'fournis', il: 'fournit', nous: 'fournissons', vous: 'fournissez', ils: 'fournissent' },
+  },
+  {
+    id: 'accomplir',
+    fr: 'accomplir',
+    en: 'to accomplish',
+    group: 2,
+    // j'accomplis — elision before the vowel; handled by conjugated().
+    forms: {
+      je: 'accomplis',
+      tu: 'accomplis',
+      il: 'accomplit',
+      nous: 'accomplissons',
+      vous: 'accomplissez',
+      ils: 'accomplissent',
+    },
+  },
+  {
+    id: 'surgir',
+    fr: 'surgir',
+    en: 'to appear suddenly',
+    group: 2,
+    forms: { je: 'surgis', tu: 'surgis', il: 'surgit', nous: 'surgissons', vous: 'surgissez', ils: 'surgissent' },
+  },
+  {
+    id: 'unir',
+    fr: 'unir',
+    en: 'to unite',
+    group: 2,
+    // j'unis — elision before the vowel; handled by conjugated().
+    forms: { je: 'unis', tu: 'unis', il: 'unit', nous: 'unissons', vous: 'unissez', ils: 'unissent' },
+  },
+  {
+    id: 'retrecir',
+    fr: 'rétrécir',
+    en: 'to shrink',
+    group: 2,
+    forms: { je: 'rétrécis', tu: 'rétrécis', il: 'rétrécit', nous: 'rétrécissons', vous: 'rétrécissez', ils: 'rétrécissent' },
+  },
+
   // --- auxiliaries être / avoir — Cours N°2 --------------------------------
   // Irregular: no root+ending rule. These have to be memorised, and they carry
   // most of the language (every compound tense is built on them).
@@ -691,6 +816,29 @@ export const verbs = [
     latin: 'admittere (to let happen)',
     // j'admets — elision before the vowel; handled by conjugated().
     forms: { je: 'admets', tu: 'admets', il: 'admet', nous: 'admettons', vous: 'admettez', ils: 'admettent' },
+  },
+  // Cours N°7 adds two more 3rd-group verbs from the "verbes du 3ème groupe"
+  // table.
+  {
+    id: 'apprendre',
+    fr: 'apprendre',
+    en: 'to learn',
+    group: 3,
+    latin: 'apprehendere (to grasp) — same root as prendre',
+    // j'apprends — elision before the vowel; handled by conjugated().
+    forms: { je: 'apprends', tu: 'apprends', il: 'apprend', nous: 'apprenons', vous: 'apprenez', ils: 'apprennent' },
+  },
+  {
+    id: 'venir',
+    fr: 'venir',
+    en: 'to come',
+    group: 3,
+    latin: 'venire (to come)',
+    // A "boot verb": je/tu/il/ils change the stem to vien-, doubling the n at
+    // ils (viennent); nous/vous keep the infinitive stem (venons/venez). Same
+    // family as tenir, devenir.
+    note: 'ils viennent doubles the n — nous/vous keep the plain ven- stem.',
+    forms: { je: 'viens', tu: 'viens', il: 'vient', nous: 'venons', vous: 'venez', ils: 'viennent' },
   },
 ]
 

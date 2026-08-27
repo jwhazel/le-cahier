@@ -153,4 +153,43 @@ export const imperfectVerbs = [
     note: 'Irregular in the present (je vais), but perfectly regular in the imperfect: all-.',
     forms: { je: 'allais', tu: 'allais', il: 'allait', nous: 'allions', vous: 'alliez', ils: 'allaient' },
   },
+  {
+    id: 'venir',
+    fr: 'venir',
+    en: 'to come',
+    group: 3,
+    // Also irregular in the present (je viens) but regular here: nous venons → ven-.
+    note: 'Irregular in the present (je viens), but regular in the imperfect: ven-.',
+    forms: { je: 'venais', tu: 'venais', il: 'venait', nous: 'venions', vous: 'veniez', ils: 'venaient' },
+  },
+
+  // --- Cours N°7 — more 1st-group verbs (tourner, marcher), regular ---------
+  {
+    id: 'tourner',
+    fr: 'tourner',
+    en: 'to turn',
+    group: 1,
+    forms: {
+      je: 'tournais',
+      tu: 'tournais',
+      il: 'tournait',
+      nous: 'tournions',
+      vous: 'tourniez',
+      ils: 'tournaient',
+    },
+  },
+  {
+    id: 'marcher',
+    fr: 'marcher',
+    en: 'to walk',
+    group: 1,
+    forms: {
+      je: 'marchais',
+      tu: 'marchais',
+      il: 'marchait',
+      nous: 'marchions',
+      vous: 'marchiez',
+      ils: 'marchaient',
+    },
+  },
 ]
