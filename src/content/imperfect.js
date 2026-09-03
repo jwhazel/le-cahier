@@ -192,4 +192,62 @@ export const imperfectVerbs = [
       ils: 'marchaient',
     },
   },
+
+  // --- Cours N°8 — from the "il/elle sembler/sentir/tenir" fill-in exercise
+  // and the viser/divertir imperfect table. All regular, taking their stem
+  // from the present nous form, same as everything above.
+  {
+    id: 'sembler',
+    fr: 'sembler',
+    en: 'to seem',
+    group: 1,
+    forms: {
+      je: 'semblais',
+      tu: 'semblais',
+      il: 'semblait',
+      nous: 'semblions',
+      vous: 'sembliez',
+      ils: 'semblaient',
+    },
+  },
+  {
+    id: 'viser',
+    fr: 'viser',
+    en: 'to aim / to target',
+    group: 1,
+    forms: { je: 'visais', tu: 'visais', il: 'visait', nous: 'visions', vous: 'visiez', ils: 'visaient' },
+  },
+  {
+    id: 'divertir',
+    fr: 'divertir',
+    en: 'to entertain',
+    group: 2,
+    forms: {
+      je: 'divertissais',
+      tu: 'divertissais',
+      il: 'divertissait',
+      nous: 'divertissions',
+      vous: 'divertissiez',
+      ils: 'divertissaient',
+    },
+  },
+  {
+    id: 'sentir',
+    fr: 'sentir',
+    en: 'to smell / to feel',
+    group: 3,
+    // Irregular in the present (je sens, no -iss-), regular here: nous sentons → sent-.
+    note: 'Irregular in the present (je sens), but regular in the imperfect: sent-.',
+    forms: { je: 'sentais', tu: 'sentais', il: 'sentait', nous: 'sentions', vous: 'sentiez', ils: 'sentaient' },
+  },
+  {
+    id: 'tenir',
+    fr: 'tenir',
+    en: 'to hold',
+    group: 3,
+    // Same "boot verb" family as venir (je tiens, ils tiennent), but regular
+    // here: nous tenons → ten-.
+    note: 'Irregular in the present (je tiens, like venir), but regular in the imperfect: ten-.',
+    forms: { je: 'tenais', tu: 'tenais', il: 'tenait', nous: 'tenions', vous: 'teniez', ils: 'tenaient' },
+  },
 ]

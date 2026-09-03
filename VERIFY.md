@@ -547,3 +547,83 @@ imperfect" pattern the deck already highlights for `aller`.
 | **The recorded interview** (présenter, un ami, venir, tout le monde, espérer, métier, la chasse/le chasseur, la proie, actuellement, ancien, un mont, bonne chance) | A specific person's biography/listening exercise, same category as the painter bios — anecdotal, not generalizable vocabulary. |
 | **"Present your boyfriend/girlfriend" photo exercise** (beau, belle, moche, très vilain, les dents, les cheveux, les yeux, un sourire, élégant, sentir, puer…) | The same role-play already skipped in N°6 (same photos, same instructions) — repetitive, and a speaking exercise rather than a multiple-choice fact. |
 | Review of months/days/colors/être-avoir/seasons/aplatir/réunir/possessives | Already in the app since N°2–N°6. |
+
+# Cours N°8
+
+Extracted from `course-slides/Cours collectif Jeudi N°8.pdf` (about 30 slides).
+On top of a lot of pure review (family, plurals, the ER-verb list, être/avoir,
+colors, seasons — all already in the app from N°2–N°7), this course adds **12
+new verbs, a body-parts deck, a personality/appearance-adjective deck, and a
+new grammar topic in two parts: adjective gender agreement and adjective
+position (the BAGS rule)**. Added 4 decks (57 cards) + 12 verbs folded into
+existing decks. Total ≈ 992 cards across 36 decks in eight lessons.
+
+## ⚠️ Where I corrected or departed from the slides
+
+- **Two typos in the "le corps" adjective table.** The slide prints
+  *"Jolie / jolie"* for both the masculine and feminine of "pretty" — the
+  masculine should be **joli**. It also prints *"Méchante / méchante"* for
+  "mean" — the masculine should be **méchant**. Both corrected in `traits`
+  (vocab.js), flagged in the cheat sheet.
+- **The masculine→feminine adjective exercise never showed an answer key** in
+  the extracted slide text (`actif`, `heureux`, `créatif`, `paresseux`,
+  `nouveau`, `jumeau` → blank). I filled these in from the fully-worked rule
+  slide right next to it (`sportif→sportive`, `sérieux→sérieuse`,
+  `beau→belle`) — the same three patterns apply directly, and all six are
+  extremely common, unambiguous words, not a guess. See `adjectives.js`.
+- **The adjective-*position* fill-in exercise ("des arbres + grands…") was
+  skipped outright**, not just left unanswered like the gender one above — it
+  also hides a rule this course never taught (**des → de** before a plural
+  adjective that precedes its noun, e.g. *de grands arbres*), so encoding an
+  answer would risk teaching an ungrammatical form. The `adjective-position`
+  deck only uses the rule slide's own fully-written examples instead.
+- **No grammar errors** in the imperfect additions, the obéir/désobéir table,
+  or the BAGS rule statement itself.
+
+## Two verbs worth a note
+
+- **`vivre`** (3rd group, "to live") — only *nous vivons* is directly on the
+  slide (the translation exercise); the rest of the table is the standard,
+  extremely common conjugation (je vis, tu vis, il vit, vous vivez, ils
+  vivent), not a guess.
+- **`sentir`** and **`tenir`** join the imperfect deck as two more "irregular
+  present, regular imperfect" verbs — same story the deck already tells for
+  `aller` and `venir`. `tenir` is explicitly the same "boot verb" family as
+  `venir` (je tiens / ils tiennent), noted in N°7's VERIFY entry.
+
+## New this course, by deck
+
+- **Verbs** (folded into existing decks):
+  - «ER»: `éviter`, `étaler`.
+  - «IR»: `désobéir`, `rétablir`, `divertir`, `démolir`. (`avertir`,
+    `accomplir`, `approfondir`, `nourrir` already existed — not repeated.)
+  - Reflexive: `se cogner`.
+  - 3rd group: `vivre`.
+  - Imperfect: `sembler`, `viser`, `divertir`, `sentir`, `tenir`.
+- **Le corps** — 18 cards: le corps, la main, le pied, les yeux, le nez, les
+  oreilles, les dents, les cheveux, l'épaule, le coude, le poignet, les doigts,
+  les genoux, la cheville, les orteils, le cou, le ventre, le dos. (`la tête`,
+  `le bras`, `la jambe` already existed from N°5's `seaside` — not repeated.)
+- **Qualités, défauts et apparence** — 22 cards merging the personality-traits
+  list (adorable, sympathique, gentil, drôle, sérieux, triste, timide, calme,
+  égoïste, avare, méchant, paresseux) with the appearance-adjective column
+  (beau, joli, élégant, mignon, grand/petit, mince, gros, fort, jeune, vieux).
+  `sympathique` appeared on both slides; kept once.
+- **Les adjectifs : accord (masculin/féminin)** — 10 cards drilling the
+  gender-agreement rule: regular **+e** (grand→grande), with three overrides
+  — **-if→-ve**, **-eux→-euse**, **-eau→-elle** (see the note above about the
+  exercise's missing answer key).
+- **Les adjectifs : la place (règle BAGS)** — 7 cards on adjective position:
+  most adjectives follow the noun (une voiture rapide), but **B**eauty,
+  **A**ge, **G**oodness, **S**ize adjectives go before it (une belle ville, un
+  vieux château, un bon restaurant, une grande maison).
+
+## What I skipped from Cours N°8 (and why)
+
+| Content | Why |
+|---|---|
+| **"Present your boyfriend/girlfriend" photo exercise** (séduisant, beau, moche, très moche, les dents, les cheveux, les yeux, un sourire, élégant, sentir, puer…) | The same role-play already skipped in N°6 and N°7 (same categories, same instructions) — repetitive, and a speaking exercise rather than a multiple-choice fact. `séduisant/séduisante` is the one new word in it, not enough to revive the exercise. |
+| **"Car le français est élégant"** (the crude fill-in-the-blank joke about introducing yourself) | A class-break joke skit, not vocabulary — same category as N°6's "synonymes pour pieds" pun slide. |
+| **"Strange and funny medieval French words"** (morbac, vilain, paillard, ribaud, goujat, fieffé-coquin, boustifaille, vesse, se conchier) | Explicitly framed as a class-break curiosity about archaic/obsolete slang, not modern vocabulary — same call as N°7's skipped wine-slang list. |
+| **Hyacinthe Rigaud** biography, his pricing records, and the Louis XIV portrait vocabulary (le rideau, la couronne, le sceptre, l'épée, les collants, la fleur de lys, l'hermine, la perruque, le Roi soleil…) | Art-history class break. Unlike Monet/Châlons, this vocabulary is costume/regalia specific to one 1701 royal portrait, not general-purpose — skipped along with the bio rather than kept as its own deck. |
+| Review of family / plurals / the ER-verb list / être-avoir / colors / seasons | Already in the app since N°2–N°7. |

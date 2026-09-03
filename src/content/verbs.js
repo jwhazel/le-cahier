@@ -243,6 +243,26 @@ export const verbs = [
     forms: { je: 'cherche', tu: 'cherches', il: 'cherche', nous: 'cherchons', vous: 'cherchez', ils: 'cherchent' },
   },
 
+  // new «ER» verbs — Cours N°8 (the éviter/étaler conjugation slide).
+  {
+    id: 'eviter',
+    fr: 'éviter',
+    en: 'to avoid',
+    group: 1,
+    latin: 'evitare (to avoid)',
+    // j'évite — elision before the vowel; handled by conjugated().
+    forms: { je: 'évite', tu: 'évites', il: 'évite', nous: 'évitons', vous: 'évitez', ils: 'évitent' },
+  },
+  {
+    id: 'etaler',
+    fr: 'étaler',
+    en: 'to spread',
+    group: 1,
+    latin: 'Old French "astaler" (to assign to a place)',
+    // j'étale — elision before the vowel; handled by conjugated().
+    forms: { je: 'étale', tu: 'étales', il: 'étale', nous: 'étalons', vous: 'étalez', ils: 'étalent' },
+  },
+
   // --- 2ème groupe «IR» — Cours N°2 ----------------------------------------
   // All regular: root + is/is/it/issons/issez/issent. Note je and tu are
   // identical ("finis"), as in every 2nd-group verb.
@@ -631,6 +651,46 @@ export const verbs = [
     forms: { je: 'rétrécis', tu: 'rétrécis', il: 'rétrécit', nous: 'rétrécissons', vous: 'rétrécissez', ils: 'rétrécissent' },
   },
 
+  // new «IR» verbs — Cours N°8 (obéir/désobéir slide + the "some verbs 2nd
+  // group" list + the "conjugate at present" exercise: rétablir/divertir).
+  // avertir/accomplir/approfondir/nourrir already exist (N°4/N°5/N°6/N°7).
+  {
+    id: 'desobeir',
+    fr: 'désobéir',
+    en: 'to disobey',
+    group: 2,
+    // je désobéis — elision before the vowel; handled by conjugated().
+    forms: {
+      je: 'désobéis',
+      tu: 'désobéis',
+      il: 'désobéit',
+      nous: 'désobéissons',
+      vous: 'désobéissez',
+      ils: 'désobéissent',
+    },
+  },
+  {
+    id: 'retablir',
+    fr: 'rétablir',
+    en: 'to restore',
+    group: 2,
+    forms: { je: 'rétablis', tu: 'rétablis', il: 'rétablit', nous: 'rétablissons', vous: 'rétablissez', ils: 'rétablissent' },
+  },
+  {
+    id: 'divertir',
+    fr: 'divertir',
+    en: 'to entertain',
+    group: 2,
+    forms: { je: 'divertis', tu: 'divertis', il: 'divertit', nous: 'divertissons', vous: 'divertissez', ils: 'divertissent' },
+  },
+  {
+    id: 'demolir',
+    fr: 'démolir',
+    en: 'to demolish',
+    group: 2,
+    forms: { je: 'démolis', tu: 'démolis', il: 'démolit', nous: 'démolissons', vous: 'démolissez', ils: 'démolissent' },
+  },
+
   // --- auxiliaries être / avoir — Cours N°2 --------------------------------
   // Irregular: no root+ending rule. These have to be memorised, and they carry
   // most of the language (every compound tense is built on them).
@@ -719,6 +779,21 @@ export const verbs = [
       nous: 'nous trompons',
       vous: 'vous trompez',
       ils: 'se trompent',
+    },
+  },
+  // new reflexive verb — Cours N°8 (se cogner = to hit/bump oneself).
+  {
+    id: 'secogner',
+    fr: 'se cogner',
+    en: 'to hit oneself / to bump oneself',
+    group: 'reflexive',
+    forms: {
+      je: 'me cogne',
+      tu: 'te cognes',
+      il: 'se cogne',
+      nous: 'nous cognons',
+      vous: 'vous cognez',
+      ils: 'se cognent',
     },
   },
 
@@ -839,6 +914,16 @@ export const verbs = [
     // family as tenir, devenir.
     note: 'ils viennent doubles the n — nous/vous keep the plain ven- stem.',
     forms: { je: 'viens', tu: 'viens', il: 'vient', nous: 'venons', vous: 'venez', ils: 'viennent' },
+  },
+  // Cours N°8 (the "nous vivons" translation exercise). Only "nous vivons" is
+  // directly on the slide; the rest follow the same well-established pattern.
+  {
+    id: 'vivre',
+    fr: 'vivre',
+    en: 'to live',
+    group: 3,
+    latin: 'vivere (to live)',
+    forms: { je: 'vis', tu: 'vis', il: 'vit', nous: 'vivons', vous: 'vivez', ils: 'vivent' },
   },
 ]
 

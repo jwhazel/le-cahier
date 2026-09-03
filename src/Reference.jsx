@@ -1,6 +1,17 @@
 import { useEffect, useRef } from 'react'
 import { pronouns } from './content/pronouns.js'
-import { classroom, colors, salutations, nature, weather, seaside, paysage, chalons } from './content/vocab.js'
+import {
+  classroom,
+  colors,
+  salutations,
+  nature,
+  weather,
+  seaside,
+  paysage,
+  chalons,
+  body,
+  traits,
+} from './content/vocab.js'
 import { days, months, seasons } from './content/calendar.js'
 import { numbers } from './content/numbers.js'
 import { nationalities } from './content/nationalities.js'
@@ -16,6 +27,7 @@ import { verbs, slotLabels, conjugated } from './content/verbs.js'
 import { family } from './content/family.js'
 import { plurals } from './content/plurals.js'
 import { introductions } from './content/introducing.js'
+import { genderPairs, positions } from './content/adjectives.js'
 import { TIME_CARDS } from './quiz/time.js'
 import { lessons } from './quiz/engine.js'
 import { useFrenchVoice } from './speech.js'
@@ -675,6 +687,90 @@ export default function Reference({ open, onClose }) {
             Vocabulary from the Simon de Châlons Nativity-scene slide — the painter's biography was a
             class break (skipped). The slide glosses <em>un âne</em> as "a mountain"; corrected to its
             real meaning, donkey. See VERIFY.md.
+          </p>
+        </Section>
+
+        {/* ------------------------------------------------ Cours N°8 --- */}
+        <LessonDivider lesson={lessons[7]} />
+
+        <Section id="ref-body" title="Le corps">
+          <table className="ref-table">
+            <tbody>
+              {body.map((o) => (
+                <tr key={o.id}>
+                  <th scope="row">
+                    <span className={`gender ${o.gender}`}>{o.article}</span> {o.fr}{' '}
+                    <Speaker text={`${o.article} ${o.fr}`} voice={voice} label={`Prononcer « ${o.article} ${o.fr} »`} />
+                  </th>
+                  <td>{o.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            <em>la tête</em>, <em>le bras</em>, <em>la jambe</em> already appear in <em>bord de mer</em>{' '}
+            (N°5) and aren't repeated here.
+          </p>
+        </Section>
+
+        <Section id="ref-traits" title="Qualités, défauts et apparence">
+          <table className="ref-table">
+            <tbody>
+              {traits.map((t) => (
+                <tr key={t.id}>
+                  <th scope="row">
+                    {t.fr} <Speaker text={t.fr} voice={voice} label={`Prononcer « ${t.fr} »`} />
+                  </th>
+                  <td>{t.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            The slide prints <em>Jolie / jolie</em> and <em>Méchante / méchante</em> — both typos,
+            duplicating the feminine. Corrected here to <em>joli / jolie</em> and{' '}
+            <em>méchant / méchante</em>. See VERIFY.md.
+          </p>
+        </Section>
+
+        <Section id="ref-adjective-gender" title="Les adjectifs : accord (masculin/féminin)">
+          <table className="ref-table">
+            <tbody>
+              {genderPairs.map((g) => (
+                <tr key={g.id}>
+                  <th scope="row">{g.masculine}</th>
+                  <td>
+                    {g.feminine} <Speaker text={g.feminine} voice={voice} label={`Prononcer « ${g.feminine} »`} />
+                    {g.note && <span className="muted"> — {g.note}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            General rule: +e. Three overrides: <em>-if → -ve</em> (sportif → sportive),{' '}
+            <em>-eux → -euse</em> (sérieux → sérieuse), <em>-eau → -elle</em> (beau → belle).
+          </p>
+        </Section>
+
+        <Section id="ref-adjective-position" title="Les adjectifs : la place (règle BAGS)">
+          <table className="ref-table">
+            <tbody>
+              {positions.map((p) => (
+                <tr key={p.id}>
+                  <th scope="row" className="neg-aff">
+                    {p.cue}
+                  </th>
+                  <td>
+                    {p.phrase} <Speaker text={p.phrase} voice={voice} label={`Prononcer « ${p.phrase} »`} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            Most adjectives follow the noun. The BAGS ones — <em>B</em>eauty, <em>A</em>ge,{' '}
+            <em>G</em>oodness, <em>S</em>ize — go before it instead.
           </p>
         </Section>
       </div>

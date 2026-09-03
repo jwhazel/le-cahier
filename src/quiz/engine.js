@@ -4,7 +4,18 @@
 // means you can reason about it — and test it — without rendering anything.
 
 import { pronouns } from '../content/pronouns.js'
-import { classroom, colors, salutations, nature, weather, seaside, paysage, chalons } from '../content/vocab.js'
+import {
+  classroom,
+  colors,
+  salutations,
+  nature,
+  weather,
+  seaside,
+  paysage,
+  chalons,
+  body,
+  traits,
+} from '../content/vocab.js'
 import { days, months, seasons } from '../content/calendar.js'
 import { numbers } from '../content/numbers.js'
 import { nationalities } from '../content/nationalities.js'
@@ -20,6 +31,7 @@ import { verbs, slotLabels, conjugated } from '../content/verbs.js'
 import { family } from '../content/family.js'
 import { plurals } from '../content/plurals.js'
 import { introductions } from '../content/introducing.js'
+import { genderPairs, positions } from '../content/adjectives.js'
 import { TIME_CARDS } from './time.js'
 
 const CHOICES_PER_QUESTION = 4
@@ -363,6 +375,7 @@ export const lessons = [
   // BEFORE N°3-N°6 in the sequence — a clerical error on the slide template.
   // Corrected to the next Thursday after N°6 (13 août). See VERIFY.md.
   { id: 7, label: 'Cours N°7', date: '20 août' },
+  { id: 8, label: 'Cours N°8', date: '27 août' },
 ]
 
 const erVerbs = verbs.filter((v) => v.group === 1)
@@ -618,6 +631,47 @@ export const decks = [
     build: (seed) =>
       vocabQuestions(chalons, 'chalons', seed, {
         display: (it) => (it.article ? `${it.article} ${it.fr}` : it.fr),
+      }),
+  },
+
+  // --- Cours N°8 -------------------------------------------------------------
+  // (éviter/étaler fold into «ER»; désobéir/rétablir/divertir/démolir into
+  // «IR»; se cogner into the reflexive deck; vivre into the 3rd-group deck;
+  // sembler/viser/divertir/sentir/tenir into the imperfect deck.)
+  {
+    id: 'body',
+    lesson: 8,
+    label: 'Le corps',
+    build: (seed) =>
+      vocabQuestions(body, 'body', seed, { display: (it) => `${it.article} ${it.fr}` }),
+  },
+  {
+    id: 'traits',
+    lesson: 8,
+    label: 'Qualités, défauts et apparence',
+    build: (seed) => vocabQuestions(traits, 'traits', seed),
+  },
+  {
+    id: 'adjective-gender',
+    lesson: 8,
+    label: 'Les adjectifs : accord (masculin/féminin)',
+    build: (seed) =>
+      transformQuestions(genderPairs, 'adjective-gender', seed, {
+        prompt: (it) => `${it.masculine} (${it.en})`,
+        answer: (it) => it.feminine,
+        subtitle: 'au féminin',
+        note: (it) => it.note,
+      }),
+  },
+  {
+    id: 'adjective-position',
+    lesson: 8,
+    label: 'Les adjectifs : la place (règle BAGS)',
+    build: (seed) =>
+      transformQuestions(positions, 'adjective-position', seed, {
+        prompt: (it) => it.cue,
+        answer: (it) => it.phrase,
+        subtitle: 'en français',
       }),
   },
 ]

@@ -162,6 +162,65 @@ export const chalons = [
   { id: 'cornemuse', fr: 'cornemuse', article: 'une', gender: 'f', en: 'a bagpipe' },
 ]
 
+// Cours N°8 — le corps (the body). «La tête», «le bras» and «la jambe» were
+// already taught alongside the Matisse dancer in `seaside` (Cours N°5), so
+// they're not repeated here.
+export const body = [
+  { id: 'corps', fr: 'corps', article: 'le', gender: 'm', en: 'the body' },
+  { id: 'main', fr: 'main', article: 'la', gender: 'f', en: 'the hand' },
+  { id: 'pied', fr: 'pied', article: 'le', gender: 'm', en: 'the foot' },
+  { id: 'yeux', fr: 'yeux', article: 'les', gender: 'm', en: 'eyes' },
+  { id: 'nez', fr: 'nez', article: 'le', gender: 'm', en: 'nose' },
+  { id: 'oreilles', fr: 'oreilles', article: 'les', gender: 'f', en: 'ears' },
+  { id: 'dents', fr: 'dents', article: 'les', gender: 'f', en: 'teeth' },
+  { id: 'cheveux', fr: 'cheveux', article: 'les', gender: 'm', en: 'hair' },
+  { id: 'epaule', fr: 'épaule', article: "l'", gender: 'f', en: 'shoulder' },
+  { id: 'coude', fr: 'coude', article: 'le', gender: 'm', en: 'elbow' },
+  { id: 'poignet', fr: 'poignet', article: 'le', gender: 'm', en: 'wrist' },
+  { id: 'doigts', fr: 'doigts', article: 'les', gender: 'm', en: 'fingers' },
+  { id: 'genoux', fr: 'genoux', article: 'les', gender: 'm', en: 'knees' },
+  { id: 'cheville', fr: 'cheville', article: 'la', gender: 'f', en: 'ankle' },
+  { id: 'orteils', fr: 'orteils', article: 'les', gender: 'm', en: 'toes' },
+  { id: 'cou', fr: 'cou', article: 'le', gender: 'm', en: 'neck' },
+  { id: 'ventre', fr: 'ventre', article: 'le', gender: 'm', en: 'the stomach / belly' },
+  { id: 'dos', fr: 'dos', article: 'le', gender: 'm', en: 'back' },
+]
+
+// Cours N°8 — physical/personality descriptors, merged from the "le corps"
+// table's second column and the standalone "Qualities and faults" slide
+// (sympathique appears on both; kept once). Masculine/feminine pairs use the
+// SAME card ("beau / belle"), matching the pattern already used for danseuse
+// and other single-gender nouns — the quiz drills recognition, not agreement,
+// which the new `adjectives.js` deck handles separately.
+//
+// The slide prints "Jolie / jolie" for both forms — a typo, since the
+// masculine is «joli». Corrected here; flagged in VERIFY.md. It also prints
+// "Méchante / méchante" the same way; corrected to «méchant / méchante».
+export const traits = [
+  { id: 'adorable', fr: 'adorable', en: 'adorable' },
+  { id: 'sympathique', fr: 'sympathique', en: 'nice / friendly' },
+  { id: 'gentil', fr: 'gentil / gentille', en: 'kind' },
+  { id: 'drole', fr: 'drôle', en: 'funny' },
+  { id: 'serieux', fr: 'sérieux / sérieuse', en: 'serious' },
+  { id: 'triste', fr: 'triste', en: 'sad' },
+  { id: 'timide', fr: 'timide', en: 'shy' },
+  { id: 'calme', fr: 'calme', en: 'calm' },
+  { id: 'egoiste', fr: 'égoïste', en: 'selfish' },
+  { id: 'avare', fr: 'avare', en: 'greedy / stingy' },
+  { id: 'mechant', fr: 'méchant / méchante', en: 'mean' },
+  { id: 'paresseux', fr: 'paresseux / paresseuse', en: 'lazy' },
+  { id: 'beau', fr: 'beau / belle', en: 'handsome / beautiful' },
+  { id: 'joli', fr: 'joli / jolie', en: 'pretty' },
+  { id: 'elegant', fr: 'élégant / élégante', en: 'elegant' },
+  { id: 'mignon', fr: 'mignon / mignonne', en: 'cute' },
+  { id: 'grandpetit', fr: 'grand / petit', en: 'tall / small-short' },
+  { id: 'mince', fr: 'mince', en: 'slim' },
+  { id: 'gros', fr: 'gros / grosse', en: 'fat' },
+  { id: 'fort', fr: 'fort / forte', en: 'strong' },
+  { id: 'jeune', fr: 'jeune', en: 'young' },
+  { id: 'vieux', fr: 'vieux / vieille', en: 'old' },
+]
+
 // Slides 248-291. The slide's summary table has blanks; these come from the
 // bullet list above it, which is complete.
 //

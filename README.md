@@ -1,6 +1,6 @@
 # Le cahier
 
-Flashcards for a ten-course French series. Courses 1–7 of 10 (~857 cards).
+Flashcards for a ten-course French series. Courses 1–8 of 10 (~992 cards).
 
 ```bash
 npm install
@@ -21,7 +21,8 @@ src/
   content/          the facts — no questions, no wrong answers
     pronouns.js
     vocab.js        nouns, colors, salutations, nature,   (N°1; Tahiti N°4;
-                    weather, seaside, paysage, chalons     weather+seaside N°5; Monet N°6; Châlons N°7)
+                    weather, seaside, paysage, chalons,    weather+seaside N°5; Monet N°6; Châlons N°7;
+                    body, traits                           body/traits N°8)
     verbs.js        present conjugations + elision helper (ER / IR / 3ème / être·avoir / reflexive)
     imperfect.js    l'imparfait — the imperfect tense     (N°6, reuses the verb generator)
     calendar.js     days + months, seasons + moments      (N°2; seasons N°6)
@@ -30,6 +31,7 @@ src/
     accents.js, negation.js                               (N°3)
     possessives.js, interrogatives.js, grosmots.js        (N°4)
     family.js, plurals.js, introducing.js                 (N°7)
+    adjectives.js   gender agreement + BAGS position       (N°8)
   quiz/
     engine.js       facts -> questions; decks; lessons. Plain functions, no React.
     time.js         the telling-time generator (phrase + distractors)  (N°3)
