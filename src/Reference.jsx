@@ -17,7 +17,7 @@ import { numbers } from './content/numbers.js'
 import { nationalities } from './content/nationalities.js'
 import { reflexivePronouns } from './content/reflexives.js'
 import { accents } from './content/accents.js'
-import { articleNouns, withArticle } from './content/articles.js'
+import { articleNouns, withArticle, articleChoices } from './content/articles.js'
 import { negations } from './content/negation.js'
 import { possessives } from './content/possessives.js'
 import { inversions, questionWords } from './content/interrogatives.js'
@@ -28,6 +28,7 @@ import { family } from './content/family.js'
 import { plurals } from './content/plurals.js'
 import { introductions } from './content/introducing.js'
 import { genderPairs, positions } from './content/adjectives.js'
+import { interests, preferences } from './content/interests.js'
 import { TIME_CARDS } from './quiz/time.js'
 import { lessons } from './quiz/engine.js'
 import { useFrenchVoice } from './speech.js'
@@ -771,6 +772,67 @@ export default function Reference({ open, onClose }) {
           <p className="ref-foot">
             Most adjectives follow the noun. The BAGS ones — <em>B</em>eauty, <em>A</em>ge,{' '}
             <em>G</em>oodness, <em>S</em>ize — go before it instead.
+          </p>
+        </Section>
+
+        {/* ------------------------------------------------ Cours N°9 --- */}
+        <LessonDivider lesson={lessons[8]} />
+
+        <Section id="ref-interests" title="Les intérêts et les goûts">
+          <table className="ref-table">
+            <tbody>
+              {[...interests, ...preferences].map((it) => (
+                <tr key={it.id}>
+                  <th scope="row">
+                    {it.article && <span className={`gender ${it.gender}`}>{it.article}</span>} {it.fr}{' '}
+                    <Speaker
+                      text={it.article ? `${it.article} ${it.fr}` : it.fr}
+                      voice={voice}
+                      label={`Prononcer « ${it.fr} »`}
+                    />
+                  </th>
+                  <td>
+                    {it.en}
+                    {it.note && <span className="muted"> — {it.note}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            <em>adorer</em> &gt; <em>aimer</em> &gt; <em>apprécier</em> &gt; <em>ne pas aimer</em>, in
+            decreasing intensity. <em>aimer</em> is already a conjugated «ER» verb (N°2); the negative
+            is just the negation pattern (N°3) — only <em>adorer</em>, <em>apprécier</em> and{' '}
+            <em>préférer</em> are new here.
+          </p>
+        </Section>
+
+        <Section id="ref-article-choice" title="Article défini ou indéfini ?">
+          <table className="ref-table">
+            <thead>
+              <tr>
+                <th>Contexte</th>
+                <th>Français</th>
+              </tr>
+            </thead>
+            <tbody>
+              {articleChoices.map((a) => (
+                <tr key={a.id}>
+                  <th scope="row" className="neg-aff">
+                    {a.cue}
+                  </th>
+                  <td>
+                    {a.phrase} <Speaker text={a.phrase} voice={voice} label={`Prononcer « ${a.phrase} »`} />
+                    {a.note && <span className="muted"> — {a.note}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="ref-foot">
+            Definite (<em>le / la / les</em>) for something specific or already known; indefinite (
+            <em>un / une / des</em>) for something not. French almost always uses an article — English
+            often drops it, especially for general likes/dislikes (<em>j'aime LES pizzas</em>).
           </p>
         </Section>
       </div>

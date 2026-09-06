@@ -627,3 +627,79 @@ existing decks. Total ≈ 992 cards across 36 decks in eight lessons.
 | **"Strange and funny medieval French words"** (morbac, vilain, paillard, ribaud, goujat, fieffé-coquin, boustifaille, vesse, se conchier) | Explicitly framed as a class-break curiosity about archaic/obsolete slang, not modern vocabulary — same call as N°7's skipped wine-slang list. |
 | **Hyacinthe Rigaud** biography, his pricing records, and the Louis XIV portrait vocabulary (le rideau, la couronne, le sceptre, l'épée, les collants, la fleur de lys, l'hermine, la perruque, le Roi soleil…) | Art-history class break. Unlike Monet/Châlons, this vocabulary is costume/regalia specific to one 1701 royal portrait, not general-purpose — skipped along with the bio rather than kept as its own deck. |
 | Review of family / plurals / the ER-verb list / être-avoir / colors / seasons | Already in the app since N°2–N°7. |
+
+# Cours N°9
+
+Extracted from `course-slides/Cours collectif Jeudi N°9.pdf` (about 40 slides).
+The most review-heavy course yet — body parts, family, qualities/faults, colors,
+seasons, être/avoir, numbers, the ER-verb list, most of the masc→fem adjective
+exercise, all already in the app — but it adds **11 new verbs, the first
+definite-vs-indefinite article deck, and a substantial hobbies/interests
+vocabulary**. Added 2 decks (31 cards) + 11 verbs folded into existing decks.
+Total ≈ 1108 cards across 38 decks in nine lessons.
+
+## ⚠️ Where I corrected or departed from the slides
+
+- **No grammar errors.** The imperfect additions, the définite/indéfinite
+  article rule, and the interests vocabulary are all correct as taught.
+- **Two exercises had no printed answer key** (same pattern as N°8):
+  - The masc→fem transform exercise (chétif, heureux, sportif, sérieux,
+    nouveau, beau) repeats five already-drilled words verbatim; only `chétif`
+    is new, filled in from the already-established `-if → -ve` pattern
+    (chétif → chétive) and appended to `adjective-gender` rather than
+    duplicating the rest.
+  - The définite/indéfinite article fill-in exercise (le/un chien du voisin…)
+    — all five sentences derived from the stated rule (specific/known →
+    definite, unspecified → indefinite) applied to the slide's own example
+    nouns, not guessed. See `articles.js`.
+- **The numbers exercise (13, 19, …, 1000, 2345, a small arithmetic problem)**
+  is pure reinforcement of `numbers.js` (already 0–1000) — skipped per your
+  instruction to ignore redundant review, not because anything was wrong.
+
+## `se tenir` — the first irregular reflexive
+
+Every reflexive verb so far (s'appeler, se présenter, se cacher, se tromper,
+se cogner) is built on a regular «ER» stem with a pronoun stuck on the front.
+`se tenir` (la main) = "to hold hands" is the first one built on an
+**irregular** stem: it's the reflexive of `tenir`, the same "boot verb" family
+as `venir` (introduced N°7) — **me tiens / se tiennent**, doubling the n at
+ils/elles, while nous/vous keep the plain `ten-` stem. Hand-written like every
+irregular verb, with a note pointing at the family resemblance.
+
+## New this course, by deck
+
+- **Verbs** (folded into existing decks):
+  - «ER»: `écarter`, `bouder`.
+  - «IR»: `enrichir`, `agrandir`, `élargir`, `durcir`, `refroidir`, `pâlir`.
+    (`saisir`, `fleurir`, `vieillir` already existed — not repeated.)
+  - Reflexive: `se tenir` (see above).
+  - Imperfect: `téléphoner`, `pétrir`, `cacher`, `guérir`, `partir` (the last
+    two continue the "irregular present, regular imperfect" pattern already
+    seen with aller/venir/tenir/sentir).
+  - Adjective gender: `chétif` (see above).
+- **Article défini ou indéfini ?** — 5 cards, the app's first deck on
+  *whether* to use `le/la/les` vs `un/une/des` (N°3 only covered *which*
+  definite article). Definite for something specific or already known,
+  indefinite for something not. One card also surfaces a genuine French quirk:
+  general likes/dislikes take the definite article (*j'aime **les** pizzas*)
+  where English uses none.
+- **Les intérêts et les goûts** — 26 cards: hobby nouns and activity phrases
+  (le football, la natation, le vélo, la musique, la lecture, regarder la
+  télévision, jouer un instrument de musique, dessiner, cuisiner, se
+  promener, sortir avec des amis…) plus three new preference verbs — adorer,
+  apprécier, préférer — in the intensity chain adorer > aimer > apprécier >
+  ne pas aimer. `aimer` and the negative are already fully covered elsewhere
+  (a conjugated verb since N°2, and the negation pattern since N°3), so only
+  the three new verbs are here.
+
+## What I skipped from Cours N°9 (and why)
+
+| Content | Why |
+|---|---|
+| **The numbers exercise** (13…2345, a small arithmetic problem) | Pure reinforcement of `numbers.js` (already 0–1000); no new vocabulary or rule. |
+| **"Le son [r]"** (tongue-twister pronunciation drills) | Same call as N°5's C dur/doux and N°6's GN rule — a pronunciation topic, not a fair 4-option MCQ. Left for a future listening/typing mode. |
+| **"Car le français est élégant"** (the crude fill-in-the-blank joke) | A class-break joke skit, same category skipped in N°7 and N°8. |
+| **"L'homme Chauve-souris"** (Franz Reichelt's 1912 Eiffel Tower parachute-suit death) | French-history trivia — a class break, no French to drill. |
+| **The "don't feed her after midnight" listening exercise** (Comment s'appelle-t-elle? Quelle est sa nationalité?…) | A specific comprehension exercise tied to one audio clip/joke — same category as N°7's skipped interview: anecdotal, not generalizable vocabulary. The question words it uses are already covered (N°4). |
+| **Eugène Delacroix** biography and *La liberté guidant le peuple* analysis, plus its vocabulary (la révolution, le drapeau, le fusil, le mort, des macchabées, des pistolets, des sabres, un combat…) | Art-history class break. Unlike Monet/Châlons, this vocabulary is explicitly French-Revolution/war themed — exactly the "trivia about France" you asked to skip — so, unlike the earlier painting decks, the vocabulary was skipped along with the biography rather than kept. |
+| Review of body parts / family / qualities-faults / colors / seasons / être-avoir / the ER-verb list / most of the masc→fem exercise | Already in the app since N°2–N°8. |

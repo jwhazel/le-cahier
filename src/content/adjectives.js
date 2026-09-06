@@ -20,6 +20,10 @@
 // answer, and the plural case hides a further rule (des -> de before a
 // preceding adjective) that this course never taught. See VERIFY.md.
 
+// Cours N°9 repeated this same exercise almost verbatim (heureux, sportif,
+// sérieux, nouveau, beau — all already below); the one new word, `chétif`, is
+// appended at the end rather than duplicating the rest. Same missing-answer-key
+// situation as N°8 — derived from the already-established -if -> -ve pattern.
 export const genderPairs = [
   {
     id: 'grand',
@@ -93,6 +97,14 @@ export const genderPairs = [
     feminine: 'jumelle',
     en: 'twin',
     distractors: ['jumeaue', 'jumeau', 'jumeause'],
+  },
+  {
+    id: 'chetif',
+    masculine: 'chétif',
+    feminine: 'chétive',
+    en: 'frail',
+    note: '-if -> -ve, not the regular +e.',
+    distractors: ['chétife', 'chétif', 'chétielle'],
   },
 ]
 

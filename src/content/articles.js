@@ -37,3 +37,64 @@ export function withArticle(noun) {
   const art = articleOf(noun)
   return art.endsWith("'") ? `${art}${noun.fr}` : `${art} ${noun.fr}`
 }
+
+// Definite vs. indefinite — Cours collectif N°9, slides ~215-227.
+//
+// N°3 taught WHICH definite article a noun takes (gender/number/first sound);
+// this is the first time the course asks WHETHER to use a definite or an
+// indefinite article at all — le/la/les for something specific or already
+// known, un/une/des for something not. A transform deck, same "authored
+// distractors" pattern as negation/introducing: the distractors are the
+// article swaps the rule forbids.
+//
+// The slide's own fill-in exercise never showed an answer key in the
+// extracted text; these five are filled in from the rule as stated, applied
+// to the slide's own example nouns — not guessed. The last one (Golden
+// apples) illustrates a real quirk beyond the stated rule: French uses the
+// DEFINITE article for a general like/dislike ("je n'aime pas LES pommes"),
+// where English uses no article at all. Flagged in the cheat sheet.
+export const articleChoices = [
+  {
+    id: 'chien-voisin',
+    cue: "The neighbor's dog is noisy. (one specific, known dog)",
+    phrase: 'Le chien du voisin est bruyant.',
+    distractors: ['Un chien du voisin est bruyant.', 'Des chien du voisin est bruyant.', 'La chien du voisin est bruyant.'],
+  },
+  {
+    id: 'voiture-rue',
+    cue: 'A car drives down the street. (not a specific car)',
+    phrase: 'Une voiture roule dans la rue.',
+    distractors: ['La voiture roule dans la rue.', 'Les voiture roule dans la rue.', 'Un voiture roule dans la rue.'],
+  },
+  {
+    id: 'voiture-jim',
+    cue: "Jim's blue and pink car is parked. (one specific, known car)",
+    phrase: 'La voiture bleue et rose de Jim est garée.',
+    distractors: [
+      'Une voiture bleue et rose de Jim est garée.',
+      'Les voiture bleue et rose de Jim est garée.',
+      'Le voiture bleue et rose de Jim est garée.',
+    ],
+  },
+  {
+    id: 'agent-maisons',
+    cue: 'The real-estate agent sells houses every month. (an unspecified number)',
+    phrase: "L'agent immobilier vend des maisons tous les mois.",
+    distractors: [
+      "L'agent immobilier vend les maisons tous les mois.",
+      "L'agent immobilier vend une maisons tous les mois.",
+      "L'agent immobilier vend la maisons tous les mois.",
+    ],
+  },
+  {
+    id: 'pommes-golden',
+    cue: "I don't like Golden apples. (a general category, not specific apples)",
+    phrase: 'Je n’aime pas les pommes « Golden ».',
+    note: 'French uses the definite article for a general like/dislike, where English uses none.',
+    distractors: [
+      'Je n’aime pas des pommes « Golden ».',
+      'Je n’aime pas une pommes « Golden ».',
+      'Je n’aime pas la pommes « Golden ».',
+    ],
+  },
+]

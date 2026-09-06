@@ -263,6 +263,23 @@ export const verbs = [
     forms: { je: 'étale', tu: 'étales', il: 'étale', nous: 'étalons', vous: 'étalez', ils: 'étalent' },
   },
 
+  // new «ER» verbs — Cours N°9 (the écarter/bouder conjugation slide).
+  {
+    id: 'ecarter',
+    fr: 'écarter',
+    en: 'to move aside',
+    group: 1,
+    // j'écarte — elision before the vowel; handled by conjugated().
+    forms: { je: 'écarte', tu: 'écartes', il: 'écarte', nous: 'écartons', vous: 'écartez', ils: 'écartent' },
+  },
+  {
+    id: 'bouder',
+    fr: 'bouder',
+    en: 'to pout',
+    group: 1,
+    forms: { je: 'boude', tu: 'boudes', il: 'boude', nous: 'boudons', vous: 'boudez', ils: 'boudent' },
+  },
+
   // --- 2ème groupe «IR» — Cours N°2 ----------------------------------------
   // All regular: root + is/is/it/issons/issez/issent. Note je and tu are
   // identical ("finis"), as in every 2nd-group verb.
@@ -691,6 +708,62 @@ export const verbs = [
     forms: { je: 'démolis', tu: 'démolis', il: 'démolit', nous: 'démolissons', vous: 'démolissez', ils: 'démolissent' },
   },
 
+  // new «IR» verbs — Cours N°9 (enrichir/agrandir slide + the "some verbs 2nd
+  // group" list + the "conjugate at present" exercise). saisir/fleurir/vieillir
+  // already exist (N°4/N°6/N°5) — not repeated.
+  {
+    id: 'enrichir',
+    fr: 'enrichir',
+    en: 'to enrich',
+    group: 2,
+    // j'enrichis — elision before the vowel; handled by conjugated().
+    forms: { je: 'enrichis', tu: 'enrichis', il: 'enrichit', nous: 'enrichissons', vous: 'enrichissez', ils: 'enrichissent' },
+  },
+  {
+    id: 'agrandir',
+    fr: 'agrandir',
+    en: 'to enlarge',
+    group: 2,
+    // j'agrandis — elision before the vowel; handled by conjugated().
+    forms: { je: 'agrandis', tu: 'agrandis', il: 'agrandit', nous: 'agrandissons', vous: 'agrandissez', ils: 'agrandissent' },
+  },
+  {
+    id: 'elargir',
+    fr: 'élargir',
+    en: 'to widen',
+    group: 2,
+    // j'élargis — elision before the vowel; handled by conjugated().
+    forms: { je: 'élargis', tu: 'élargis', il: 'élargit', nous: 'élargissons', vous: 'élargissez', ils: 'élargissent' },
+  },
+  {
+    id: 'durcir',
+    fr: 'durcir',
+    en: 'to harden',
+    group: 2,
+    forms: { je: 'durcis', tu: 'durcis', il: 'durcit', nous: 'durcissons', vous: 'durcissez', ils: 'durcissent' },
+  },
+  {
+    id: 'refroidir',
+    fr: 'refroidir',
+    en: 'to cool (down)',
+    group: 2,
+    forms: {
+      je: 'refroidis',
+      tu: 'refroidis',
+      il: 'refroidit',
+      nous: 'refroidissons',
+      vous: 'refroidissez',
+      ils: 'refroidissent',
+    },
+  },
+  {
+    id: 'palir',
+    fr: 'pâlir',
+    en: 'to turn pale',
+    group: 2,
+    forms: { je: 'pâlis', tu: 'pâlis', il: 'pâlit', nous: 'pâlissons', vous: 'pâlissez', ils: 'pâlissent' },
+  },
+
   // --- auxiliaries être / avoir — Cours N°2 --------------------------------
   // Irregular: no root+ending rule. These have to be memorised, and they carry
   // most of the language (every compound tense is built on them).
@@ -794,6 +867,26 @@ export const verbs = [
       nous: 'nous cognons',
       vous: 'vous cognez',
       ils: 'se cognent',
+    },
+  },
+  // new reflexive verb — Cours N°9 (se tenir la main = to hold hands). Unlike
+  // the other reflexives above, this one is built on an IRREGULAR stem — tenir
+  // is the same "boot verb" family as venir (je tiens, ils tiennent; see
+  // verbs-3 below) — so the reflexive pronoun sits in front of an irregular
+  // shape, not a regular ER one.
+  {
+    id: 'setenir',
+    fr: 'se tenir (la main)',
+    en: 'to hold hands',
+    group: 'reflexive',
+    note: 'Built on tenir, the same irregular "boot verb" family as venir: me tiens / se tiennent.',
+    forms: {
+      je: 'me tiens',
+      tu: 'te tiens',
+      il: 'se tient',
+      nous: 'nous tenons',
+      vous: 'vous tenez',
+      ils: 'se tiennent',
     },
   },
 

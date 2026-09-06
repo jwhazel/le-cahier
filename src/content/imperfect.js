@@ -250,4 +250,58 @@ export const imperfectVerbs = [
     note: 'Irregular in the present (je tiens, like venir), but regular in the imperfect: ten-.',
     forms: { je: 'tenais', tu: 'tenais', il: 'tenait', nous: 'tenions', vous: 'teniez', ils: 'tenaient' },
   },
+
+  // --- Cours N°9 — from the téléphoner/pétrir table and the fill-in exercise
+  {
+    id: 'telephoner',
+    fr: 'téléphoner',
+    en: 'to phone',
+    group: 1,
+    forms: {
+      je: 'téléphonais',
+      tu: 'téléphonais',
+      il: 'téléphonait',
+      nous: 'téléphonions',
+      vous: 'téléphoniez',
+      ils: 'téléphonaient',
+    },
+  },
+  {
+    id: 'petrir',
+    fr: 'pétrir',
+    en: 'to knead',
+    group: 2,
+    forms: {
+      je: 'pétrissais',
+      tu: 'pétrissais',
+      il: 'pétrissait',
+      nous: 'pétrissions',
+      vous: 'pétrissiez',
+      ils: 'pétrissaient',
+    },
+  },
+  {
+    id: 'cacher',
+    fr: 'cacher',
+    en: 'to hide',
+    group: 1,
+    forms: { je: 'cachais', tu: 'cachais', il: 'cachait', nous: 'cachions', vous: 'cachiez', ils: 'cachaient' },
+  },
+  {
+    id: 'guerir',
+    fr: 'guérir',
+    en: 'to heal',
+    group: 2,
+    forms: { je: 'guérissais', tu: 'guérissais', il: 'guérissait', nous: 'guérissions', vous: 'guérissiez', ils: 'guérissaient' },
+  },
+  {
+    id: 'partir',
+    fr: 'partir',
+    en: 'to leave',
+    group: 3,
+    // Irregular in the present (je pars, drops the -t- in the singular), regular
+    // here: nous partons → part-.
+    note: 'Irregular in the present (je pars), but regular in the imperfect: part-.',
+    forms: { je: 'partais', tu: 'partais', il: 'partait', nous: 'partions', vous: 'partiez', ils: 'partaient' },
+  },
 ]

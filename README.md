@@ -1,6 +1,6 @@
 # Le cahier
 
-Flashcards for a ten-course French series. Courses 1–8 of 10 (~992 cards).
+Flashcards for a ten-course French series. Courses 1–9 of 10 (~1108 cards).
 
 ```bash
 npm install
@@ -28,10 +28,11 @@ src/
     calendar.js     days + months, seasons + moments      (N°2; seasons N°6)
     numbers.js      0–1000                                (N°2)
     nationalities.js, articles.js, reflexives.js,
-    accents.js, negation.js                               (N°3)
+    accents.js, negation.js                               (N°3; définite vs indéfinite N°9)
     possessives.js, interrogatives.js, grosmots.js        (N°4)
     family.js, plurals.js, introducing.js                 (N°7)
-    adjectives.js   gender agreement + BAGS position       (N°8)
+    adjectives.js   gender agreement + BAGS position       (N°8; chétif N°9)
+    interests.js    hobbies + expressing degrees of liking (N°9)
   quiz/
     engine.js       facts -> questions; decks; lessons. Plain functions, no React.
     time.js         the telling-time generator (phrase + distractors)  (N°3)

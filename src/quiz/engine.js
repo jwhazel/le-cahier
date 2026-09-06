@@ -21,7 +21,7 @@ import { numbers } from '../content/numbers.js'
 import { nationalities } from '../content/nationalities.js'
 import { reflexivePronouns } from '../content/reflexives.js'
 import { accents } from '../content/accents.js'
-import { articleNouns, ARTICLES, articleOf, withArticle } from '../content/articles.js'
+import { articleNouns, ARTICLES, articleOf, withArticle, articleChoices } from '../content/articles.js'
 import { negations } from '../content/negation.js'
 import { possessives } from '../content/possessives.js'
 import { inversions, questionWords } from '../content/interrogatives.js'
@@ -32,6 +32,7 @@ import { family } from '../content/family.js'
 import { plurals } from '../content/plurals.js'
 import { introductions } from '../content/introducing.js'
 import { genderPairs, positions } from '../content/adjectives.js'
+import { interests, preferences } from '../content/interests.js'
 import { TIME_CARDS } from './time.js'
 
 const CHOICES_PER_QUESTION = 4
@@ -376,6 +377,7 @@ export const lessons = [
   // Corrected to the next Thursday after N°6 (13 août). See VERIFY.md.
   { id: 7, label: 'Cours N°7', date: '20 août' },
   { id: 8, label: 'Cours N°8', date: '27 août' },
+  { id: 9, label: 'Cours N°9', date: '3 septembre' },
 ]
 
 const erVerbs = verbs.filter((v) => v.group === 1)
@@ -672,6 +674,35 @@ export const decks = [
         prompt: (it) => it.cue,
         answer: (it) => it.phrase,
         subtitle: 'en français',
+      }),
+  },
+
+  // --- Cours N°9 -------------------------------------------------------------
+  // (écarter/bouder fold into «ER»; enrichir/agrandir/élargir/durcir/refroidir/
+  // pâlir into «IR»; se tenir into the reflexive deck; téléphoner/pétrir/
+  // cacher/guérir/partir into the imperfect deck; chétif into the adjective-
+  // gender deck.)
+  {
+    id: 'interests',
+    lesson: 9,
+    label: 'Les intérêts et les goûts',
+    // preferences (adorer/apprécier/préférer) joins the same pool — on its own
+    // it's too small (3 items) to deal 3 fair distractors per card.
+    build: (seed) =>
+      vocabQuestions([...interests, ...preferences], 'interests', seed, {
+        display: (it) => (it.article ? `${it.article} ${it.fr}` : it.fr),
+      }),
+  },
+  {
+    id: 'article-choice',
+    lesson: 9,
+    label: 'Article défini ou indéfini ?',
+    build: (seed) =>
+      transformQuestions(articleChoices, 'article-choice', seed, {
+        prompt: (it) => it.cue,
+        answer: (it) => it.phrase,
+        subtitle: 'en français',
+        note: (it) => it.note,
       }),
   },
 ]
