@@ -1,10 +1,11 @@
 # Le cahier
 
-Flashcards for a ten-course French series. Courses 1–9 of 10 (~1108 cards).
+Flashcards for a ten-course French series. All ten courses (~1373 cards).
 
 ```bash
 npm install
 npm run dev
+npm test      # every card is a well-formed 4-option question (no new dependencies)
 ```
 
 Answer with <kbd>A</kbd>–<kbd>D</kbd>, continue with <kbd>↵</kbd>, hear it with <kbd>P</kbd>.
@@ -22,9 +23,10 @@ src/
     pronouns.js
     vocab.js        nouns, colors, salutations, nature,   (N°1; Tahiti N°4;
                     weather, seaside, paysage, chalons,    weather+seaside N°5; Monet N°6; Châlons N°7;
-                    body, traits                           body/traits N°8)
+                    body, traits, cousin                   body/traits N°8; Jean Cousin N°10)
     verbs.js        present conjugations + elision helper (ER / IR / 3ème / être·avoir / reflexive)
     imperfect.js    l'imparfait — the imperfect tense     (N°6, reuses the verb generator)
+    future.js       le futur simple + irregular stems     (N°10, same generator again)
     calendar.js     days + months, seasons + moments      (N°2; seasons N°6)
     numbers.js      0–1000                                (N°2)
     nationalities.js, articles.js, reflexives.js,
@@ -36,6 +38,7 @@ src/
   quiz/
     engine.js       facts -> questions; decks; lessons. Plain functions, no React.
     time.js         the telling-time generator (phrase + distractors)  (N°3)
+    engine.test.js  integrity checks over every deck (node:test)
   speech.js         pronunciation via the browser's built-in synthesizer
   Speaker.jsx       the shared 🔊 button
   App.jsx           deck picker (grouped by lesson) / quiz / results

@@ -703,3 +703,126 @@ irregular verb, with a note pointing at the family resemblance.
 | **The "don't feed her after midnight" listening exercise** (Comment s'appelle-t-elle? Quelle est sa nationalité?…) | A specific comprehension exercise tied to one audio clip/joke — same category as N°7's skipped interview: anecdotal, not generalizable vocabulary. The question words it uses are already covered (N°4). |
 | **Eugène Delacroix** biography and *La liberté guidant le peuple* analysis, plus its vocabulary (la révolution, le drapeau, le fusil, le mort, des macchabées, des pistolets, des sabres, un combat…) | Art-history class break. Unlike Monet/Châlons, this vocabulary is explicitly French-Revolution/war themed — exactly the "trivia about France" you asked to skip — so, unlike the earlier painting decks, the vocabulary was skipped along with the biography rather than kept. |
 | Review of body parts / family / qualities-faults / colors / seasons / être-avoir / the ER-verb list / most of the masc→fem exercise | Already in the app since N°2–N°8. |
+
+# Cours N°10 — grand final
+
+Extracted from `course-slides/Cours collectif Jeudi N°10 grand final.pdf`
+(40 slides, 10 septembre). The final class is mostly a recap: the intro
+questions, months, days, body, family, qualities/faults, interests, colours,
+seasons, être/avoir, the imperfect rule and the définite/indéfinite rule are all
+already in the app. It adds one big new topic, **le futur simple**, plus 15 new
+verbs, the Jean Cousin painting vocabulary and two batches of extra cards (articles
+and insults). It adds 4 decks (163 cards), and another 102 cards fold into existing
+decks. Total ≈ 1373 cards across 42 decks in ten lessons.
+
+## ⚠️ Where I corrected or departed from the slides
+
+- **The second futur exercise is headed "conjuguer les phrases suivantes au
+  présent"**, but every English gloss under it is in the future ("you will
+  drive", "we will swim"…). That's a copy-paste error in the header: these are
+  **future** sentences, and I used them that way (conduire, nager, manger,
+  lâcher, prendre and guérir are all in the `future` deck).
+- **"Avoir un tronche à claque"** (the insults slide) has two mistakes. *Tronche*
+  (slang for *tête*) is feminine, and the expression takes a plural *claques*:
+  **avoir une tête/tronche à claques**. The card uses *une tête à claques*, and
+  its note gives the *tronche* variant.
+- **"The 18 most common French verbs" lists only 16.** The missing pair isn't
+  recoverable from the slide, so the deck has 16 cards. (*pouvoir*, which turns
+  up on the futur irregulars slide, is the obvious missing one.)
+- **"Le premier-plan"** (Jean Cousin slide) shouldn't have a hyphen: it's **le
+  premier plan**. *L'arrière-plan* is correctly hyphenated. "LE TITRE = A TITLE"
+  is glossed "the title" to match the article.
+- **Two exercises still have no printed answer key** (the same pattern as N°8–N°9):
+  - The six-sentence le/la/les/un/une/des exercise. I filled it in from N°9's rule
+    (specific or known → definite, unspecified → indefinite) and appended it to
+    `article-choice`. Two of the sentences (*___ sac à dos*, *___ pomme*) are
+    correct with either article depending on what's meant. Each cue therefore says
+    which reading is meant ("not a specific one"), so only one answer is correct.
+  - The futur irregulars slide gives only the **je** form (je serai, j'irai…).
+    The other five persons are the irregular stem plus the regular endings from
+    the previous slide. Each one was checked by hand.
+- **Beyond the slide (your call):** the 18-verbs slide gives infinitives only.
+  As agreed, I wrote out the full present for the six irregulars that weren't
+  in the app yet (aller, faire, dire, savoir, vouloir, devoir). trouver and passer
+  are regular «ER», so they were added too. Only *vous allez* appears in a slide
+  exercise.
+
+## Le futur simple — the third tense
+
+The `future` deck uses the same model as the imperfect. `future.js` has the same
+`{ id, fr, en, group, forms }` shape, every form is written out, and `verbQuestions`
+builds the cards. The rule, as taught: **infinitive + -ai/-as/-a/-ons/-ez/-ont**,
+and *-re* verbs drop their final *e* (prendre → prendr-). The *r* is "the mark
+of the future".
+
+Points worth checking:
+
+- **finir → je finirai** (no *-iss-*, unlike the imperfect's *finissais*).
+- **manger / nager** keep their *-e-* for free (it's in the infinitive), so
+  there's no *mangeons*-style spelling trap here.
+- **conduire** is a *-re* verb → *je conduirai*.
+- **Ten irregular stems** (ser-, aur-, ir-, fer-, viendr-, verr-, pourr-,
+  voudr-, devr-, saur-) take the same endings.
+
+The ordinary conjugation cards draw their distractors from the **same verb**
+(je serai / tu seras / il sera), which drills the endings but never the irregular
+**stem**. So there's a second small deck, **`future-stems`**, with authored
+distractors. Each card offers the right future, the stem you'd get by wrongly
+applying the infinitive rule (*j'êtrai*, *je fairai*, *je voirai*), and the
+same person in the **present** and the **imperfect**. The present and imperfect
+options are real French in the wrong tense, and the reveal note says which tense
+each one is.
+
+## New this course, by deck
+
+- **Verbs** (folded into existing decks):
+  - «ER»: `flâner`, `chuchoter` (conjugation slide), `trouver`, `passer`
+    (18-verbs slide). All regular.
+  - «IR»: `bondir`, `noircir`. Both regular.
+  - Reflexive: `se carapater` (to run away / dash off), regular «ER» stem,
+    noted as familier.
+  - 3ème groupe: `aller`, `faire`, `dire`, `savoir`, `vouloir`, `devoir`.
+    Things to watch: **vous faites / vous dites** (not *faisez*, *disez*),
+    **ils font / ils vont**, and the boot verbs **je veux → ils veulent,
+    je dois → ils doivent**. *aller* ends in *-er* but is officially 3rd group.
+  - Imperfect: `couper` (conjugation table), `avaler` (exercise). Both
+    regular. finir, bâtir, venir, être and avoir from the same slides were
+    already there.
+- **Le futur simple**: 126 cards (21 verbs × 6). See above.
+- **Le futur : les radicaux irréguliers**: 10 cards. See above.
+- **Les verbes les plus courants**: 16 cards, infinitive → meaning. It's built by
+  looking the verbs up by id in `verbs.js` (`commonVerbIds`), so the gloss can
+  never disagree with the conjugation deck.
+- **Jean Cousin (peinture)**: 11 cards: une urne, une pomme, un crâne, une
+  ville, un serpent, le titre, l'arrière-plan, le premier plan, les cheveux
+  roux, être allongé(e), être nu(e). *une femme*, *la mer*, *un drap* and *des
+  arbres* were already in earlier decks and aren't repeated. The two *être +
+  adjective* phrases show the feminine *(e)* because the painting's subject is a
+  woman (*elle est allongée / nue*).
+- **Article défini ou indéfini ?**: +6 cards (see above).
+- **Gros mots 🌶️**: +6 cards, the "Because French ARE MEAN" face insults
+  (tête à claques, face de pet, tête de gland, tête d'abruti, tête de cul, tête
+  à vomir), all registered *injure*. Several of them mean nearly the same thing,
+  so they're marked `confusableWith` each other, and *tête d'abruti* is also
+  marked against the existing *con* and *crétin*.
+
+## Small engine changes
+
+- The 3rd-group and reflexive decks now show each verb's `note` after you answer
+  (e.g. *vous faites, not faisez*). Before this, only «ER» `spellingChange`
+  notes were surfaced, so the existing notes on *venir* and *se tenir* were
+  written but never shown in the quiz. They now appear too.
+- **Fixed an existing leak:** *con* ("idiot / dumbass") and *crétin* ("moron")
+  could appear as options on the same card, which gives two right answers. They're
+  now marked confusable.
+
+## What I skipped from Cours N°10 (and why)
+
+| Content | Why |
+|---|---|
+| **The intro questions** (Quel est ton nom ? Quel âge ? Quelle heure est-il ?…) | Review. The question words and inversion have been covered since N°4. |
+| **"Describe a member of your family"** (the model text about Pauline, then a 5-minute writing exercise) | A free-writing exercise, not a fact to drill. Every piece of it (s'appeler, nationality, age with avoir, petite/mince, aimer/ne pas aimer) is already in the app. |
+| **"Le son [o]"** (o / au / eau / aux, plus the Nora-ronronne tongue twisters) | A pronunciation topic, the same call as N°5's C dur/doux, N°6's GN and N°9's [r]. "Which spelling makes [o]" doesn't give four fair options, because all four do. Left for the future listening/typing mode. |
+| **The present / imperfect fill-in exercises** (Nous ___ gentils, Vous ___ forts…) | Every verb in them is already conjugated in the app in that tense, apart from aller (present) and avaler (imperfect), which were added. |
+| **Jean Cousin's biography** and the *Eva Prima Pandora* interpretation (Eve/Pandora, the skull as death, the city as society…) | An art-history class break, the same call as Monet/Châlons/Delacroix. The word list is generic (not war- or France-history-themed), so it's kept, as with Monet and Châlons. |
+| Review of months / days / body / family / qualities-faults / interests / colours / seasons / être-avoir / the imperfect rule | Already in the app since N°1–N°9. |

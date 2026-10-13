@@ -13,6 +13,7 @@ import {
   seaside,
   paysage,
   chalons,
+  cousin,
   body,
   traits,
 } from '../content/vocab.js'
@@ -21,13 +22,23 @@ import { numbers } from '../content/numbers.js'
 import { nationalities } from '../content/nationalities.js'
 import { reflexivePronouns } from '../content/reflexives.js'
 import { accents } from '../content/accents.js'
-import { articleNouns, ARTICLES, articleOf, withArticle, articleChoices } from '../content/articles.js'
+import { articleNouns, ARTICLES, articleOf, withArticle, articleChoices, nounLabel } from '../content/articles.js'
 import { negations } from '../content/negation.js'
 import { possessives } from '../content/possessives.js'
 import { inversions, questionWords } from '../content/interrogatives.js'
 import { grosMots } from '../content/grosmots.js'
 import { imperfectVerbs } from '../content/imperfect.js'
-import { verbs, slotLabels, conjugated } from '../content/verbs.js'
+import {
+  slotLabels,
+  conjugated,
+  erVerbs,
+  irVerbs,
+  thirdVerbs,
+  auxVerbs,
+  reflexiveVerbs,
+  commonVerbs,
+} from '../content/verbs.js'
+import { futureVerbs, futureStems } from '../content/future.js'
 import { family } from '../content/family.js'
 import { plurals } from '../content/plurals.js'
 import { introductions } from '../content/introducing.js'
@@ -137,8 +148,13 @@ function assemble({ id, prompt, subtitle, answer, pool, note, swatch, speech, ru
   const distractors = pickDistractors(pool, answer, random)
 
   // Not enough distinct wrong answers to ask a fair question. Better to drop
-  // the card than to show a 2-option coin flip.
-  if (distractors.length < CHOICES_PER_QUESTION - 1) return null
+  // the card than to show a 2-option coin flip — but say so, loudly. A silent
+  // drop is a card that quietly vanishes from the deck; the test suite
+  // (engine.test.js) fails on this warning, so it can't slip through.
+  if (distractors.length < CHOICES_PER_QUESTION - 1) {
+    console.warn(`Dropped card ${id}: only ${distractors.length} distinct wrong answers`)
+    return null
+  }
 
   return {
     id,
@@ -378,13 +394,9 @@ export const lessons = [
   { id: 7, label: 'Cours N°7', date: '20 août' },
   { id: 8, label: 'Cours N°8', date: '27 août' },
   { id: 9, label: 'Cours N°9', date: '3 septembre' },
+  { id: 10, label: 'Cours N°10 — grand final', date: '10 septembre' },
 ]
 
-const erVerbs = verbs.filter((v) => v.group === 1)
-const irVerbs = verbs.filter((v) => v.group === 2)
-const thirdVerbs = verbs.filter((v) => v.group === 3)
-const auxVerbs = verbs.filter((v) => v.group === 'aux')
-const reflexiveVerbs = verbs.filter((v) => v.group === 'reflexive')
 
 export const decks = [
   // --- Cours N°1 -----------------------------------------------------------
@@ -401,7 +413,7 @@ export const decks = [
     label: 'Les objets de la classe',
     // Show the article — you should be absorbing gender alongside the noun.
     build: (seed) =>
-      vocabQuestions(classroom, 'classroom', seed, { display: (it) => `${it.article} ${it.fr}` }),
+      vocabQuestions(classroom, 'classroom', seed, { display: nounLabel }),
   },
   { id: 'colors', lesson: 1, label: 'Les couleurs', build: (seed) => vocabQuestions(colors, 'colors', seed) },
   {
@@ -455,7 +467,7 @@ export const decks = [
     id: 'reflexive-verbs',
     lesson: 3,
     label: 'Se présenter (verbes pronominaux)',
-    build: (seed) => verbQuestions(seed, reflexiveVerbs),
+    build: (seed) => verbQuestions(seed, reflexiveVerbs, { noteOf: (v) => v.note }),
   },
   {
     id: 'accents',
@@ -493,7 +505,7 @@ export const decks = [
     label: 'La nature (Tahiti)',
     // Show the article — gender is learned with the noun, as in `classroom`.
     build: (seed) =>
-      vocabQuestions(nature, 'nature', seed, { display: (it) => `${it.article} ${it.fr}` }),
+      vocabQuestions(nature, 'nature', seed, { display: nounLabel }),
   },
   {
     id: 'possessives',
@@ -540,7 +552,7 @@ export const decks = [
     // Nouns show their article (gender rides along); adjectives/expressions don't.
     build: (seed) =>
       vocabQuestions(weather, 'weather', seed, {
-        display: (it) => (it.article ? `${it.article} ${it.fr}` : it.fr),
+        display: nounLabel,
       }),
   },
   {
@@ -548,13 +560,15 @@ export const decks = [
     lesson: 5,
     label: 'Au bord de la mer',
     build: (seed) =>
-      vocabQuestions(seaside, 'seaside', seed, { display: (it) => `${it.article} ${it.fr}` }),
+      vocabQuestions(seaside, 'seaside', seed, { display: nounLabel }),
   },
   {
     id: 'verbs-3',
     lesson: 5,
     label: 'Les verbes du 3ème groupe',
-    build: (seed) => verbQuestions(seed, thirdVerbs),
+    // Irregular verbs carry a `note` (vous faites, ils viennent…) rather than an
+    // «ER» `spellingChange`, so read that one.
+    build: (seed) => verbQuestions(seed, thirdVerbs, { noteOf: (v) => v.note }),
   },
 
   // --- Cours N°6 -----------------------------------------------------------
@@ -580,7 +594,7 @@ export const decks = [
     // have none.
     build: (seed) =>
       vocabQuestions(seasons, 'seasons', seed, {
-        display: (it) => (it.article ? `${it.article} ${it.fr}` : it.fr),
+        display: nounLabel,
       }),
   },
   {
@@ -588,7 +602,7 @@ export const decks = [
     lesson: 6,
     label: 'Le paysage (Monet)',
     build: (seed) =>
-      vocabQuestions(paysage, 'paysage', seed, { display: (it) => `${it.article} ${it.fr}` }),
+      vocabQuestions(paysage, 'paysage', seed, { display: nounLabel }),
   },
 
   // --- Cours N°7 -------------------------------------------------------------
@@ -601,7 +615,7 @@ export const decks = [
     lesson: 7,
     label: 'La famille',
     build: (seed) =>
-      vocabQuestions(family, 'family', seed, { display: (it) => `${it.article} ${it.fr}` }),
+      vocabQuestions(family, 'family', seed, { display: nounLabel }),
   },
   {
     id: 'introducing',
@@ -632,7 +646,7 @@ export const decks = [
     label: 'Simon de Châlons (peinture)',
     build: (seed) =>
       vocabQuestions(chalons, 'chalons', seed, {
-        display: (it) => (it.article ? `${it.article} ${it.fr}` : it.fr),
+        display: nounLabel,
       }),
   },
 
@@ -645,7 +659,7 @@ export const decks = [
     lesson: 8,
     label: 'Le corps',
     build: (seed) =>
-      vocabQuestions(body, 'body', seed, { display: (it) => `${it.article} ${it.fr}` }),
+      vocabQuestions(body, 'body', seed, { display: nounLabel }),
   },
   {
     id: 'traits',
@@ -690,7 +704,7 @@ export const decks = [
     // it's too small (3 items) to deal 3 fair distractors per card.
     build: (seed) =>
       vocabQuestions([...interests, ...preferences], 'interests', seed, {
-        display: (it) => (it.article ? `${it.article} ${it.fr}` : it.fr),
+        display: nounLabel,
       }),
   },
   {
@@ -703,6 +717,54 @@ export const decks = [
         answer: (it) => it.phrase,
         subtitle: 'en français',
         note: (it) => it.note,
+      }),
+  },
+
+  // --- Cours N°10 — grand final ---------------------------------------------
+  // Mostly review. (flâner/chuchoter/trouver/passer fold into «ER»; bondir/
+  // noircir into «IR»; se carapater into the reflexive deck; aller/faire/dire/
+  // savoir/vouloir/devoir into the 3rd-group deck; couper/avaler into the
+  // imperfect deck; six more sentences into article-choice; the face insults
+  // into gros-mots.)
+  {
+    id: 'future',
+    lesson: 10,
+    label: 'Le futur simple',
+    // A third tense through the same generator as the present and the imperfect.
+    build: (seed) =>
+      verbQuestions(seed, futureVerbs, {
+        idPrefix: 'future',
+        subtitleFor: (slot) => `au futur — ${slotLabels[slot]} …`,
+        noteOf: (v) => v.note,
+      }),
+  },
+  {
+    id: 'future-stems',
+    lesson: 10,
+    label: 'Le futur : les radicaux irréguliers',
+    // The conjugation deck above drills endings (distractors share the stem);
+    // this one drills the stem, against the present and imperfect forms.
+    build: (seed) =>
+      transformQuestions(futureStems, 'future-stems', seed, {
+        prompt: (it) => `${it.fr} (${it.en})`,
+        answer: (it) => it.answer,
+        subtitle: 'au futur — je …',
+        note: (it) => it.note,
+      }),
+  },
+  {
+    id: 'common-verbs',
+    lesson: 10,
+    label: 'Les verbes les plus courants',
+    build: (seed) => vocabQuestions(commonVerbs, 'common-verbs', seed),
+  },
+  {
+    id: 'cousin',
+    lesson: 10,
+    label: 'Jean Cousin (peinture)',
+    build: (seed) =>
+      vocabQuestions(cousin, 'cousin', seed, {
+        display: nounLabel,
       }),
   },
 ]

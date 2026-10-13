@@ -280,6 +280,37 @@ export const verbs = [
     forms: { je: 'boude', tu: 'boudes', il: 'boude', nous: 'boudons', vous: 'boudez', ils: 'boudent' },
   },
 
+  // new «ER» verbs — Cours N°10 (the flâner/chuchoter conjugation slide, plus
+  // trouver/passer from "the 18 most common French verbs"). All regular.
+  {
+    id: 'flaner',
+    fr: 'flâner',
+    en: 'to stroll / to wander',
+    group: 1,
+    forms: { je: 'flâne', tu: 'flânes', il: 'flâne', nous: 'flânons', vous: 'flânez', ils: 'flânent' },
+  },
+  {
+    id: 'chuchoter',
+    fr: 'chuchoter',
+    en: 'to whisper',
+    group: 1,
+    forms: { je: 'chuchote', tu: 'chuchotes', il: 'chuchote', nous: 'chuchotons', vous: 'chuchotez', ils: 'chuchotent' },
+  },
+  {
+    id: 'trouver',
+    fr: 'trouver',
+    en: 'to find',
+    group: 1,
+    forms: { je: 'trouve', tu: 'trouves', il: 'trouve', nous: 'trouvons', vous: 'trouvez', ils: 'trouvent' },
+  },
+  {
+    id: 'passer',
+    fr: 'passer',
+    en: 'to pass / to spend (time)',
+    group: 1,
+    forms: { je: 'passe', tu: 'passes', il: 'passe', nous: 'passons', vous: 'passez', ils: 'passent' },
+  },
+
   // --- 2ème groupe «IR» — Cours N°2 ----------------------------------------
   // All regular: root + is/is/it/issons/issez/issent. Note je and tu are
   // identical ("finis"), as in every 2nd-group verb.
@@ -764,6 +795,22 @@ export const verbs = [
     forms: { je: 'pâlis', tu: 'pâlis', il: 'pâlit', nous: 'pâlissons', vous: 'pâlissez', ils: 'pâlissent' },
   },
 
+  // new «IR» verbs — Cours N°10 (the bondir/noircir conjugation slide).
+  {
+    id: 'bondir',
+    fr: 'bondir',
+    en: 'to leap / to jump suddenly',
+    group: 2,
+    forms: { je: 'bondis', tu: 'bondis', il: 'bondit', nous: 'bondissons', vous: 'bondissez', ils: 'bondissent' },
+  },
+  {
+    id: 'noircir',
+    fr: 'noircir',
+    en: 'to darken / to blacken',
+    group: 2,
+    forms: { je: 'noircis', tu: 'noircis', il: 'noircit', nous: 'noircissons', vous: 'noircissez', ils: 'noircissent' },
+  },
+
   // --- auxiliaries être / avoir — Cours N°2 --------------------------------
   // Irregular: no root+ending rule. These have to be memorised, and they carry
   // most of the language (every compound tense is built on them).
@@ -887,6 +934,23 @@ export const verbs = [
       nous: 'nous tenons',
       vous: 'vous tenez',
       ils: 'se tiennent',
+    },
+  },
+  // new reflexive verb — Cours N°10 (se carapater = to run away / dash off).
+  // Back to a regular «ER» stem, like se cacher. Familiar register.
+  {
+    id: 'secarapater',
+    fr: 'se carapater',
+    en: 'to run away / to dash off',
+    group: 'reflexive',
+    note: 'Familier (slangy) — fine with friends; "s’enfuir" is the neutral word.',
+    forms: {
+      je: 'me carapate',
+      tu: 'te carapates',
+      il: 'se carapate',
+      nous: 'nous carapatons',
+      vous: 'vous carapatez',
+      ils: 'se carapatent',
     },
   },
 
@@ -1018,6 +1082,64 @@ export const verbs = [
     latin: 'vivere (to live)',
     forms: { je: 'vis', tu: 'vis', il: 'vit', nous: 'vivons', vous: 'vivez', ils: 'vivent' },
   },
+  // Cours N°10 — "the 18 most common French verbs" slide lists these by
+  // infinitive only; the present forms below go beyond the slide (only "vous
+  // allez" is in an exercise) because these are the verbs that carry everyday
+  // French. All irregular, all hand-written. See VERIFY.md.
+  {
+    id: 'aller',
+    fr: 'aller',
+    en: 'to go',
+    group: 3,
+    // Ends in -ER but is NOT 1st group: the only -ER verb that's irregular
+    // throughout. Three different stems: v- (vais), all- (allons), ir- (future).
+    note: 'Ends in -er but is irregular — officially 3rd group: je vais, nous allons, ils vont.',
+    forms: { je: 'vais', tu: 'vas', il: 'va', nous: 'allons', vous: 'allez', ils: 'vont' },
+  },
+  {
+    id: 'faire',
+    fr: 'faire',
+    en: 'to do / to make',
+    group: 3,
+    latin: 'facere (to do, to make)',
+    note: 'vous faites (not "faisez") and ils font — the two forms to watch.',
+    forms: { je: 'fais', tu: 'fais', il: 'fait', nous: 'faisons', vous: 'faites', ils: 'font' },
+  },
+  {
+    id: 'dire',
+    fr: 'dire',
+    en: 'to say / to tell',
+    group: 3,
+    latin: 'dicere (to say)',
+    note: 'vous dites (not "disez") — like vous faites and vous êtes.',
+    forms: { je: 'dis', tu: 'dis', il: 'dit', nous: 'disons', vous: 'dites', ils: 'disent' },
+  },
+  {
+    id: 'savoir',
+    fr: 'savoir',
+    en: 'to know (a fact)',
+    group: 3,
+    latin: 'sapere (to taste, to be wise)',
+    forms: { je: 'sais', tu: 'sais', il: 'sait', nous: 'savons', vous: 'savez', ils: 'savent' },
+  },
+  {
+    id: 'vouloir',
+    fr: 'vouloir',
+    en: 'to want',
+    group: 3,
+    latin: 'velle (to want)',
+    // Boot verb: veu-/veul- in je/tu/il/ils, voul- in nous/vous.
+    forms: { je: 'veux', tu: 'veux', il: 'veut', nous: 'voulons', vous: 'voulez', ils: 'veulent' },
+  },
+  {
+    id: 'devoir',
+    fr: 'devoir',
+    en: 'must / to have to',
+    group: 3,
+    latin: 'debere (to owe)',
+    // Boot verb: doi-/doiv- in je/tu/il/ils, dev- in nous/vous.
+    forms: { je: 'dois', tu: 'dois', il: 'doit', nous: 'devons', vous: 'devez', ils: 'doivent' },
+  },
 ]
 
 // How each slot is labelled when shown as a question prompt.
@@ -1050,3 +1172,22 @@ export function conjugated(slot, form, { spoken = false } = {}) {
   }
   return `${(spoken ? spokenLabels : slotLabels)[slot]} ${form}`
 }
+
+// The verbs split by group. Both the quiz decks (engine.js) and the cheat sheet
+// (Reference.jsx) need these exact lists, so they're defined once, here.
+export const erVerbs = verbs.filter((v) => v.group === 1)
+export const irVerbs = verbs.filter((v) => v.group === 2)
+export const thirdVerbs = verbs.filter((v) => v.group === 3)
+export const auxVerbs = verbs.filter((v) => v.group === 'aux')
+export const reflexiveVerbs = verbs.filter((v) => v.group === 'reflexive')
+
+// Cours N°10 — "The 18 most common French verbs". The slide is titled 18 but
+// lists 16 (pouvoir, on the next futur slide, is the obvious missing one). Every
+// one of them is already a conjugated verb above, so the deck is just these ids
+// looked up — the infinitive → meaning card reads the same fact as the
+// conjugation cards, and can't drift from them. Order follows the slide.
+const commonVerbIds = [
+  'etre', 'avoir', 'faire', 'dire', 'aller', 'voir', 'savoir', 'vouloir',
+  'venir', 'devoir', 'prendre', 'trouver', 'donner', 'parler', 'aimer', 'passer',
+]
+export const commonVerbs = commonVerbIds.map((id) => verbs.find((v) => v.id === id))

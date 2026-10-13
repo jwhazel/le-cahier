@@ -32,10 +32,32 @@ export function articleOf(noun) {
   return noun.gender === 'f' ? 'la' : 'le'
 }
 
-/** How the article joins the noun for display / speech: "l'école", "le livre". */
+/**
+ * Join an article to a word: "le livre", but "l'école" — an elided article
+ * (l') takes no space. Every place that shows an article goes through here, so
+ * none of them can print "l' école".
+ */
+export function joinArticle(article, word) {
+  return isElided(article) ? `${article}${word}` : `${article} ${word}`
+}
+
+/** True for an elided article like l' (the apostrophe replaces a vowel). */
+export function isElided(article) {
+  return article.endsWith("'")
+}
+
+/** How the computed definite article joins the noun: "l'école", "le livre". */
 export function withArticle(noun) {
-  const art = articleOf(noun)
-  return art.endsWith("'") ? `${art}${noun.fr}` : `${art} ${noun.fr}`
+  return joinArticle(articleOf(noun), noun.fr)
+}
+
+/**
+ * The display label for a vocab item that carries its own `article` field
+ * (classroom, nature, family, body…): "un arbre", "l'ombre". Items with no
+ * article (adjectives, phrases like "être nu(e)") show the bare word.
+ */
+export function nounLabel(item) {
+  return item.article ? joinArticle(item.article, item.fr) : item.fr
 }
 
 // Definite vs. indefinite — Cours collectif N°9, slides ~215-227.
@@ -95,6 +117,60 @@ export const articleChoices = [
       'Je n’aime pas des pommes « Golden ».',
       'Je n’aime pas une pommes « Golden ».',
       'Je n’aime pas la pommes « Golden ».',
+    ],
+  },
+
+  // Cours N°10 — the "find the right article" exercise (le/la/les/un/une/des).
+  // Like N°9's, it has no printed answer key; filled in from the same rule. The
+  // cue's bracket says which reading is meant, because "le sac à dos" or "la
+  // pomme" are also correct French when a SPECIFIC one is meant.
+  {
+    id: 'livre-paul',
+    cue: "Paul's book is blue. (one specific, known book)",
+    phrase: 'Le livre de Paul est bleu.',
+    distractors: ['Un livre de Paul est bleu.', 'Des livre de Paul est bleu.', 'Les livre de Paul est bleu.'],
+  },
+  {
+    id: 'sac-dos',
+    cue: "I'm going to buy a backpack. (not a specific one)",
+    phrase: 'Je vais acheter un sac à dos.',
+    distractors: ['Je vais acheter une sac à dos.', 'Je vais acheter des sac à dos.', 'Je vais acheter les sac à dos.'],
+  },
+  {
+    id: 'agriculteur-pomme',
+    cue: 'The farmer picks an apple. (any apple, not a specific one)',
+    phrase: "L'agriculteur ramasse une pomme.",
+    distractors: [
+      "L'agriculteur ramasse la pomme.",
+      "L'agriculteur ramasse un pomme.",
+      "L'agriculteur ramasse des pomme.",
+    ],
+  },
+  {
+    id: 'telephone-jim',
+    cue: "Jim's phone is gray. (one specific, known phone)",
+    phrase: 'Le téléphone de Jim est gris.',
+    distractors: [
+      'Un téléphone de Jim est gris.',
+      'La téléphone de Jim est gris.',
+      'Les téléphone de Jim est gris.',
+    ],
+  },
+  {
+    id: 'musique-groupe',
+    cue: "This band's music. (the music of one specific band)",
+    phrase: 'La musique de ce groupe.',
+    distractors: ['Une musique de ce groupe.', 'Le musique de ce groupe.', 'Des musique de ce groupe.'],
+  },
+  {
+    id: 'tartes-poires',
+    cue: "I don't like pear pies. (a general dislike, not specific pies)",
+    phrase: 'Je n’aime pas les tartes aux poires.',
+    note: 'Like the Golden apples: a general like/dislike takes the definite article.',
+    distractors: [
+      'Je n’aime pas des tartes aux poires.',
+      'Je n’aime pas une tartes aux poires.',
+      'Je n’aime pas la tartes aux poires.',
     ],
   },
 ]

@@ -304,4 +304,23 @@ export const imperfectVerbs = [
     note: 'Irregular in the present (je pars), but regular in the imperfect: part-.',
     forms: { je: 'partais', tu: 'partais', il: 'partait', nous: 'partions', vous: 'partiez', ils: 'partaient' },
   },
+
+  // --- Cours N°10 — couper (conjugation table) and avaler (exercise) --------
+  // Both regular «ER»: nous coupons → coup-, nous avalons → aval-. (finir,
+  // bâtir, venir, être and avoir from the same slides are already above.)
+  {
+    id: 'couper',
+    fr: 'couper',
+    en: 'to cut',
+    group: 1,
+    forms: { je: 'coupais', tu: 'coupais', il: 'coupait', nous: 'coupions', vous: 'coupiez', ils: 'coupaient' },
+  },
+  {
+    id: 'avaler',
+    fr: 'avaler',
+    en: 'to swallow',
+    group: 1,
+    // j'avalais — elision before the vowel; handled by conjugated().
+    forms: { je: 'avalais', tu: 'avalais', il: 'avalait', nous: 'avalions', vous: 'avaliez', ils: 'avalaient' },
+  },
 ]

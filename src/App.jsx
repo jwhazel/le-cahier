@@ -2,13 +2,36 @@ import { useState } from 'react'
 import Quiz from './Quiz.jsx'
 import Reference from './Reference.jsx'
 import { decks, lessons } from './quiz/engine.js'
+import { useFrenchVoice } from './speech.js'
 
-const ROMAN = [
-  'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
-  'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX',
-  'XXI', 'XXII', 'XXIII', 'XXIV', 'XXV', 'XXVI', 'XXVII', 'XXVIII', 'XXIX', 'XXX',
-  'XXXI', 'XXXII', 'XXXIII', 'XXXIV', 'XXXV', 'XXXVI', 'XXXVII', 'XXXVIII',
+/**
+ * 1 -> "I", 14 -> "XIV", 42 -> "XLII". Greedy: take the largest value that
+ * fits, repeat. The two-letter entries (CM, XC, IV…) are what make the
+ * subtractive forms come out right without any special cases.
+ */
+const ROMAN_VALUES = [
+  [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'],
+  [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
 ]
+function toRoman(n) {
+  let out = ''
+  for (const [value, letters] of ROMAN_VALUES) {
+    while (n >= value) {
+      out += letters
+      n -= value
+    }
+  }
+  return out
+}
+
+// Deck sizes, worked out ONCE when the module loads. Counting a deck means
+// building all its questions, and the decks never change while the app runs —
+// so there's no reason to redo it on every render. (useMemo would also work,
+// but it's for values that depend on props or state; this depends on neither,
+// so a plain module-level constant is simpler.) Roman numerals run continuously
+// across every lesson, so each deck has one stable index however it's grouped.
+const SIZED_DECKS = decks.map((d, i) => ({ ...d, numeral: toRoman(i + 1), size: d.build().length }))
+const GRAND_TOTAL = SIZED_DECKS.reduce((sum, d) => sum + d.size, 0)
 
 export default function App() {
   // Three screens, ONE state variable — a tagged union.
@@ -26,6 +49,9 @@ export default function App() {
   const [screen, setScreen] = useState({ name: 'decks' })
   const [sound, setSound] = useState(true)
   const [referenceOpen, setReferenceOpen] = useState(false)
+  // Look the voice up once, here, and hand it down — rather than having the
+  // quiz and the cheat sheet each find it separately ("lifting state up").
+  const { voice, supported } = useFrenchVoice()
 
   // A fresh seed per run reshuffles both the question order and each card's
   // options — but the seed is fixed *within* a run, so React's re-renders
@@ -46,7 +72,7 @@ export default function App() {
         </h1>
       </header>
 
-      <Reference open={referenceOpen} onClose={() => setReferenceOpen(false)} />
+      <Reference open={referenceOpen} onClose={() => setReferenceOpen(false)} voice={voice} />
 
       {screen.name === 'decks' && <DeckPicker onPick={start} />}
 
@@ -54,7 +80,10 @@ export default function App() {
         <Quiz
           deckId={screen.deckId}
           seed={screen.seed}
+          voice={voice}
+          supported={supported}
           sound={sound}
+          paused={referenceOpen}
           onToggleSound={() => setSound((on) => !on)}
           onFinish={(report) => setScreen({ name: 'results', deckId: screen.deckId, ...report })}
           onQuit={() => setScreen({ name: 'decks' })}
@@ -73,15 +102,10 @@ export default function App() {
 }
 
 function DeckPicker({ onPick }) {
-  // Roman numerals run continuously across every lesson (I…X), so each deck has
-  // one stable index no matter how it's grouped. Sizes are computed once here.
-  const sized = decks.map((d, i) => ({ ...d, numeral: ROMAN[i], size: d.build().length }))
-  const grandTotal = sized.reduce((sum, d) => sum + d.size, 0)
-
   return (
     <div className="deck-groups">
       {lessons.map((lesson) => {
-        const group = sized.filter((d) => d.lesson === lesson.id)
+        const group = SIZED_DECKS.filter((d) => d.lesson === lesson.id)
         const lessonTotal = group.reduce((sum, d) => sum + d.size, 0)
         return (
           <section key={lesson.id} className="deck-group">
@@ -113,7 +137,7 @@ function DeckPicker({ onPick }) {
           <button className="deck" onClick={() => onPick('all')}>
             <span className="numeral">✳</span>
             <span className="name">Tout mélangé — tous les cours</span>
-            <span className="count">{grandTotal} cartes</span>
+            <span className="count">{GRAND_TOTAL} cartes</span>
             <span className="arrow" aria-hidden="true">
               →
             </span>

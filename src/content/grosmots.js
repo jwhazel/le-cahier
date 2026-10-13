@@ -108,6 +108,7 @@ export const grosMots = [
     en: 'idiot / dumbass',
     register: 'injure',
     note: 'Very common. As an adjective ("c\'est con") it just means "that\'s stupid/too bad".',
+    confusableWith: ['cretin', 'tete-abruti'],
   },
   {
     id: 'connard',
@@ -142,5 +143,55 @@ export const grosMots = [
     fr: 'crétin',
     en: 'moron / cretin',
     register: 'injure',
+    confusableWith: ['con', 'tete-abruti'],
+  },
+
+  // --- Cours N°10 — "Because French ARE MEAN": insults about someone's face ---
+  // These DID come from a slide (unlike the rest of this file). The "looks
+  // stupid" trio (pet / gland / abruti) and the "ugly" pair (cul / vomir) mean
+  // nearly the same thing, so each is marked confusable with its neighbours.
+  {
+    id: 'tete-claques',
+    fr: 'avoir une tête à claques',
+    en: 'to have a punchable face',
+    register: 'injure',
+    note: 'Someone so smug you want to slap them. Mild as insults go. The slide writes "un tronche à claque" — tronche (slang for tête) is feminine, and claques takes an s: une tronche à claques.',
+  },
+  {
+    id: 'face-pet',
+    fr: 'avoir une face de pet',
+    en: 'to have a stupid-looking face (lit. "fart face")',
+    register: 'injure',
+    confusableWith: ['tete-gland', 'tete-abruti'],
+  },
+  {
+    id: 'tete-gland',
+    fr: 'avoir une tête de gland',
+    en: 'to look like a dickhead',
+    register: 'injure',
+    note: 'Crude — gland is literally the tip of the penis (and also an acorn).',
+    confusableWith: ['face-pet', 'tete-abruti'],
+  },
+  {
+    id: 'tete-abruti',
+    fr: "avoir une tête d'abruti",
+    en: 'to look like a complete idiot',
+    register: 'injure',
+    confusableWith: ['face-pet', 'tete-gland', 'con', 'cretin'],
+  },
+  {
+    id: 'tete-cul',
+    fr: 'avoir une tête de cul',
+    en: 'to have an ugly, hateful face (lit. "ass face")',
+    register: 'injure',
+    confusableWith: ['tete-vomir'],
+  },
+  {
+    id: 'tete-vomir',
+    fr: 'avoir une tête à vomir',
+    en: 'to be so ugly it makes you sick',
+    register: 'injure',
+    note: 'The milder way to say it: être vraiment vilain (really ugly — though vilain alone, said to a child, just means naughty).',
+    confusableWith: ['tete-cul'],
   },
 ]

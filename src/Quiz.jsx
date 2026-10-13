@@ -1,17 +1,26 @@
 import { useEffect, useMemo, useState } from 'react'
 import { buildQuiz } from './quiz/engine.js'
-import { useFrenchVoice, speak } from './speech.js'
+import { speak } from './speech.js'
 import Speaker from './Speaker.jsx'
 
 const KEYS = ['A', 'B', 'C', 'D']
 
-export default function Quiz({ deckId, seed, sound, onToggleSound, onFinish, onQuit }) {
+export default function Quiz({
+  deckId,
+  seed,
+  voice,
+  supported,
+  sound,
+  paused,
+  onToggleSound,
+  onFinish,
+  onQuit,
+}) {
   // buildQuiz shuffles. If we called it in the render body it would produce a
   // brand-new order on every re-render — the questions would reshuffle each
   // time you clicked. useMemo pins it to (deckId, seed): the same inputs give
   // the same quiz, and it only rebuilds when you start a new run.
   const questions = useMemo(() => buildQuiz(deckId, seed), [deckId, seed])
-  const { voice, supported } = useFrenchVoice()
 
   const [index, setIndex] = useState(0)
   const [chosenId, setChosenId] = useState(null)
@@ -57,6 +66,10 @@ export default function Quiz({ deckId, seed, sound, onToggleSound, onFinish, onQ
   // Answer with A-D (or 1-4), advance with Enter or Space.
   useEffect(() => {
     function onKey(event) {
+      // `paused` is true while the Antisèche is open. It's a modal <dialog>
+      // on top of the quiz, but key events still reach `window` — without this,
+      // pressing A in the cheat sheet would answer the card hidden underneath.
+      if (paused) return
       if (event.key.toLowerCase() === 'p' && voice) {
         speak(answered ? (question.revealSpeech ?? question.speech) : question.speech, voice)
         return

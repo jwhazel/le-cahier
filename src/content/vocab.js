@@ -162,6 +162,36 @@ export const chalons = [
   { id: 'cornemuse', fr: 'cornemuse', article: 'une', gender: 'f', en: 'a bagpipe' },
 ]
 
+// Cours N°10 — vocabulary from Jean Cousin the Elder's "Eva Prima Pandora".
+// Same pattern as `paysage` and `chalons`: the biography and the interpretation
+// slides are skipped, the word list is kept. Already taught elsewhere, so not
+// repeated: une femme (nature), la mer (nature), un drap (chalons), des arbres
+// (paysage). The slide writes "le premier-plan" with a hyphen; the standard
+// spelling is "le premier plan" (no hyphen) — unlike "l'arrière-plan", which
+// does take one. Flagged in VERIFY.md.
+export const cousin = [
+  { id: 'urne', fr: 'urne', article: 'une', gender: 'f', en: 'an urn' },
+  { id: 'pomme', fr: 'pomme', article: 'une', gender: 'f', en: 'an apple' },
+  { id: 'crane', fr: 'crâne', article: 'un', gender: 'm', en: 'a skull' },
+  { id: 'ville', fr: 'ville', article: 'une', gender: 'f', en: 'a city / a town' },
+  { id: 'serpent', fr: 'serpent', article: 'un', gender: 'm', en: 'a snake' },
+  { id: 'titre', fr: 'titre', article: 'le', gender: 'm', en: 'the title' },
+  // l' hides the gender — arrière-plan is masculine (un arrière-plan).
+  { id: 'arriere-plan', fr: 'arrière-plan', article: "l'", gender: 'm', en: 'the background' },
+  { id: 'premier-plan', fr: 'premier plan', article: 'le', gender: 'm', en: 'the foreground' },
+  {
+    id: 'cheveux-roux',
+    fr: 'cheveux roux',
+    article: 'les',
+    gender: 'm',
+    en: 'red hair',
+    note: 'Hair is "roux", never "rouge" — rouge is for things, not hair.',
+  },
+  // Adjective phrases: no article. The adjective agrees — a woman is allongée / nue.
+  { id: 'etre-allonge', fr: 'être allongé(e)', en: 'to be lying down' },
+  { id: 'etre-nu', fr: 'être nu(e)', en: 'to be naked' },
+]
+
 // Cours N°8 — le corps (the body). «La tête», «le bras» and «la jambe» were
 // already taught alongside the Matisse dancer in `seaside` (Cours N°5), so
 // they're not repeated here.
